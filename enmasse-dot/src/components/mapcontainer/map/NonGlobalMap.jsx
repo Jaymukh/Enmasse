@@ -173,8 +173,10 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 					source='geojsonsource-circle'
 					paint={{
 						'circle-radius': ['get', 'radius'],
-						'circle-color': '#A1CEB5',
-						'circle-opacity': 1,
+						'circle-color': '#FFFFFF80',
+						'circle-opacity': 0.5,
+						'circle-stroke-width': 1,
+						'circle-stroke-color': '#FFFFFF'
 					}}
 				/>
 				{/* {pointFeatures && (

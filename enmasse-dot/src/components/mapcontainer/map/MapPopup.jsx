@@ -13,8 +13,8 @@ const MapPopup = ({ name, population }) => {
         </div>
             <div className="col-8 ps-1 d-flex flex-column justify-content-start">
                 <p className="map-popup-description text-start my-0">3 Family members</p>
-                <p className="map-popup-description text-start my-0"><span className="text-success">$6000</span> Annual Spend on Core Solutions</p>
-                <button className="map-popup-description border-0 bg-transparent text-success text-start p-0">Read more<FiArrowRight className='ms-1'/></button>
+                <p className="map-popup-description text-start my-0"><span className="green-text">$6000</span> Annual Spend on Core Solutions</p>
+                <button className="map-popup-description border-0 bg-transparent green-text text-start p-0">Read more<FiArrowRight className='ms-1'/></button>
             </div>            
         </div>
     )
