@@ -13,7 +13,7 @@ const CoreSolutions = () => {
     };
 
     return (
-        <div className="position-fixed">
+        <div className="position-fixed ms-4">
             <div className="mt-4 mx-1 bg-white p-3 core-sol-div">
                 <h6 className="fw-bold mx-2 input-rb-header pe-3">Core Solutions</h6>
                 <div className="pe-3">

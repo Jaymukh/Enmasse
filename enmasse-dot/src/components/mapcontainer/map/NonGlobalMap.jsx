@@ -132,7 +132,7 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 	return (
 		<div
 			className='row'
-			style={{ height: '77vh', width: '98vw', zIndex: 999 }}
+			style={{ height: '80vh', width: '100vw', zIndex: 999 }}
 			ref={mapContainerRef}
 		>
 			<Map

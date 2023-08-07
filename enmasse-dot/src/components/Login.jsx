@@ -51,10 +51,10 @@ export default function Login({ handleLoggedIn }) {
 
     return (
         <div>
-            <div className='row' style={{ height: '100vh', width: '100vw' }}>
+            <div className='row mx-0' style={{ height: '100vh', width: '100vw' }} >
                 <div className='col-md-6 col-xl-6 loginUpdateBox lightGrayBackground'>
                     <div className='loginCardAlign'>
-                        <img variant="top" src={globe} />
+                        <img variant="top" src={globe} a />                       
                         <div>
                             <h3>enmasse</h3>
                             <p className='text-muted login-p'>
@@ -69,16 +69,16 @@ export default function Login({ handleLoggedIn }) {
                         <p className='text-muted mb-4 login-p'>Enter your email ID and Password to login
                         </p>
                         <h5 className='fs-6'>Email</h5>
-                        <input type="email" className='my-1 inputBoxHeight' value={email} placeholder='Enter your email id here' onChange={handleEmailInput} />
+                        <input type="email" className='my-1 px-2 inputBoxHeight' value={email} placeholder='Enter your email id here' onChange={handleEmailInput} />
                         {errorMessageEmail && <p className='text-danger'>{errorMessageEmail}</p>}
                         <div className='d-flex flex-row justify-content-between mt-3'>
                             <h5 className='fs-6'>Password</h5>
                             <p className='underline-text login-p'>Forget password</p>
                         </div>
 
-                        <input type="password" className='my-1 inputBoxHeight' value={password} placeholder='Enter your password here' minLength="8" onChange={handlePasswordInput} />
+                        <input type="password" className='my-1 px-2 inputBoxHeight' value={password} placeholder='Enter your password here' minLength="8" onChange={handlePasswordInput} />
                         {errorMessagePassword && <p className='text-danger'>{errorMessagePassword}</p>}
-                        <button className={disabled ? 'mb-2 mt-4 inputBoxHeight login-btn bg-secondary text-white fs-6' : 'mb-2 mt-4 inputBoxHeight login-btn bg-dark text-white fs-6'} disabled={disabled} onClick={handleLoggedIn}>Login</button>
+                        <button className={disabled ? 'mb-2 mt-4 inputBoxHeight login-btn bg-secondary text-white fs-6' : 'mb-2 mt-4 inputBoxHeight login-btn bg-dark text-white fs-6'} disabled={disabled} onClick={handleLoggedIn}>Continue</button>
                         <p className='text-muted mb-0 mt-2 login-p'>By clicking on continue you are agreeing to the Enmasse <a href='/' className='black login-p'>Terms & conditions</a> and <a href='/' className='black'>Privacy policies</a></p>
 
                         {/* <h3>Login</h3>
