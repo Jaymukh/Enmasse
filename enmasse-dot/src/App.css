@@ -1,0 +1,421 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap');
+.App {
+	text-align: center;
+	background-color: #f4f6f8;
+	height: 100vh;
+	font-family: 'Poppins', sans-serif;
+}
+
+.App-header {
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
+}
+
+/* Header */
+.enmasse-logo-font {
+	font-family: 'Bai Jamjuree', sans-serif;
+}
+
+.overlay-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	background-color: none;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 999;
+}
+
+.select-right-margin {
+	border-right: 0.5px solid #D2D4D6;
+}
+
+.primary-select-box .css-1t0qkoj-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select {
+    text-align: start;
+	padding-left: 0rem;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 500;
+}
+
+.primary-select-box .css-1t0qkoj-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+	padding-top: 0rem;
+	padding-bottom: 0rem;
+}
+/* MapButtonGroup */
+
+
+/* sidebar css */
+.SideBar {
+	display: flex;
+	float: right;
+	align-items: center;
+	height: 80vh;
+	background-color: #FFFFFF;
+	align-content: center;
+	z-index: 999
+}
+
+.sidebar-visible {
+	width: 100%;
+}
+
+.sidebar-not-visible {
+	width: 1rem;
+}
+
+.global-info {
+	width: 20rem;
+	margin: auto;
+}
+
+.tam-info {
+	background-color: #e7f2ec;
+	border: 1px solid #6fb28c;
+	border-radius: 5px;
+}
+
+.global-sub-info {
+	width: 9.5rem;
+}
+
+.country-wise-info {
+	width: 20rem;
+	margin: 5px auto;
+}
+
+.explore-btn {
+	width: 100%;
+	position: sticky;
+	z-index: 2;
+	bottom: 0;
+	right: '0';
+}
+
+.explore-country-btn {
+	border: 1px solid #dbdbdb;
+	box-shadow: none;
+	box-sizing: border-box;
+	font-size: 0.9rem;
+	height: 2.6rem;
+	padding: 0.25rem 1rem;
+	border-bottom: none;
+	border-right: none;
+	border-left: none;
+	background-color: #FFFFFF;
+}
+
+.SideBarIcon {
+	background-color: #404652;
+	color: #FFFFFF;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 1rem;
+	border: none;
+}
+
+.SideBarContent {
+	height: 80vh;
+	right: 0;
+	overflow: auto;
+}
+
+.tam-header {
+	color: #108041;
+}
+
+.textAlignLeft {
+	text-align: left;
+}
+
+.fontSizeS {
+	font-size: 12px;
+}
+
+.fontSizeXS {
+	font-size: 10px;
+}
+
+.infoIcon {
+	background-color: black;
+	color: white;
+	font-size: 2rem;
+	border-radius: 1rem;
+}
+
+.infoIconCol {
+	display: flex;
+	width: 5rem;
+	margin: auto;
+	justify-content: center;
+	align-content: center;
+
+}
+
+.alignItemsCenter {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: center;
+}
+
+.colBorder {
+	border: 2px solid #e6e7e8;
+	border-radius: 5px;
+	padding: 5px;
+	margin: auto;
+	width: 8rem;
+
+}
+
+/* Header */
+.Header {
+	height: '10vh';
+}
+
+.enmasse-circle {
+	width: 6px;
+	height: 6px;
+	background-color: #108041;
+	border-radius: 100%;
+}
+
+/* login page css */
+
+.login-header {
+	font-size: 1.625rem;
+}
+
+.login-p {
+	font-size: 0.825rem;
+}
+
+.loginCardAlign {
+	width: 60%;
+	background-color: transparent;
+	border: none;
+	border-style: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	text-align: start;
+	margin: auto
+}
+
+.mediumMarginTopBottom {
+	margin: 10px 0;
+}
+
+.inputBoxHeight {
+	height: 3rem;
+}
+
+.grayBtnClr {
+	background-color: #111827;
+	color: #FFFFFF;
+
+}
+
+.login-btn {
+	border: 1px solid #dbdbdb;
+	border-radius: 0.35rem;
+	box-shadow: none;
+	box-sizing: border-box;
+}
+
+.blackBtnColor {
+	background-color: black;
+	color: white;
+
+}
+
+.black {
+	color: black;
+	text-decoration: underline;
+	font-weight: 600;
+}
+
+.loginUpdateBox {
+	display: flex;
+	justify-content: center;
+	margin: auto;
+	width: 50vw;
+	height: 100vh;
+}
+
+.whiteBackground {
+	background-color: white;
+}
+
+.lightGrayBackground {
+	background-color: #eeeeef;
+}
+
+.paragraph {
+	margin: 0rem;
+}
+
+.request-link {
+	margin-bottom: 1rem;
+}
+
+.legend {
+	background: rgb(212, 226, 219);
+	background: linear-gradient(90deg, rgba(212, 226, 219, 1) 0%, rgba(123, 187, 155, 1) 15%, rgba(16, 128, 65, 1) 100%);
+}
+
+.legend-div {
+	position: fixed;
+	bottom: 0;
+}
+
+/* Core Solutions */
+.rb-label {
+	font-size: 0.8rem;
+}
+
+.input-rb {
+	height: 1rem;
+	width: 1rem;
+	background-color: #111827;
+	accent-color: black;
+}
+
+.input-rb-header {
+	font-size: 0.85rem;
+}
+
+.core-sol-div {
+	border: none;
+	border-radius: 3%;
+}
+
+.round-btn {
+	width: 2rem;
+	height: 2rem;
+}
+
+.primary-select-box .MuiOutlinedInput-notchedOutline {
+	border: none !important;
+}
+
+.header-search-bar .MuiOutlinedInput-notchedOutline {
+	border: none !important;
+	/* background-color: #F3F3F4;
+	color: #111827; */
+}
+
+.underline-text {
+	text-decoration: underline;
+}
+
+/* profile page css */
+.edit-profile-list {
+	list-style: none;
+	text-align: start;
+}
+
+.font-weight-500 {
+	font-weight: 900;
+}
+
+.hw-fit-content {
+	height: 1.7rem;
+	width: 4.8rem;
+	display: flex;
+	justify-content: center;
+	margin: auto;
+	border-radius: 4px;
+}
+
+.bg-yellow {
+	background-color: #c68f27;
+}
+
+.bg-green {
+	background-color: #10810b;
+}
+
+/* accountcontainer/account/SideBar class for ListItemButton */
+.account-sidebar .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
+	height: 70px;
+	color: #696970 !important;
+}
+
+.account-sidebar .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-selected {
+	color: black !important;
+	background-color: #e7f2ec !important;
+	border-left: 4px solid #108041;
+}
+
+/* accountcontainer/account/Invite class for table */
+.account-sidebar .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
+	width: 95% !important;
+}
+
+/* Profile */
+.detail-container {
+	width: 96%;
+	height: 100% !important;
+}
+
+.width-fit-content-button {
+	width: fit-content;
+}
+
+.full-height {
+	height: 100% !important;
+}
+
+.color-black {
+	color: black;
+}
+
+.btn-outline-black {
+	color: #343a40;
+	vertical-align: middle;
+	border: 1px solid black;
+	padding: 0.375rem 0.75rem;
+	line-height: 1.5;
+	border-radius: 0.25rem;
+}
+
+.color-brown {
+	color: #c68f27;
+}
+
+.bg-brown {
+	background-color: #c68f27;
+}
+
+/* MapPopup */
+
+
+.mapboxgl-popup-content {
+	border: 0.5px solid #0F8040;
+	box-shadow: 0px 3px 6px #00000029 !important;
+	width: 10rem;
+	height: 3.5rem;
+	padding-bottom: 1rem;
+}
+
+.map-popup-grey-text {
+	font-size: 0.825rem;
+	color: #B4B4B4;
+}
