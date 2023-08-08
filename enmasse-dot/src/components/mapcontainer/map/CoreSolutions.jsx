@@ -1,11 +1,53 @@
 import { useState } from "react";
-import { BiMessage } from 'react-icons/bi';
-import Switch from '@mui/joy/Switch';
+import { BsFillChatLeftFill } from 'react-icons/bs';
 import * as Constants from '../../../utils/constants/Constants';
+import Switch from '@mui/material/Switch';
+import { styled } from '@mui/material/styles';
 
-const CoreSolutions = () => {
+const AntSwitch = styled(Switch)(({ theme }) => ({
+	width: 28,
+	height: 16,
+	padding: 0,
+	display: 'flex',
+	'&:active': {
+		'& .MuiSwitch-thumb': {
+			width: 15,
+		},
+		'& .MuiSwitch-switchBase.Mui-checked': {
+			transform: 'translateX(9px)',
+		},
+	},
+	'& .MuiSwitch-switchBase': {
+		padding: 2,
+		'&.Mui-checked': {
+			transform: 'translateX(12px)',
+			color: '#fff',
+			'& + .MuiSwitch-track': {
+				opacity: 1,
+				backgroundColor: theme.palette.mode === 'dark' ? '#177ddc' : '#000000',
+			},
+		},
+	},
+	'& .MuiSwitch-thumb': {
+		boxShadow: '0 2px 4px 0 rgb(0 35 11 / 20%)',
+		width: 12,
+		height: 12,
+		borderRadius: 6,
+		transition: theme.transitions.create(['width'], {
+			duration: 200,
+		}),
+	},
+	'& .MuiSwitch-track': {
+		borderRadius: 16 / 2,
+		opacity: 1,
+		backgroundColor:
+			theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
+		boxSizing: 'border-box',
+	},
+}));
+
+const CoreSolutions = ( {handleViewStories} ) => {
     const [selectedRb, setSelectedRb] = useState('All');
-    const [checked, setChecked] = useState(false);
     const options = Constants.options;
 
     const handleChange = (event) => {
@@ -36,12 +78,9 @@ const CoreSolutions = () => {
                 </div>
             </div>
             <div className="d-flex flex-row bg-white mt-2 mx-1 px-3 py-2 core-sol-div">
-                <BiMessage size={18} />
+                <BsFillChatLeftFill size={16} color="#7F7F7F" className="mt-1"/>
                 <p className="paragraph mx-2">View Stories</p>
-                {/* <Switch
-                    checked={checked}
-                    onChange={(event) => setChecked(event.target.checked)}
-                /> */}
+                <AntSwitch inputProps={{ 'aria-label': 'ant design' }} onChange={(event) => handleViewStories(event.target.checked)}/>
             </div>
         </div>
     )

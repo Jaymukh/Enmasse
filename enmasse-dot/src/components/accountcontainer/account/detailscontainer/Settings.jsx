@@ -51,21 +51,21 @@ export default function Settings() {
     }));
 
     const [selectedLanguage, setSelectedLanguage] = useState('EN');
-  const [selectedCurrency, setSelectedCurrency] = useState('INR');
-  const [selectedLocation, setSelectedLocation] = useState('India');
- 
+    const [selectedCurrency, setSelectedCurrency] = useState('INR');
+    const [selectedLocation, setSelectedLocation] = useState('India');
 
-  // Event handler to handle changes in the select option
 
-  const handleSelectLanguage = (event) => {
-    setSelectedLanguage(event.target.value);
-  };
-  const handleSelectCurrency = (event) => {
-    setSelectedCurrency(event.target.value);
-  };
-  const handleSelectLocation = (event) => {
-    setSelectedLocation(event.target.value);
-  };
+    // Event handler to handle changes in the select option
+
+    const handleSelectLanguage = (event) => {
+        setSelectedLanguage(event.target.value);
+    };
+    const handleSelectCurrency = (event) => {
+        setSelectedCurrency(event.target.value);
+    };
+    const handleSelectLocation = (event) => {
+        setSelectedLocation(event.target.value);
+    };
 
     return (
         <div className='container bg-white w-90 h-100 mt-4 detail-container me-5'>

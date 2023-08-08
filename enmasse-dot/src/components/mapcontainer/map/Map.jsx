@@ -40,6 +40,7 @@ function Map({
 						const centroid = turf.centroid(feature);
 						return turf.point(centroid.geometry.coordinates, feature.properties);
 					});
+					console.log(pointFeatures);
 					const geoJsonData = {
 						"type": 'FeatureCollection',
 						"features": pointFeatures,
