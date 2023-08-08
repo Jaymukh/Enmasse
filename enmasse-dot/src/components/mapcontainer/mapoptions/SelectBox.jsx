@@ -15,7 +15,7 @@ function SelectBox({ handleChange, options, selected, primary }) {
 				placeholder='SELECT'
 			>
 				{options.map((option) => (
-					<MenuItem key={option.isoCode} value={option.name}>
+					<MenuItem key={option.isoCode} value={option.name} className="menu-font-size">
 						{option.name}
 					</MenuItem>
 				))}

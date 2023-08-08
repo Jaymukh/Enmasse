@@ -12,6 +12,9 @@ const customTheme = (outerTheme) =>
 		palette: {
 			mode: outerTheme.palette.mode,
 		},
+		typography: {
+			"fontFamily": `"Poppins", sans-serif`,
+		},
 		components: {
 			MuiTextField: {
 				styleOverrides: {

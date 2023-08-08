@@ -16,7 +16,7 @@ function AccountOptions({ handleMapDisplay, handleVisiblePanel }) {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 
-	const handlelick = (event) => {
+	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
 
@@ -31,11 +31,11 @@ function AccountOptions({ handleMapDisplay, handleVisiblePanel }) {
 	};
 
 	return (
-		<div className="small">
+		<div>
 			<div>
 				<Tooltip title="Account settings">
 					<IconButton
-						onClick={handlelick}
+						onClick={handleClick}
 						size="small"
 						sx={{ ml: 2 }}
 						aria-controls={open ? 'account-menu' : undefined}
@@ -49,7 +49,7 @@ function AccountOptions({ handleMapDisplay, handleVisiblePanel }) {
 				</Tooltip>
 			</div>
 			<div>
-				<Menu
+				<Menu					
 					anchorEl={anchorEl}
 					id="account-menu"
 					open={open}
@@ -59,7 +59,7 @@ function AccountOptions({ handleMapDisplay, handleVisiblePanel }) {
 					anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
 				>
 					{Constants.accountMenuItems.map((item, index) => (
-						<MenuItem onClick={(event) => handleClickMenuItem(event, item.key)} >
+						<MenuItem onClick={(event) => handleClickMenuItem(event, item.key)} className="menu-font-size" >
 							<ListItemIcon>
 								  {item.icon}
 							</ListItemIcon>
@@ -67,7 +67,7 @@ function AccountOptions({ handleMapDisplay, handleVisiblePanel }) {
 						</MenuItem>
 					))}					
 					<Divider />
-					<MenuItem onClick={handleClose}>
+					<MenuItem onClick={handleClose} className="menu-font-size" >
 						<ListItemIcon>
 							<Logout fontSize="small" />
 						</ListItemIcon>
