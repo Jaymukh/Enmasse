@@ -6,6 +6,8 @@ import bbox from '@turf/bbox';
 import CoreSolutions from './CoreSolutions';
 import * as Constants from '../../../utils/constants/Constants';
 import MapPopup from './MapPopup';
+import MapFillLayer from './MapFillLayer';
+import MapCircleLayer from './MapCircleLayer';
 
 function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCountry, selectedState, selectedDistrict, pointFeatures }) {
 	const TOKEN = Constants.TOKEN;
@@ -13,6 +15,7 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 
 	const mapContainerRef = useRef(null);
 	const [viewStories, setViewStories] = useState(false);
+	const [selectedRb, setSelectedRb] = useState(0);
 	const [newPlace, setNewPlace] = useState({
 		latitude: 20.5937,
 		longitude: 78.9629,
@@ -110,6 +113,11 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 		setViewStories(checked);
 	}
 
+	const handleChangeRb = (event) => {
+        setSelectedRb(Number(event.target.value));
+    };
+
+
 	useEffect(() => {
 		handleImportFeature();
 	}, [selectedCountry, selectedState, selectedDistrict]);
@@ -202,57 +210,15 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 				//boxZoom={true}
 				interactiveLayerIds={['map-fill-layer']}
 			>
-				<Source id='geojsonsource-fill' type='geojson' data={features} />
-				<Layer
-					id='map-fill-layer'
-					type='fill'
-					source='geojsonsource-fill'
-					paint={{
-						'fill-color': ['case',
-							['<=', ['get', 'population'], 100000], '#D4E2DB',
-							['<=', ['get', 'population'], 5000000], '#83BFA1',
-							['<=', ['get', 'population'], 10000000], '#429C6B',
-							['<=', ['get', 'population'], 50000000], '#108041',
-							'#108041'],
-						'fill-opacity': 0.7
-					}}
-				/>
-				<Source id="geojsonsource-circle" type="geojson" data={pointFeatures} />
-				<Layer
-					id='map-circle-layer'
-					type='circle'
-					source='geojsonsource-circle'
-					paint={{
-						'circle-radius': ['get', 'radius'],
-						'circle-color': '#FFFFFF',
-						'circle-opacity': 0.5,
-						'circle-stroke-width': 1,
-						'circle-stroke-color': '#FFFFFF'
-					}}
-				/>
-				<Source id="geojsonsource-all-circle" type="geojson" data={storyFeatures} />
-				<Layer
-					id='all-map-circle-layer'
-					type='circle'
-					source='geojsonsource-all-circle'
-					paint={{
-						'circle-radius': ['get', 'radius'],
-						'circle-color': '#FFFFFF',
-						'circle-opacity': 0,
-						'circle-stroke-width': 1,
-						'circle-stroke-color': '#FFFFFF'
-					}}
-				/>
-				{/* {pointFeatures && (
-					pointFeatures.features.map((feature, index) => (
-						<Marker
-							key={index}
-							latitude={feature.geometry.coordinates[1]}
-							longitude={feature.geometry.coordinates[0]}
-						>
-						</Marker>
-					))
-				)} */}
+				<MapFillLayer features={features} />
+				
+				<MapCircleLayer selected={selectedRb} type='radius-all' features={pointFeatures} properties={Constants.collectiveCircleLayerProps} />
+				
+				{selectedRb === 1 && <MapCircleLayer selected={selectedRb} type='radius-edu' features={pointFeatures} properties={Constants.coreSolutionCircleLayerProps} />}
+				{selectedRb === 2 && <MapCircleLayer selected={selectedRb} type='radius-agri' features={pointFeatures} properties={Constants.coreSolutionCircleLayerProps} />}
+				{selectedRb === 3 && <MapCircleLayer selected={selectedRb} type='radius-health' features={pointFeatures} properties={Constants.coreSolutionCircleLayerProps} />}
+				{selectedRb === 4 && <MapCircleLayer selected={selectedRb} type='radius-fin' features={pointFeatures} properties={Constants.coreSolutionCircleLayerProps} />}
+	
 				{storyFeatures && viewStories && (
 					storyFeatures.features.map((feature, index) => (
 						<Popup
@@ -268,20 +234,19 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 						</Popup>
 					))
 				)}
-				{/* {pointFeatures && (pointFeatures.features.map(item => (
-					<Popup
-						latitude={item.geometry.coordinates[1]}
-						longitude={item.geometry.coordinates[0]}
-						onClose={handleHoverEnd}
-						closeOnClick={false}
-					>
-						<div>
-							<h6>{item.properties.name}</h6>
-							<p>Population - {item.properties.population}</p>
-						</div>
-					</Popup>
-				)))} */}
-				<CoreSolutions handleViewStories={handleViewStories} />
+
+				{/* {pointFeatures && (
+					pointFeatures.features.map((feature, index) => (
+						<Marker
+							key={index}
+							latitude={feature.geometry.coordinates[1]}
+							longitude={feature.geometry.coordinates[0]}
+						>
+						</Marker>
+					))
+				)} */}
+
+				<CoreSolutions handleViewStories={handleViewStories} handleChangeRb={handleChangeRb} selectedRb={selectedRb} />
 			</Map>
 		</div>
 	);

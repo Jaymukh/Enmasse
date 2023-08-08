@@ -46,13 +46,8 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
 	},
 }));
 
-const CoreSolutions = ( {handleViewStories} ) => {
-    const [selectedRb, setSelectedRb] = useState('All');
+const CoreSolutions = ({ handleViewStories, handleChangeRb, selectedRb }) => {    
     const options = Constants.options;
-
-    const handleChange = (event) => {
-        setSelectedRb(event.target.value);
-    };
 
     return (
         <div className="position-fixed ms-4">
@@ -61,15 +56,15 @@ const CoreSolutions = ( {handleViewStories} ) => {
                 <div className="pe-3">
                     {options.map((option) => (
                         <div className="d-flex flex-row justify-content-start">
-                            <label key={option.value} className="my-1 rb-label">
+                            <label key={option.label} className="my-1 rb-label">
                                 <input
                                     className="mx-2 input-rb"
                                     size={1.5}
                                     type="radio"
-                                    key={option.value}
-                                    value={option.label}
-                                    checked={selectedRb === option.value}
-                                    onChange={handleChange}
+                                    key={option.key}
+                                    value={option.key}
+                                    checked={selectedRb === option.key}
+                                    onChange={handleChangeRb}
                                 />
                                 {option.label}
                             </label>

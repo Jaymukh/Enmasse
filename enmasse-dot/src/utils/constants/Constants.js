@@ -21,11 +21,11 @@ export const API_KEY = 'RGb6AwVV6Tr7NvKYBvBPJH1Qi2nDcVS0egmZgUQX8nM';
 export const revgeocodeURL = 'https://revgeocode.search.hereapi.com/v1/revgeocode?at=';
 
 export const options = [
-    { value: 'All', label: 'All' },
-    { value: 'Healthcare', label: 'Healthcare' },
-    { value: 'Education', label: 'Education' },
-    { value: 'Agri Markets', label: 'Agri Markets' },
-    { value: 'Landing', label: 'Landing' },
+    { key: 0, label: 'All' },
+    { key: 1, label: 'Healthcare' },
+    { key: 2, label: 'Education' },
+    { key: 3, label: 'Agri Markets' },
+    { key: 4, label: 'Financial' },
 ];
 
 export const countryData = [
@@ -178,4 +178,22 @@ export const location = [
         key: 'JP',
         value: 'Japan'
     }
-]
+];
+
+export const collectiveCircleLayerProps = {
+    sourceId: 'geojsonsource-all-circle',
+    layerId: 'all-map-circle-layer',
+    circleColor: '#FFFFFF',
+    circleOpacity: 0,
+    circleStrokeWidth: 1,
+    circleStrokeColor: '#FFFFFF'
+};
+
+export const coreSolutionCircleLayerProps = {
+    sourceId: 'geojsonsource-circle',
+    layerId: 'map-circle-layer',
+    circleColor: '#FFFFFF',
+    circleOpacity: 0.5,
+    circleStrokeWidth: 1,
+    circleStrokeColor: '#FFFFFF'
+}
