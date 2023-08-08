@@ -52,6 +52,12 @@
 	z-index: 999;
 }
 
+.global-btn {
+	width: 10rem;
+	height: 2.5rem;
+	font-weight: 500;
+}
+
 .select-right-margin {
 	border-right: 0.5px solid #D2D4D6;
 }

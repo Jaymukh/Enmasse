@@ -21,11 +21,11 @@ export const API_KEY = 'RGb6AwVV6Tr7NvKYBvBPJH1Qi2nDcVS0egmZgUQX8nM';
 export const revgeocodeURL = 'https://revgeocode.search.hereapi.com/v1/revgeocode?at=';
 
 export const options = [
-    { key: 0, label: 'All' },
-    { key: 1, label: 'Healthcare' },
-    { key: 2, label: 'Education' },
-    { key: 3, label: 'Agri Markets' },
-    { key: 4, label: 'Financial' },
+    { key: 0, label: 'All', type: 'radius-all' },
+    { key: 1, label: 'Healthcare', type: 'radius-edu' },
+    { key: 2, label: 'Education', type: 'radius-agri' },
+    { key: 3, label: 'Agri Markets', type: 'radius-health' },
+    { key: 4, label: 'Financial', type: 'radius-fin' },
 ];
 
 export const countryData = [
@@ -184,7 +184,6 @@ export const collectiveCircleLayerProps = {
     sourceId: 'geojsonsource-all-circle',
     layerId: 'all-map-circle-layer',
     circleColor: '#FFFFFF',
-    circleOpacity: 0,
     circleStrokeWidth: 1,
     circleStrokeColor: '#FFFFFF'
 };
@@ -193,7 +192,6 @@ export const coreSolutionCircleLayerProps = {
     sourceId: 'geojsonsource-circle',
     layerId: 'map-circle-layer',
     circleColor: '#FFFFFF',
-    circleOpacity: 0.5,
     circleStrokeWidth: 1,
     circleStrokeColor: '#FFFFFF'
 }

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
-function PrimarySelect({ handleChange, options, selected, primary }) {
+function SelectBox({ handleChange, options, selected, primary }) {
 	return (
 		<div className='primary-select-box'>
 			<Select
@@ -24,4 +24,4 @@ function PrimarySelect({ handleChange, options, selected, primary }) {
 	);
 }
 
-export default PrimarySelect;
+export default SelectBox;
