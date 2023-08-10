@@ -1,17 +1,14 @@
 import '../../../styles/mapcontainer/map/Map.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useEffect, useState } from 'react';
-import ReactMapGL, { Source, Layer, GeolocateControl } from 'react-map-gl';
+import ReactMapGL, { Source, Layer } from 'react-map-gl';
 import Map from 'react-map-gl';
 // import features from '../../../geojson/countries/IND.geo.json';
 import axios from 'axios';
 //import SideBar from '../../SideBar'
 import * as Constants from '../../../utils/constants/Constants';
 
-function GlobalMap(
-	{ features, handleImportFeature }
-	) {
-
+function GlobalMap({ features, handleImportFeature }) {
 	const TOKEN = Constants.TOKEN;
 	const localMapStyle = Constants.localMapStyle;
 	const API_KEY = Constants.API_KEY;
@@ -31,18 +28,6 @@ function GlobalMap(
 		'fill-opacity': 1,
 	});
 
-	const handleDoubleClick = (e) => {
-		e.preventDefault();
-		const longitude = e.lngLat.lng;
-		const latitude = e.lngLat.lat;
-		const zoom = Math.min(viewport.zoom + 1, 20);
-		setViewport({
-			latitude: latitude,
-			longitude: longitude,
-			zoom: zoom
-		});
-	};
-
 	const handleMapClick = (e) => {
 		const longitude = e.lngLat.lng;
 		const latitude = e.lngLat.lat;
@@ -57,10 +42,11 @@ function GlobalMap(
 		e.preventDefault();
 		const deltaY = e.originalEvent.deltaY;
 		const zoom = viewport.zoom;
+		var newZoom;
 		if (deltaY > 0) {
-			var newZoom = Math.max(1, viewport.zoom - 1);;
+			newZoom = Math.max(1, viewport.zoom - 1);;
 		} else {
-			var newZoom = Math.min(zoom + 1, 20);;
+			newZoom = Math.min(zoom + 1, 20);;
 		}
 		setViewport({
 			latitude: viewport.latitude,
@@ -87,7 +73,7 @@ function GlobalMap(
 		} catch (error) {
 			console.error('Error:', error);
 		}
-	};	
+	};
 
 	useEffect(() => {
 		fetchData();
@@ -96,7 +82,7 @@ function GlobalMap(
 	return (
 		<div
 			className='MapContainer row'
-			style={{ height: '80vh', width: '100vw', zIndex: 999 }}
+			style={{ height: '81vh', width: '100vw', zIndex: 999 }}			
 		>
 			<Map
 				{...viewport}
@@ -109,11 +95,9 @@ function GlobalMap(
 				transitionDuration='200'
 				mapStyle={localMapStyle}
 				onViewportChange={(viewport) => setViewport(viewport)}
-				onDblClick={handleDoubleClick}
 				onClick={handleMapClick}
-				//onWheel={handleMapScroll}
 				attributionControl={true}
-				doubleClickZoom={true}
+			// doubleClickZoom={true}
 			>
 				<Source id='geojsonsource' type='geojson' data={features} />
 				<Layer

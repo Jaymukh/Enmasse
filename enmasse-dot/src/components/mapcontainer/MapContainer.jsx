@@ -2,18 +2,7 @@ import '../../styles/mapcontainer/MapContainer.css';
 import React, { useState } from 'react';
 import MapOptions from './mapoptions/MapOptions';
 import Map from './map/Map';
-import { Country, State, City }  from 'country-state-city';
-
-const options = [
-	{
-		isoCode: 'GL',
-		name: 'Global',
-	},
-	{
-		isoCode: 'NL',
-		name: 'National',
-	}
-];
+import { Country, State }  from 'country-state-city';
 
 const countries = Country.getAllCountries();
 
@@ -26,14 +15,14 @@ const districts = [
 ]
 
 function MapContainer() {
-	const [pselected, setpSelected] = useState(options[0].name);
+	const [global, setGlobal] = useState(true);
 	const [selectedCountry, setSelectedCountry] = useState({});
 	const [selectedState, setSelectedState] = useState({});
 	const [selectedDistrict, setSelectedDistrict] = useState({});
 	const [states, setStates] = useState();
 
-	const handlePrimaryChange = (event) => {
-		setpSelected(event.target.value);
+	const handleGlobal = () => {
+		setGlobal(!global);
 		setSelectedCountry({});
 		setSelectedState({});
 		setSelectedDistrict('');
@@ -46,6 +35,8 @@ function MapContainer() {
 		});
 		setStates(State.getStatesOfCountry(selectedItem.isoCode));
 		setSelectedCountry(selectedItem);
+		setSelectedState({});
+		setSelectedDistrict('');
 		//setSelectedCountryCode(selectedItem.isoCode);
 	};
 
@@ -68,21 +59,20 @@ function MapContainer() {
 	return (
 		<div className='MapContainer mx-0'>
 			<MapOptions
-				handlePrimaryChange={handlePrimaryChange}
+				handleGlobal={handleGlobal}
 				handleCountryChange={handleCountryChange}
 				handleStateChange={handleStateChange}
 				handleDistrictChange={handleDistrictChange}
-				pselected={pselected}
+				global={global}
 				selectedCountry={selectedCountry.name}
 				selectedState={selectedState.name}
 				selectedDistrict={selectedDistrict}
-				options={options}
 				countries={countries}
 				states={states}
 				districts={districts}
 			/>
 			<Map
-				pselected={pselected}
+				global={global}
 				selectedCountry={selectedCountry.name}
 				selectedCountryCode={selectedCountry.isoCode}
 				selectedState={selectedState.name}

@@ -4,38 +4,40 @@ import { FiDownload } from 'react-icons/fi';
 import { Divider } from '@mui/material';
 import Bookmarks from './Bookmarks';
 import Filters from './Filters';
-import PrimarySelect from './PrimarySelect';
+import SelectBox from './SelectBox';
 
 function MapOptions({
-	handlePrimaryChange,
+	handleGlobal,
 	handleCountryChange,
 	handleStateChange,
 	handleDistrictChange,
-	pselected,
+	global,
 	selectedCountry,
 	selectedState,
 	selectedDistrict,
-	options,
 	countries,
 	states,
 	districts
 }) {
+
 	return (
+<<<<<<< HEAD
 		<div className='row justify-content-around align-items-center border-bottom bg-white mx-0 map-options-height'>
+=======
+		<div className='row justify-content-around align-items-center border-bottom bg-white mx-0' style={{ height: '7.5vh' }}>
+>>>>>>> 804e6cbccb90394dd047d49c5f5847e76be5116f
 			<div className='col-xl-7 col-md-7 justify-content-start d-flex flex-wrap'>
 				<div className='select-right-margin py-1'>
-					<PrimarySelect
-						variant='bordernone'
-						handleChange={handlePrimaryChange}
-						options={options}
-						selected={pselected}
-						primary={true}
-					/>
+					<button 
+						className='subheader-btn global-btn px-3 text-start d-flex flex-row align-items-end'
+						onClick={handleGlobal}>
+						Global
+					</button>
 				</div>
-				{pselected === 'National' ? (
+				{!global ? (
 					<div className='select-right-margin ms-2 py-1'>
 						<p className='country-text'>COUNTRY</p>
-						<PrimarySelect
+						<SelectBox
 							handleChange={handleCountryChange}
 							options={countries}
 							selected={selectedCountry}
@@ -45,10 +47,10 @@ function MapOptions({
 				) : (
 					''
 				)}
-				{pselected === 'National' && selectedCountry ? (
+				{!global && selectedCountry ? (
 					<div className='select-right-margin ms-2 py-1'>
 						<p className='country-text'>STATE</p>
-						<PrimarySelect
+						<SelectBox
 							handleChange={handleStateChange}
 							options={states}
 							selected={selectedState}
@@ -58,10 +60,10 @@ function MapOptions({
 				) : (
 					''
 				)}
-				{pselected === 'National' && selectedState ? (
+				{!global && selectedState ? (
 					<div className='select-right-margin ms-2 py-1'>
 						<p className='country-text'>DISTRICT</p>
-						<PrimarySelect
+						<SelectBox
 							handleChange={handleDistrictChange}
 							options={districts}
 							selected={selectedDistrict}

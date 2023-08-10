@@ -9,7 +9,7 @@ import InsightBar from '../../InsightBar';
 import MapButtonGroup from './MapButtonGroup';
 
 function Map({
-	pselected,
+	global,
 	selectedCountry,
 	selectedCountryCode,
 	selectedState,
@@ -75,7 +75,7 @@ function Map({
 
 	return (
 		<div>
-			{pselected === 'Global' ? (
+			{global ? (
 				<GlobalMap
 					features={features}
 					handleImportFeature={handleImportFeature}

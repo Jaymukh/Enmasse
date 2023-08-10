@@ -14,7 +14,7 @@ const MapFillLayer = ({features}) => {
 							['<=', ['get', 'population'], 5000000], '#83BFA1',
 							['<=', ['get', 'population'], 10000000], '#429C6B',
 							['<=', ['get', 'population'], 50000000], '#108041',
-							'#108041'],
+							'#D4E2DB'],
 						'fill-opacity': 0.7
 					}}
 				/>
