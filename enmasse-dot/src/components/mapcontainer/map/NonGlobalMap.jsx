@@ -65,39 +65,6 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 		});
 	};
 
-	const calculateZoom = (width, height) => {
-		const minDimension = Math.min(width, height);
-		const zoom = Math.log2(minDimension / 512) + 1;
-		return Math.round(zoom);
-	};
-
-	const resetViewPort = () => {
-		const mapContainer = mapContainerRef.current;
-		if (features && mapContainer) {
-			const { clientWidth, clientHeight } = mapContainer;
-			const zoom = calculateZoom(clientWidth, clientHeight);
-			setViewport((prevViewport) => ({ ...prevViewport, zoom }));
-
-			// const bounds = bbox(features); 
-			// const [minLng, minLat, maxLng, maxLat] = bounds; 
-
-			// const centerLng = (maxLng + minLng) / 2;
-			// const centerLat = (maxLat + minLat) / 2;
-
-			// if (selectedDistrict) {
-			// 	var newZoom = 7.5;
-			// } else if (selectedState) {
-			// 	var newZoom = 5.5;
-			// } else {
-			// 	var newZoom = 3.2;
-			// }
-			// setViewport({
-			// 	latitude: centerLat,
-			// 	longitude: centerLng,
-			// 	zoom: newZoom
-			// });
-		}
-	};
 
 	const handleHoverEnd = () => {
 		setHoverInfo(null);
@@ -111,15 +78,49 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 		setSelectedRb(Number(event.target.value));
 	};
 
+	const calculateZoom = (width, height) => {
+		const minDimension = Math.min(width, height);
+		const zoom = Math.log2(minDimension / 512) + 1;
+		return Math.round(zoom);
+	};
+
+	const resetViewPort = () => {
+		const mapContainer = mapContainerRef.current;
+		if (features && mapContainer) {
+			const { clientWidth, clientHeight } = mapContainer;
+
+			const bounds = bbox(features); 
+			const [minLng, minLat, maxLng, maxLat] = bounds; 
+
+			const centerLng = (maxLng + minLng) / 2;
+			const centerLat = (maxLat + minLat) / 2;
+
+			if (selectedDistrict) {
+				var newZoom = 7.5;
+			} else if (selectedState) {
+				var newZoom = 5.5;
+			} else {
+				var newZoom = 3.2;
+			}
+			setViewport({
+				latitude: centerLat,
+				longitude: centerLng,
+				zoom: newZoom
+			});
+		}
+	};
+
 	const handleAutoZoom = () => {
-		if (features) {
+		const mapContainer = mapContainerRef.current;
+		if (features && mapContainer) {
+			const { clientWidth, clientHeight } = mapContainer;
 			const bounds = bbox(features);
 
 			const [minLng, minLat, maxLng, maxLat] = bounds;
 
 			const longitude = (minLng + maxLng) / 2;
 			const latitude = (minLat + maxLat) / 2;
-			const zoom = getZoomForBounds(viewport, bounds);
+			const zoom = getZoomForBounds(clientWidth, clientHeight, bounds);
 
 			setViewport({
 				...viewport,
@@ -131,11 +132,14 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 		}
 	};
 
-	const getZoomForBounds = (viewport, bounds) => {
+	const getZoomForBounds = (clientWidth, clientHeight, bounds) => {
 		const lngDiff = bounds[2] - bounds[0];
 		const latDiff = bounds[3] - bounds[1];
-		const zoomLng = Math.log2(280 / lngDiff);
-		const zoomLat = Math.log2(320 / latDiff);
+		const height = (clientHeight * 80) / 100;
+		const horizontalPadding = 100;
+		const verticalPadding = 110;
+		const zoomLng = Math.log2((clientWidth - horizontalPadding) / lngDiff);
+		const zoomLat = Math.log2((height - verticalPadding) / latDiff);
 		return Math.min(zoomLng, zoomLat);
 	};
 
