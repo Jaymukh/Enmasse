@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,9 +9,48 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
-import * as Constants from '../../../../utils/constants/Constants';
+import * as Constants from '../../../../../utils/constants/Constants';
 
 export default function Invite() {
+	const [inviteData, setInviteData] = useState(Constants.inviteData);
+	const [selectedData, setSelectedData] = useState(null);
+	const [openInviteNew, setOpenInviteNew] = useState(false);
+
+
+	// function for InviteNew dialog
+	const handleOpenInviteNew = () => {
+		setOpenInviteNew(true);
+	};
+	// const handleSubmitInviteNew = () => {
+	//   handleCloseInviteNew();
+	// };
+	const handleCloseInviteNew = () => {
+		setOpenInviteNew(false);
+	};
+
+
+	// function for EditInvite dialog
+	const handleEditClick = (row) => {
+		setSelectedData(row);
+	};
+	const handleCloseDialog = () => {
+		setSelectedData(null);
+	};
+	const handleUpdate = (updatedRow) => {
+		console.log(updatedRow);
+		setInviteData((prevData) =>
+			prevData.map((row) => (row.id === updatedRow.id ? updatedRow : row))
+		);
+		handleCloseDialog();
+	};
+
+
+	// function for Delete
+	const handleDeleteClick = (index) => {
+		var data = [...inviteData];
+		data.splice(index, 1);
+		setInviteData(data);
+	};
 
 	return (
 		<div className='container bg-white w-90 h-100 mt-4 detail-container me-5'>

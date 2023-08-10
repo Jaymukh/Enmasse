@@ -65,29 +65,37 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 		});
 	};
 
+	const calculateZoom = (width, height) => {
+		const minDimension = Math.min(width, height);
+		const zoom = Math.log2(minDimension / 512) + 1;
+		return Math.round(zoom);
+	};
+
 	const resetViewPort = () => {
-		if (features) {
-			const bounds = bbox(features); // Calculate the bounding box of the GeoJSON features
-			const [minLng, minLat, maxLng, maxLat] = bounds; // Extract the bounding box values
+		const mapContainer = mapContainerRef.current;
+		if (features && mapContainer) {
+			const { clientWidth, clientHeight } = mapContainer;
+			const zoom = calculateZoom(clientWidth, clientHeight);
+			setViewport((prevViewport) => ({ ...prevViewport, zoom }));
 
-			// Calculate the center of the bounding box
-			const centerLng = (maxLng + minLng) / 2;
-			const centerLat = (maxLat + minLat) / 2;
-			//const bound = new WebMercatorViewport(viewport).fitBounds(bounds);
+			// const bounds = bbox(features); 
+			// const [minLng, minLat, maxLng, maxLat] = bounds; 
 
-			if (selectedDistrict) {
-				var newZoom = 7.5;
-			} else if (selectedState) {
-				var newZoom = 5.5;
-			} else {
-				var newZoom = 3.2;
-			}
-			setViewport({
-				latitude: centerLat,
-				longitude: centerLng,
-				zoom: newZoom
-				//zoom: getZoom(minLng, minLat, maxLng, maxLat, 1350, 750),
-			});
+			// const centerLng = (maxLng + minLng) / 2;
+			// const centerLat = (maxLat + minLat) / 2;
+
+			// if (selectedDistrict) {
+			// 	var newZoom = 7.5;
+			// } else if (selectedState) {
+			// 	var newZoom = 5.5;
+			// } else {
+			// 	var newZoom = 3.2;
+			// }
+			// setViewport({
+			// 	latitude: centerLat,
+			// 	longitude: centerLng,
+			// 	zoom: newZoom
+			// });
 		}
 	};
 
@@ -109,12 +117,9 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 
 			const [minLng, minLat, maxLng, maxLat] = bounds;
 
-			// Calculate center and zoom
 			const longitude = (minLng + maxLng) / 2;
 			const latitude = (minLat + maxLat) / 2;
-			const horizontalPadding = 0.1; // Adjust as needed
-			const verticalPadding = 0.1;   // Adjust as needed
-			const zoom = getZoomForBounds(viewport, bounds, [viewport.width * horizontalPadding, viewport.height * verticalPadding]);
+			const zoom = getZoomForBounds(viewport, bounds);
 
 			setViewport({
 				...viewport,
@@ -126,8 +131,7 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 		}
 	};
 
-	const getZoomForBounds = (viewport, bounds, padding) => {
-		const { width, height } = viewport;
+	const getZoomForBounds = (viewport, bounds) => {
 		const lngDiff = bounds[2] - bounds[0];
 		const latDiff = bounds[3] - bounds[1];
 		const zoomLng = Math.log2(280 / lngDiff);
@@ -209,7 +213,7 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 	return (
 		<div
 			className='row'
-			style={{ height: '80vh', width: '100vw', zIndex: 999 }}
+			style={{ height: '81vh', width: '100vw', zIndex: 999 }}
 			ref={mapContainerRef}
 		>
 			<Map

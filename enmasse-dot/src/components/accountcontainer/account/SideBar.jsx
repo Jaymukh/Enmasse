@@ -29,7 +29,7 @@ function SideBar({ handleVisiblePanel, visiblePanel }) {
                     </List>
                 ))}
             </Box>
-            {/* <button className='btn btn-white bottom-0'><HelpIcon className='mx-1 mb-1 color-black' />Help & Support</button> */}
+            <button className='btn btn-white position-fixed bottom-0 max-width'><HelpIcon className='mx-1 mb-1 color-black ' />Help & Support</button>
         </div>
     );
 }

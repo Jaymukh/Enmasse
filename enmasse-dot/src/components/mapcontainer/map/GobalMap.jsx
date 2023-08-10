@@ -8,9 +8,7 @@ import axios from 'axios';
 //import SideBar from '../../SideBar'
 import * as Constants from '../../../utils/constants/Constants';
 
-function GlobalMap(
-	{ features, handleImportFeature }
-) {
+function GlobalMap({ features, handleImportFeature }) {
 	const TOKEN = Constants.TOKEN;
 	const localMapStyle = Constants.localMapStyle;
 	const API_KEY = Constants.API_KEY;
@@ -84,7 +82,7 @@ function GlobalMap(
 	return (
 		<div
 			className='MapContainer row'
-			style={{ height: '80vh', width: '100vw', zIndex: 999 }}
+			style={{ height: '81vh', width: '100vw', zIndex: 999 }}			
 		>
 			<Map
 				{...viewport}
