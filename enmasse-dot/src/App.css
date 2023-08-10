@@ -2,16 +2,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap');
 
 :root {
-	--primaryColor: #F4F6F8;
+	--primaryColor: #f2f3f4;
 	--secondaryColor: #ffffff;
 	--lightGreyColor: #E7E7E9;
 	--pinkColor: #f45eac;
 	--blackColor: #1f1f1f;
-}
+	
+	--background-color: #f2f3f4;
+	--light-gray-color:'#E7E7E9';
+	--gray-color: gray;
+	--black-color: black;
+	--white-color: white;
+	--light-pink-color: pink;
+	--pink-color: #f45eac;
 
+}
+/*background color  */
 .App {
 	text-align: center;
-	background-color: #f4f6f8;
+	background-color: var(--background-color);
 	height: 100vh;
 	font-family: 'Poppins', sans-serif;
 }
@@ -28,6 +37,12 @@
 }
 
 /* Header */
+.header-height{
+	height: 12vh;
+}
+.map-options-height{
+	height: 8vh;
+}
 .enmasse-logo-font {
 	font-family: 'Bai Jamjuree', sans-serif;
 }
@@ -73,27 +88,60 @@
 
 
 /* sidebar css */
+.sideBar-parent-expended{
+	height: 80vh;
+	width: 23vw;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: white;
+}
+.sideBar-parent-collapsed{
+	height: 80vh;
+	width: 1vw;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: white;
+}
 .SideBar {
 	display: flex;
+	flex-direction: column;
 	float: right;
-	align-items: center;
+	align-items: start;
 	height: 80vh;
 	background-color: #FFFFFF;
 	align-content: center;
-	z-index: 999
+	z-index: 999;
+}
+.SideBarContent {
+	height: 80vh;
+	right: 0;
+	overflow: auto;
+}
+.SideBarIcon {
+	margin-left: -2rem;
 }
 
-.sidebar-visible {
-	width: 100%;
-}
-
-.sidebar-not-visible {
-	width: 1rem;
-}
-
-.global-info {
-	width: 20rem;
-	margin: auto;
+@media only screen and (max-width: 850px) {
+	.sideBar-parent-expended{
+		height: 80vh;
+		width: 100vw;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		background-color: white;
+		padding: 2rem;
+	}
+	.SideBarContent {
+		height: 80vh;
+		right: 0;
+		overflow: auto;
+		padding-bottom: 6rem;
+	}
+	.SideBarIcon {
+		margin-left: 0;
+	}
 }
 
 .tam-info {
@@ -102,10 +150,10 @@
 	border-radius: 5px;
 }
 
-.global-sub-info {
-	width: 9.5rem;
+.btn-white {
+	border: none;
+	background: transparent !important;
 }
-
 .country-wise-info {
 	width: 20rem;
 	margin: 5px auto;
@@ -130,21 +178,6 @@
 	border-right: none;
 	border-left: none;
 	background-color: #FFFFFF;
-}
-
-.SideBarIcon {
-	background-color: #404652;
-	color: #FFFFFF;
-	width: 2rem;
-	height: 2rem;
-	border-radius: 1rem;
-	border: none;
-}
-
-.SideBarContent {
-	height: 80vh;
-	right: 0;
-	overflow: auto;
 }
 
 .tam-header {
@@ -261,13 +294,23 @@
 	text-decoration: underline;
 	font-weight: 600;
 }
-
-.loginUpdateBox {
+/* loginUpdateBox */
+.login-update-box {
 	display: flex;
 	justify-content: center;
 	margin: auto;
 	width: 50vw;
 	height: 100vh;
+}
+@media only screen and (max-width: 850px) {
+	.login-update-box {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin: auto;
+		width: 100vw;
+		height: 50vh;
+	}
 }
 
 .whiteBackground {

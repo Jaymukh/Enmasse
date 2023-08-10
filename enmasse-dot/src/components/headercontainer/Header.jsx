@@ -12,7 +12,7 @@ import ShareLocation from './ShareLocation';
 
 function Header({handleMapDisplay, handleVisiblePanel}) {
 	return (
-		<div className="d-flex flex-wrap justify-content-between border-bottom bg-white py-3 my-0" >
+		<div className="d-flex flex-wrap justify-content-between border-bottom bg-white py-3 my-0 header-height" >
 			<div className="d-flex flex-wrap justify-content-between">
 				<div className="d-flex flex-wrap mx-3 align-items-center">
 					<h3 className='mx-3 enmasse-logo-font'>enmasse</h3>

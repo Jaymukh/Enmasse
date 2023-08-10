@@ -21,7 +21,7 @@ function MapOptions({
 	districts
 }) {
 	return (
-		<div className='row justify-content-around align-items-center border-bottom bg-white mx-0'>
+		<div className='row justify-content-around align-items-center border-bottom bg-white mx-0 map-options-height'>
 			<div className='col-xl-7 col-md-7 justify-content-start d-flex flex-wrap'>
 				<div className='select-right-margin py-1'>
 					<PrimarySelect

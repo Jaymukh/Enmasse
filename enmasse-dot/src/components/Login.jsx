@@ -61,7 +61,7 @@ export default function Login({ handleLoggedIn }) {
     return (
         <div>
             <div className='row mx-0' style={{ height: '100vh', width: '100vw' }} >
-                <div className='col-md-6 col-xl-6 loginUpdateBox lightGrayBackground'>
+                <div className='col-md-6 col-xl-6 login-update-box lightGrayBackground'>
                     <div className='loginCardAlign'>
                         <img variant="top" src={globe} a />
                         <div>
@@ -72,7 +72,7 @@ export default function Login({ handleLoggedIn }) {
                         </div>
                     </div>
                 </div>
-                <div className='col-md-6 col-md-6 loginUpdateBox whiteBackground'>
+                <div className='col-md-6 col-md-6 login-update-box whiteBackground'>
                     <div className='loginCardAlign'>
                         <h3 className='login-header'>Login</h3>
                         <p className='text-muted mb-4 login-p'>Enter your email ID and Password to login
