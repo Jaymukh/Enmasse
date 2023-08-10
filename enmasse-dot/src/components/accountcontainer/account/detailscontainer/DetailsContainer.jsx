@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import Profile from './Profile';
-import Settings from './Settings';
+import Profile from './profile/Profile';
+import Settings from './settings/Settings';
 import Invite from './invite/Invite';
 
 function DetailsContainer({visiblePanel}) {

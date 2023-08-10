@@ -195,3 +195,38 @@ export const coreSolutionCircleLayerProps = {
     circleStrokeWidth: 1,
     circleStrokeColor: '#FFFFFF'
 }
+
+export const company = [
+    {
+        key: 'Enmasse',
+        value: 'Enmasse'
+    },
+    {
+        key: 'Sarvagram',
+        value: 'Sarvagram'
+    },
+    {
+        key: 'Leadschool',
+        value: 'Leadschool'
+    },
+    {
+        key: 'Samunnati',
+        value: 'Samunnati'
+    }
+];
+
+export const companyType = [
+    {
+        key: 'Enmasse',
+        value: 'Enmasse'
+    },
+    {
+        key: 'Investor',
+        value: 'Investor'
+    },
+    {
+        key: 'Business',
+        value: 'Business'
+    }
+];
+

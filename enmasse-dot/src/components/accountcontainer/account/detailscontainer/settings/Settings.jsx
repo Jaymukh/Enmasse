@@ -4,7 +4,8 @@ import Switch from '@mui/material/Switch';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import * as Constants from '../../../../utils/constants/Constants';
+import * as Constants from '../../../../../utils/constants/Constants';
+import ChangePassword from './ChangePassword';
 
 
 export default function Settings() {
@@ -60,18 +61,30 @@ export default function Settings() {
     const handleSelectLanguage = (event) => {
         setSelectedLanguage(event.target.value);
     };
+
     const handleSelectCurrency = (event) => {
         setSelectedCurrency(event.target.value);
     };
+
     const handleSelectLocation = (event) => {
         setSelectedLocation(event.target.value);
     };
+
+    var [open, setOpen] = useState(false);
+
+    const handleUpdateClick = () => {
+        handleDrawer(false);
+    };
+
+    const handleDrawer = (open) => {
+        setOpen(open);
+    }
 
     return (
         <div className='container bg-white w-90 h-100 mt-4 detail-container me-5'>
             <div className="row w-100 h-10 d-flex flex-row justify-content-between pt-3 pl-4">
                 <h5 className='mt-2 col-2'>Settings</h5>
-                <button className='btn btn-outline-secondary width-fit-content-button'>
+                <button className='btn btn-outline-secondary width-fit-content-button' onClick={() => handleDrawer(true)}>
                     <LockIcon className='mx-1 mb-1  color-black' />
                     Change Password
                 </button>
@@ -103,6 +116,7 @@ export default function Settings() {
                     </Stack>
                 </div>
             </div>
+            {open && (<ChangePassword open={open} handleUpdateClick={handleUpdateClick} handleDrawer={handleDrawer} />)}
         </div>
     )
 }

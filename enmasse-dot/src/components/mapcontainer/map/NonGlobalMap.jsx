@@ -137,7 +137,7 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 		const latDiff = bounds[3] - bounds[1];
 		const height = (clientHeight * 80) / 100;
 		const horizontalPadding = 100;
-		const verticalPadding = 110;
+		const verticalPadding = 120;
 		const zoomLng = Math.log2((clientWidth - horizontalPadding) / lngDiff);
 		const zoomLat = Math.log2((height - verticalPadding) / latDiff);
 		return Math.min(zoomLng, zoomLat);
