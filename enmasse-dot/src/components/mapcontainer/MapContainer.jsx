@@ -2,7 +2,7 @@ import '../../styles/mapcontainer/MapContainer.css';
 import React, { useState } from 'react';
 import MapOptions from './mapoptions/MapOptions';
 import Map from './map/Map';
-import { Country, State, City }  from 'country-state-city';
+import { Country, State }  from 'country-state-city';
 
 const countries = Country.getAllCountries();
 

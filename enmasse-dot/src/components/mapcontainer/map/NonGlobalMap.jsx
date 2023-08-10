@@ -1,13 +1,14 @@
 import '../../../styles/mapcontainer/map/Map.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useEffect, useState, useRef } from 'react';
-import Map, { Source, Layer, Marker, Popup } from 'react-map-gl';
+import Map, { Marker, Popup } from 'react-map-gl';
 import bbox from '@turf/bbox';
 import CoreSolutions from './CoreSolutions';
 import * as Constants from '../../../utils/constants/Constants';
 import MapPopup from './MapPopup';
 import MapFillLayer from './MapFillLayer';
 import MapCircleLayer from './MapCircleLayer';
+import { WebMercatorViewport } from 'viewport-mercator-project';
 
 function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCountry, selectedState, selectedDistrict, pointFeatures }) {
 	const TOKEN = Constants.TOKEN;
@@ -21,6 +22,8 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 		longitude: 78.9629,
 	});
 	const [viewport, setViewport] = useState({
+		width: '100%',
+		height: '100%',
 		latitude: 20.5937,
 		longitude: 78.9629,
 		zoom: 2,
@@ -36,24 +39,14 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 			longitude: longitude,
 		});
 		const feature = e.features[0];
-		const { properties, geometry } = feature;
-		setHoverInfo({
-			latitude,
-			longitude,
-			properties: properties,
-		});
-	};
-
-	const handleDoubleClick = (e) => {
-		e.preventDefault();
-		const longitude = e.lngLat.lng;
-		const latitude = e.lngLat.lat;
-		const zoom = Math.min(viewport.zoom + 1, 20);
-		setViewport({
-			latitude: latitude,
-			longitude: longitude,
-			zoom: zoom
-		});
+		if (feature) {
+			const { properties, geometry } = feature;
+			setHoverInfo({
+				latitude,
+				longitude,
+				properties: properties,
+			});
+		}
 	};
 
 	const handleMapScroll = (e) => {
@@ -98,13 +91,6 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 		}
 	};
 
-	const handleFeatureHover = (event) => {
-		const feature = event.features[0];
-		const { properties, geometry } = feature;
-		const [longitude, latitude] = geometry.coordinates;
-		setHoverInfo({ latitude, longitude, properties });
-	};
-
 	const handleHoverEnd = () => {
 		setHoverInfo(null);
 	};
@@ -114,16 +100,48 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 	}
 
 	const handleChangeRb = (event) => {
-        setSelectedRb(Number(event.target.value));
-    };
+		setSelectedRb(Number(event.target.value));
+	};
 
+	const handleAutoZoom = () => {
+		if (features) {
+			const bounds = bbox(features);
+
+			const [minLng, minLat, maxLng, maxLat] = bounds;
+
+			// Calculate center and zoom
+			const longitude = (minLng + maxLng) / 2;
+			const latitude = (minLat + maxLat) / 2;
+			const horizontalPadding = 0.1; // Adjust as needed
+			const verticalPadding = 0.1;   // Adjust as needed
+			const zoom = getZoomForBounds(viewport, bounds, [viewport.width * horizontalPadding, viewport.height * verticalPadding]);
+
+			setViewport({
+				...viewport,
+				longitude,
+				latitude,
+				zoom,
+				transitionDuration: 1000,
+			});
+		}
+	};
+
+	const getZoomForBounds = (viewport, bounds, padding) => {
+		const { width, height } = viewport;
+		const lngDiff = bounds[2] - bounds[0];
+		const latDiff = bounds[3] - bounds[1];
+		const zoomLng = Math.log2(280 / lngDiff);
+		const zoomLat = Math.log2(320 / latDiff);
+		return Math.min(zoomLng, zoomLat);
+	};
 
 	useEffect(() => {
 		handleImportFeature();
 	}, [selectedCountry, selectedState, selectedDistrict]);
 
 	useEffect(() => {
-		resetViewPort();
+		// resetViewPort();
+		handleAutoZoom();
 	}, [features])
 
 	const storyFeatures = {
@@ -197,8 +215,6 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 			<Map
 				{...viewport}
 				mapboxAccessToken={TOKEN}
-				width='100%'
-				height='100%'
 				transitionDuration='200'
 				mapStyle={transparentMapStyleV2}
 				projection={{
@@ -211,14 +227,14 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 				interactiveLayerIds={['map-fill-layer']}
 			>
 				<MapFillLayer features={features} />
-				
+
 				<MapCircleLayer selected={selectedRb} type='radius-all' features={pointFeatures} properties={Constants.collectiveCircleLayerProps} />
-				
+
 				{selectedRb === 1 && <MapCircleLayer selected={selectedRb} type='radius-edu' features={pointFeatures} properties={Constants.coreSolutionCircleLayerProps} />}
 				{selectedRb === 2 && <MapCircleLayer selected={selectedRb} type='radius-agri' features={pointFeatures} properties={Constants.coreSolutionCircleLayerProps} />}
 				{selectedRb === 3 && <MapCircleLayer selected={selectedRb} type='radius-health' features={pointFeatures} properties={Constants.coreSolutionCircleLayerProps} />}
 				{selectedRb === 4 && <MapCircleLayer selected={selectedRb} type='radius-fin' features={pointFeatures} properties={Constants.coreSolutionCircleLayerProps} />}
-	
+
 				{storyFeatures && viewStories && (
 					storyFeatures.features.map((feature, index) => (
 						<Popup

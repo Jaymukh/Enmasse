@@ -10,7 +10,7 @@ import * as Constants from '../../../utils/constants/Constants';
 
 function GlobalMap(
 	{ features, handleImportFeature }
-	) {
+) {
 	const TOKEN = Constants.TOKEN;
 	const localMapStyle = Constants.localMapStyle;
 	const API_KEY = Constants.API_KEY;
@@ -75,7 +75,7 @@ function GlobalMap(
 		} catch (error) {
 			console.error('Error:', error);
 		}
-	};	
+	};
 
 	useEffect(() => {
 		fetchData();
@@ -99,7 +99,7 @@ function GlobalMap(
 				onViewportChange={(viewport) => setViewport(viewport)}
 				onClick={handleMapClick}
 				attributionControl={true}
-				// doubleClickZoom={true}
+			// doubleClickZoom={true}
 			>
 				<Source id='geojsonsource' type='geojson' data={features} />
 				<Layer
