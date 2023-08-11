@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
-import * as Constants from '../../../../../utils/constants/Constants';
+import * as Constants from '../../../../../utils/constants/Constants'
 import EditInvite from './EditInvite';
 import InviteNew from './InviteNew';
 
@@ -48,12 +48,12 @@ export default function Invite() {
 
 	return (
 		<div className='container bg-white w-90 h-100 mt-4 detail-container me-5'>
-			<div className="row w-100 h-10 d-flex justify-content-between pt-3 pl-4">
+			<div className="row w-100 h-10 d-flex flex-row justify-content-between pt-3 pl-4">
 				<h5 className='mt-2 col-2'>Invite</h5>
 				<button className='btn btn-outline-secondary width-fit-content-button' onClick={handleOpenInviteNew} ><AddIcon className='mx-1 mb-1  text-dark' />Invite New</button>
 			</div>
 			<hr />
-			<div className="row w-100 h-90 d-flex justify-content-center">
+			<div className="row w-100 d-flex justify-content-center invite-table-drawer">
 				<TableContainer component={Paper} className='invite-table-width'>
 					<Table sx={{ minWidth: 650 }} aria-label="simple table">
 						<TableHead>

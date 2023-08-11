@@ -63,7 +63,7 @@ export const countryData = [
     }
 ];
 
-export const profileData = [
+export const sidebarData = [
     {
         index: 0,
         icon: <PersonIcon />,
@@ -83,29 +83,61 @@ export const profileData = [
 
 export const inviteData = [
     {
-        name: 'ILMA',
-        email: 'ilma@gmail.com',
-        status: 'Pending',
-        role: 'ADMIN'
-    },
-    {
-        name: 'SUDHA',
-        email: 'sudha@gmail.com',
-        status: 'Approved',
-        role: 'USER'
-    },
-    {
+        id: '0',
         name: 'JAY',
         email: 'jay@gmail.com',
-        status: 'Approved',
-        role: 'ADMIN'
+        role: 'Admin',
+        company: 'Enmasse',
+        companyType: 'Enmasse'
     },
     {
+        id: '1',
+        name: 'SUDHA',
+        email: 'sudha@gmail.com',
+        role: 'Admin',
+        company: 'Tarento',
+        companyType: 'Enmasse'
+    },
+    {
+        id: '2',
         name: 'DAYANA',
         email: 'dayana@gmail.com',
-        status: 'Approved',
-        role: 'USER'
-    }
+        role: 'Admin',
+        company: 'Enmasse',
+        companyType: 'Enmasse'
+    },
+    {
+        id: '3',
+        name: 'ILMA',
+        email: 'ilma@gmail.com',
+        role: 'Admin',
+        company: 'Enmasse',
+        companyType: 'Business'
+    },
+    {
+        id: '4',
+        name: 'JAY',
+        email: 'jay@gmail.com',
+        role: 'Admin',
+        company: 'Enmasse',
+        companyType: 'Enmasse'
+    },
+    {
+        id: '5',
+        name: 'SUDHA',
+        email: 'sudha@gmail.com',
+        role: 'Admin',
+        company: 'Tarento',
+        companyType: 'Enmasse'
+    },
+    {
+        id: '6',
+        name: 'DAYANA',
+        email: 'dayana@gmail.com',
+        role: 'Admin',
+        company: 'Enmasse',
+        companyType: 'Enmasse'
+    },
 ];
 
 export const accountMenuItems = [
@@ -230,3 +262,12 @@ export const companyType = [
     }
 ];
 
+export const profileData = {
+    name: 'Kartik Parija',
+    email: 'kartik@enmasse.world',
+    phone: 76564545,
+    designation: 'Manager',
+    company: 'Enmasse',
+    country: 'India',
+    role: 'Admin'
+};
