@@ -12,24 +12,29 @@ import * as Constants from '../../../utils/constants/Constants';
 function SideBar({ handleVisiblePanel, visiblePanel }) {
     return (
         <div className='account-sidebar col-3 p-0 pe-3 h-100'>
-            <Box sx={{ width: '100%', maxWidth: 360, height: '100%', bgcolor: 'white' }} className="h-100 full-height">
-                {Constants.profileData.map((data, index) => (
-                    <List component="nav" aria-label="main mailbox folders" className='my-0 p-0'>
-                        <ListItemButton
-                            selected={index === visiblePanel}
-                            onClick={() => handleVisiblePanel(index)}
-                            key={index}
-                        >
-                            <ListItemIcon>
-                                {data.icon}
-                            </ListItemIcon>
-                            <ListItemText primary={data.option} />
-                        </ListItemButton>
-                        <Divider className='m-0' />
-                    </List>
-                ))}
+            <Box sx={{ width: '100%', maxWidth: 360, height: '100%', bgcolor: 'white' }} className="h-100 full-height d-flex flex-column">
+                <List component="nav" aria-label="main mailbox folders" className='my-0 p-0'>
+                    {Constants.profileData.map((data, index) => (
+                        <>
+                            <ListItemButton
+                                selected={index === visiblePanel}
+                                onClick={() => handleVisiblePanel(index)}
+                                key={index}
+                            >
+                                <ListItemIcon>
+                                    {data.icon}
+                                </ListItemIcon>
+                                <ListItemText primary={data.option} />
+                            </ListItemButton>
+                            <Divider className='m-0' />
+                        </>
+                    ))}
+                </List>
+                <div className='justify-content-start'>
+                    <button className='btn btn-white bottom-0 max-width'><HelpIcon className='mx-1 mb-1 color-black ' />Help & Support</button>
+                </div>
             </Box>
-            <button className='btn btn-white position-fixed bottom-0 max-width'><HelpIcon className='mx-1 mb-1 color-black ' />Help & Support</button>
+
         </div>
     );
 }
