@@ -133,7 +133,7 @@
 @media only screen and (max-width: 850px) {
 	.sideBar-parent-expended{
 		height: 80vh;
-		width: 100vw;
+		width: 96vw;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -146,9 +146,9 @@
 		overflow: auto;
 		padding-bottom: 6rem;
 	}
-	.SideBarIcon {
+	/* .SideBarIcon {
 		margin-left: 0;
-	}
+	} */
 }
 
 .tam-info {
@@ -501,3 +501,40 @@
 .menu-font-size {
 	font-size: 14px !important;
 }
+
+/* familySidePanel carousel */
+.carousel-caption-margin {
+	margin-left: 4rem;
+	margin-top: 4rem;
+	padding-bottom: 0 !important;
+	bottom: 0.5rem;
+  }
+  
+  .carousel-caption-p {
+	margin-top: 0;
+	margin-bottom: 0.2rem;
+	text-align-last: left;
+	color: black;
+  }
+  
+  .carousel-caption-h {
+	text-align-last: left;
+	color: black;
+  }
+  
+  .carousel-img {
+	border-top-left-radius: 0.5rem;
+	border-bottom-left-radius: 0.5rem;
+  }
+  
+  .carousel-btn-nextprev {
+	width: 15%;
+	padding: 0;
+	color: #e7e9eb;
+	margin-top: 2.5rem;
+	border: 0;
+	opacity: .5;
+	height: 20%;
+	border-radius: 50%;
+	background-color: black;
+  }
