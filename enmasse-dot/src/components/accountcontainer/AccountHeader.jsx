@@ -1,9 +1,10 @@
 import React from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-function AccountHeader({ handleMapDisplay }) {
+function AccountHeader({ handleMapDisplay, handleDisplayDashboard }) {
 	const onNavigateBack = () => {
 		handleMapDisplay(true);
+		handleDisplayDashboard(false);
 	}
 
 	return (

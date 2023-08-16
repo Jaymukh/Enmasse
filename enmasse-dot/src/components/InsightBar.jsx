@@ -1,21 +1,14 @@
 import '../App.css';
 import React, { useState } from 'react';
-import { MdOutlineNavigateNext } from 'react-icons/md';
-import { MdOutlineNavigateBefore } from 'react-icons/md';
 import { BiSolidInfoCircle } from 'react-icons/bi';
 import { FiArrowRight } from 'react-icons/fi';
 import { BiSolidChevronRightCircle , BiSolidChevronLeftCircle} from 'react-icons/bi';
 import * as Constants from '../utils/constants/Constants';
 
-export default function InsightBar() {
+export default function InsightBar({ handleDisplayDashboard }) {
     const [visible, setVisible] = useState(true);
     const onDialog = () => {
-        if (visible === true) {
-            setVisible(false);
-        }
-        else {
-            setVisible(true);
-        }
+        setVisible(!visible);
     };
 
     return (
@@ -87,7 +80,7 @@ export default function InsightBar() {
                             );
                         })}
                     </div>
-                    <button className='btn btn-dark rounded w-100'>Explore more<FiArrowRight className='ms-2' /></button>
+                    <button className='btn btn-dark rounded w-100' onClick={() => handleDisplayDashboard(true)} >Explore more<FiArrowRight className='ms-2' /></button>
                 </div>
             </div>
         </div>

@@ -14,7 +14,7 @@ const districts = [
 	}
 ]
 
-function MapContainer() {
+function MapContainer({ handleDisplayDashboard }) {
 	const [global, setGlobal] = useState(true);
 	const [selectedCountry, setSelectedCountry] = useState({});
 	const [selectedState, setSelectedState] = useState({});
@@ -77,6 +77,7 @@ function MapContainer() {
 				selectedCountryCode={selectedCountry.isoCode}
 				selectedState={selectedState.name}
 				selectedDistrict={selectedDistrict}
+				handleDisplayDashboard={handleDisplayDashboard}
 			/>
 		</div>
 	);

@@ -6,6 +6,9 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
+import DashboardContainer from './dashboardcontainer/DashBoardContainer';
+import BubbleGraph from './dashboardcontainer/BubbleGraph';
+import LineGraph from './dashboardcontainer/LineGraph';
 
 export default function Login({ handleLoggedIn }) {
     const [showPassword, setShowPassword] = useState(false);

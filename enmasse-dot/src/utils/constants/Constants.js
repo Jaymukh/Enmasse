@@ -271,3 +271,92 @@ export const profileData = {
     country: 'India',
     role: 'Admin'
 };
+
+export const headers = ['State', 'Entrepreneurial Households', 'Median Annual EH Spend on Core Solutions', 'Median Annual EH Income', 'EM Rank']
+
+export const dashboardTableData = [
+    {
+        state: 'Andhra Pradesh',
+        households: '84 Million',
+        medianAnnualEHSpend: '$5400',
+        medianAnnualEHIncome: '$5400',
+        EMrank: '8'
+    },
+    {
+        state: 'Andhra Pradesh',
+        households: '84 Million',
+        medianAnnualEHSpend: '$5400',
+        medianAnnualEHIncome: '$5400',
+        EMrank: '8'
+    },
+    {
+        state: 'Arunachal Pradesh',
+        households: '135 Million',
+        medianAnnualEHSpend: '$7000',
+        medianAnnualEHIncome: '$7000',
+        EMrank: '3'
+    },
+    {
+        state: 'Bihar',
+        households: '90 Million',
+        medianAnnualEHSpend: '$5500',
+        medianAnnualEHIncome: '$5500',
+        EMrank: '7'
+    },
+    {
+        state: 'Chhattisgarh',
+        households: '81 Million',
+        medianAnnualEHSpend: '$5200',
+        medianAnnualEHIncome: '$5200',
+        EMrank: '9'
+    },
+    {
+        state: 'Goa',
+        households: '60 Million',
+        medianAnnualEHSpend: '$5200',
+        medianAnnualEHIncome: '$5200',
+        EMrank: '10'
+    },
+    {
+        state: 'Gujarat',
+        households: '130 Million',
+        medianAnnualEHSpend: '$6010',
+        medianAnnualEHIncome: '$6010',
+        EMrank: '5'
+    },
+];
+
+export const dashboardCardInfo = [
+    {
+        title: "Total Population",
+        value: '1.4 Billion',
+    },
+    {
+        title: "Total Households",
+        value: '285 Million',
+    },
+    {
+        title: "Number of EH",
+        value: '200 Million',
+    },
+    {
+        title: "Median Annual EH Household Spend",
+        value: '$5000',
+    },
+    {
+        title: "Total Addressable Market",
+        value: '$1 Trillion',
+    },
+];
+
+export const bubbleData = {
+    type: 'node',
+    name: "parent",
+    value: 2300,
+    children: [
+        { type: 'leaf', name: "Healthcare", value: 10, color: '#007CC3' },
+        { type: 'leaf', name: "Agri Market", value: 30, color: '#367A2B' },
+        { type: 'leaf', name: "Education", value: 15, color: '#F47A1F' },
+        { type: 'leaf', name: "Financial", value: 45, color: '#00529B' }
+    ]
+}

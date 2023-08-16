@@ -566,3 +566,98 @@
 .drawer-input-box-height {
 	height: 2.75rem;
 }
+
+.scatter-chart {
+	width: 600px;
+	height: 400px;
+	margin: auto;
+}
+
+/* Dashboard css starts here */
+.white-bg {
+	background-color: #ffffff;
+}
+
+.grey-para {
+	color: var(--gray-color);
+}
+
+.fs-12 {
+	font-size: 0.75rem;
+}
+
+.fs-18 {
+	font-size: 1.125rem;
+}
+
+.fs-14 {
+	font-size: 0.875rem;
+}
+
+.fs-11 {
+	font-size: 0.688rem;
+}
+
+.dashboard-col {
+	border: 1px solid #1118261A;
+	border-radius: 5px;
+}
+
+.primary-bg {
+	background-color: var(--primaryColor);
+}
+
+.dashboard-table-container {
+	border: 1px solid #0D0B0B33;
+	border-radius: 10px;
+}
+
+.dashboard-table-container table {
+	width: 100%;
+}
+
+.dashboard-table-container td,
+th {
+	height: 3.25rem;
+	text-align: start;
+	padding: 0rem 0.875rem;
+	border-bottom: 1px solid #ddd;
+	font-weight: 500;
+}
+
+.dashboard-table-container th {
+	color: #232323;
+}
+
+.table-header-btn {
+	background-color: #ffffff;
+	height: 1rem;
+	width: 1.25rem;
+}
+
+.table-state-row {
+	color: #367A2B;
+}
+
+.black-text {
+	color: '#484E59';
+}
+
+.white-text {
+	color: var(--white-color);
+}
+
+.bg-green-card {
+	background-color: #108041;
+}
+
+/* SelecyYear CSS starts here */
+.select-year {
+	border: 1px solid #1118261A;
+	border-radius: 2px;
+}
+
+.select-year option:hover {
+	background-color: black;
+	color: white;
+  }

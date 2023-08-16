@@ -7,13 +7,15 @@ import axios from 'axios';
 import * as turf from '@turf/turf';
 import InsightBar from '../../InsightBar';
 import MapButtonGroup from './MapButtonGroup';
+import DashboardContainer from '../../dashboardcontainer/ScatterGraph';
 
 function Map({
 	global,
 	selectedCountry,
 	selectedCountryCode,
 	selectedState,
-	selectedDistrict
+	selectedDistrict,
+	handleDisplayDashboard
 }) {
 	const [features, setFeatures] = useState();
 	const [pointFeatures, setPointFeatures] = useState();
@@ -92,11 +94,12 @@ function Map({
 					pointFeatures={pointFeatures}
 					handleZoom={handleZoom}
 				/>
-			)}
+			)}			
 			<div className='d-flex flex-row bottom-0 end-0 position-fixed' style={{zIndex: 998}}>
 				{/* <MapButtonGroup handleZoom={handleZoom}/> */}
-				<InsightBar />		
+				<InsightBar handleDisplayDashboard={handleDisplayDashboard}/>		
 			</div>
+			
 		</div>
 	);
 }

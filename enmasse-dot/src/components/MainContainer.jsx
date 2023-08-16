@@ -6,6 +6,7 @@ import AccountContainer from './accountcontainer/AccountContainer'
 import OverlayContainer from './OverlayContainer';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
+import DashBoardContainer from './dashboardcontainer/DashBoardContainer';
 
 const customTheme = (outerTheme) =>
 	createTheme({
@@ -39,10 +40,10 @@ const customTheme = (outerTheme) =>
 								'var(--TextField-brandBorderHoverColor)',
 						},
 						[`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]:
-							{
-								borderColor:
-									'var(--TextField-brandBorderFocusedColor)',
-							},
+						{
+							borderColor:
+								'var(--TextField-brandBorderFocusedColor)',
+						},
 					},
 				},
 			},
@@ -91,6 +92,7 @@ function MainContainer() {
 	const [overlay, setOverlay] = useState(true);
 	const [mapDisplay, setMapDisplay] = useState(true);
 	const [visiblePanel, setVisiblePanel] = useState(0);
+	const [visibleDashboard, setVisibleDashboard] = useState(false);
 
 	const handleOverlay = (overlay) => {
 		setOverlay(overlay);
@@ -98,18 +100,22 @@ function MainContainer() {
 
 	const handleMapDisplay = (flag) => {
 		setMapDisplay(flag);
-	}	
+	}
 
-    const handleVisiblePanel = (index) => {
+	const handleVisiblePanel = (index) => {
 		setVisiblePanel(index);
-    };
+	};
+
+	const handleDisplayDashboard = (flag) => {
+		setVisibleDashboard(flag);
+	}
 
 	return (
 		<>
 			<ThemeProvider theme={customTheme(outerTheme)}>
-				<div className=''>
+				<div className='w-100 primary-bg'>
 					<Header handleMapDisplay={handleMapDisplay} handleVisiblePanel={handleVisiblePanel} />
-					{ mapDisplay ? <MapContainer /> : <AccountContainer handleMapDisplay={handleMapDisplay} handleVisiblePanel={handleVisiblePanel} visiblePanel={visiblePanel}/>}
+					{mapDisplay && !visibleDashboard ? <MapContainer handleDisplayDashboard={handleDisplayDashboard} /> : (visibleDashboard ? <DashBoardContainer handleMapDisplay={handleMapDisplay} handleDisplayDashboard={handleDisplayDashboard} /> : <AccountContainer handleMapDisplay={handleMapDisplay} handleVisiblePanel={handleVisiblePanel} visiblePanel={visiblePanel} />)}
 				</div>
 				{overlay ? (
 					<div className='overlay d-flex flex-wrap justify-content-center align-items-center'>
