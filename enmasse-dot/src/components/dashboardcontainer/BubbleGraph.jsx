@@ -18,9 +18,9 @@ const BubbleGraph = () => {
 			<h5 className="mb-0 text-start fs-14">Core Solutions by EH</h5>
                 <SelectYear />
             </div>
-			<div>
-				{/* <svg width={500} height={345} style={{ display: "inline-block" }}> */}
-				<svg width={500} height={310} style={{ display: "inline-block" }}>
+			<div width='30rem' height='50rem' >
+				{/* <svg width={500} height={310} style={{ display: "inline-block" }}> */}
+				<svg width='100%' height='100%' style={{ display: "inline-block" }}>
 					{root
 						.descendants()
 						.slice(1)

@@ -12,7 +12,7 @@ import { MdFormatListBulleted } from 'react-icons/md';
 import { MdArrowDropDown } from 'react-icons/md';
 import * as Constants from '../../utils/constants/Constants';
 
-function AccountOptions({ handleMapDisplay, handleVisiblePanel }) {
+function AccountOptions({ handleMapDisplay, handleVisiblePanel, handleDisplayDashboard }) {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 
@@ -23,6 +23,7 @@ function AccountOptions({ handleMapDisplay, handleVisiblePanel }) {
 	const handleClickMenuItem = (event, index) => {
 		handleVisiblePanel(index);
 		handleMapDisplay(false);
+		handleDisplayDashboard(false);
 		handleClose();
 	}
 

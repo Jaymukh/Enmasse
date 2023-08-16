@@ -114,8 +114,10 @@ function MainContainer() {
 		<>
 			<ThemeProvider theme={customTheme(outerTheme)}>
 				<div className='w-100 primary-bg'>
-					<Header handleMapDisplay={handleMapDisplay} handleVisiblePanel={handleVisiblePanel} />
-					{mapDisplay && !visibleDashboard ? <MapContainer handleDisplayDashboard={handleDisplayDashboard} /> : (visibleDashboard ? <DashBoardContainer handleMapDisplay={handleMapDisplay} handleDisplayDashboard={handleDisplayDashboard} /> : <AccountContainer handleMapDisplay={handleMapDisplay} handleVisiblePanel={handleVisiblePanel} visiblePanel={visiblePanel} />)}
+					<Header handleMapDisplay={handleMapDisplay} handleVisiblePanel={handleVisiblePanel} handleDisplayDashboard={handleDisplayDashboard} />
+					{mapDisplay && !visibleDashboard ? <MapContainer handleDisplayDashboard={handleDisplayDashboard} />
+						: (visibleDashboard ? <DashBoardContainer handleMapDisplay={handleMapDisplay} handleDisplayDashboard={handleDisplayDashboard} />
+							: <AccountContainer handleMapDisplay={handleMapDisplay} handleDisplayDashboard={handleDisplayDashboard} handleVisiblePanel={handleVisiblePanel} visiblePanel={visiblePanel} />)}
 				</div>
 				{overlay ? (
 					<div className='overlay d-flex flex-wrap justify-content-center align-items-center'>

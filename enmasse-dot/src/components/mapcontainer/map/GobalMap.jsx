@@ -1,16 +1,14 @@
-import '../../../styles/mapcontainer/map/Map.css';
-import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useEffect, useState } from 'react';
-import ReactMapGL, { Source, Layer } from 'react-map-gl';
-import Map from 'react-map-gl';
-// import features from '../../../geojson/countries/IND.geo.json';
 import axios from 'axios';
-//import SideBar from '../../SideBar'
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import * as Constants from '../../../utils/constants/Constants';
+import * as MapConstants from '../../../utils/json/googlemapstyle';
 
 function GlobalMap({ features, handleImportFeature }) {
-	const TOKEN = Constants.TOKEN;
-	const localMapStyle = Constants.localMapStyle;
+	const center = {
+		lat: 20.5937,
+		lng: 78.9629
+	};
 	const API_KEY = Constants.API_KEY;
 	const revgeocodeURL = Constants.revgeocodeURL;
 	const [address, setAddress] = useState('');
@@ -28,14 +26,27 @@ function GlobalMap({ features, handleImportFeature }) {
 		'fill-opacity': 1,
 	});
 
-	const handleMapClick = (e) => {
-		const longitude = e.lngLat.lng;
-		const latitude = e.lngLat.lat;
-		setNewPlace({
-			latitude: latitude,
-			longitude: longitude,
+	// const handleMapClick = (e) => {
+	// 	const longitude = e.lngLat.lng;
+	// 	const latitude = e.lngLat.lat;
+	// 	setNewPlace({
+	// 		latitude: latitude,
+	// 		longitude: longitude,
+	// 	});
+	// 	setPaint({ 'fill-color': '#108041', 'fill-opacity': 1 });
+	// };
+	const handleMapClick = (event) => {
+		const geocoder = new window.google.maps.Geocoder();
+		geocoder.geocode({ location: event.latLng }, (results, status) => {
+			if (status === 'OK' && results.length) {				
+				const country = results.find((component) => component.types.includes('country'));
+				console.log(country.geometry);
+				// setAddress(country);
+				handleImportFeature(country.address_components[0].short_name);
+			} else {
+				console.error('Geocode was not successful:', status);
+			}
 		});
-		setPaint({ 'fill-color': '#108041', 'fill-opacity': 1 });
 	};
 
 	const handleMapScroll = (e) => {
@@ -67,8 +78,7 @@ function GlobalMap({ features, handleImportFeature }) {
 			);
 			if (response.data.items.length) {
 				const address = response.data.items[0].address;
-				setAddress(address);
-				handleImportFeature(address.countryCode);
+				
 			}
 		} catch (error) {
 			console.error('Error:', error);
@@ -79,34 +89,24 @@ function GlobalMap({ features, handleImportFeature }) {
 		fetchData();
 	}, [newPlace.latitude, newPlace.longitude]);
 
+
+
+
+	const mapOptions = {
+		disableDefaultUI: true, // Disables default UI, including zoom buttons
+		zoomControl: false, // Disables only the zoom control (zoom buttons)
+		styles: MapConstants.gmapstyle
+	};
+
 	return (
 		<div
 			className='MapContainer row'
-			style={{ height: '81vh', width: '100vw', zIndex: 999 }}			
+			style={{ height: '81vh', width: '100vw', zIndex: 999 }}
 		>
-			<Map
-				{...viewport}
-				width='100%'
-				height='100%'
-				projection={{
-					name: 'mercator',
-				}}
-				mapboxAccessToken={TOKEN}
-				transitionDuration='200'
-				mapStyle={localMapStyle}
-				onViewportChange={(viewport) => setViewport(viewport)}
-				onClick={handleMapClick}
-				attributionControl={true}
-			// doubleClickZoom={true}
-			>
-				<Source id='geojsonsource' type='geojson' data={features} />
-				<Layer
-					type='fill'
-					source='geojsonsource'
-					paint={paint}
-				/>
-				{/* <SideBar /> */}
-			</Map>
+			<LoadScript googleMapsApiKey="AIzaSyBS2A07XHOScEqDgy9d3iKhGSb1IfHQnkE">
+				<GoogleMap mapContainerStyle={MapConstants.containerStyle} center={center} zoom={1.5} options={mapOptions} onClick={handleMapClick} >
+				</GoogleMap>
+			</LoadScript>
 		</div>
 	);
 }

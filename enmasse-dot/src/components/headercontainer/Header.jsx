@@ -10,7 +10,7 @@ import Notifications from './Notifications';
 import RequestDetails from './RequestDetails';
 import ShareLocation from './ShareLocation';
 
-function Header({handleMapDisplay, handleVisiblePanel}) {
+function Header({handleMapDisplay, handleVisiblePanel, handleDisplayDashboard}) {
 	return (
 		<div className="d-flex flex-wrap justify-content-between border-bottom bg-white py-3 my-0 w-100" style={{ height: '11.5vh' }} >
 			<div className="d-flex flex-wrap justify-content-between">
@@ -40,7 +40,7 @@ function Header({handleMapDisplay, handleVisiblePanel}) {
 				{/* <Divider orientation="vertical" className='mx-3'/> */}
 				<MdLiveHelp fontSize={25} className='ms-4 me-3 mb-1 header-icon' />
 				<Notifications className='mx-2 header-icon'/>
-				<AccountOptions className='mx-2' handleMapDisplay={handleMapDisplay} handleVisiblePanel={handleVisiblePanel}/>
+				<AccountOptions className='mx-2' handleMapDisplay={handleMapDisplay} handleVisiblePanel={handleVisiblePanel} handleDisplayDashboard={handleDisplayDashboard} />
 			</div>
 		</div>
 	);
