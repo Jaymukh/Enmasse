@@ -14,7 +14,7 @@ const districts = [
 	}
 ]
 
-function MapContainer({ handleDisplayDashboard }) {
+function MapContainer({ handleDisplayDashboard, handlePopupClick }) {
 	const [global, setGlobal] = useState(true);
 	const [selectedCountry, setSelectedCountry] = useState({});
 	const [selectedState, setSelectedState] = useState({});
@@ -78,6 +78,7 @@ function MapContainer({ handleDisplayDashboard }) {
 				selectedState={selectedState.name}
 				selectedDistrict={selectedDistrict}
 				handleDisplayDashboard={handleDisplayDashboard}
+				handlePopupClick={handlePopupClick}
 			/>
 		</div>
 	);

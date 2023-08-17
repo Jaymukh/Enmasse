@@ -5,6 +5,7 @@ import Avatar from '@mui/material/Avatar';
 import Settings from '@mui/icons-material/Settings';
 import { MdFormatListBulleted } from 'react-icons/md';
 import { MdGroupAdd } from 'react-icons/md';
+import Navale from '../images/family-sample.png';
 
 export const TOKEN =
     'pk.eyJ1IjoiZGF5YW5hZWR3aW4iLCJhIjoiY2xqbnpmcW91MDl0dDNkcGp3eDJ4cGE5cSJ9.q2SWsgW4OxyhoosSjKsANQ';
@@ -358,5 +359,101 @@ export const bubbleData = {
         { type: 'leaf', name: "Agri Market", value: 30, color: '#367A2B' },
         { type: 'leaf', name: "Education", value: 15, color: '#F47A1F' },
         { type: 'leaf', name: "Financial", value: 45, color: '#00529B' }
+    ]
+}
+
+export const families = {
+    place: "India",
+    family: [
+        {
+            type: 'Feature',
+            properties: {
+                message: 'Foo',
+                description: "Hi! I'm Ameya. This app will work fine",
+                image: Navale,
+                familyName: 'Ashe Family',
+                district: 'Kutch',
+                state: 'Gujarat',
+                country: 'India',
+                address: 'Kutch, Gujarat, India',
+                familyDetails: {
+                    familyMembers: '05',
+                    householdSpend: '$10,500',
+                    householdIncome: '$9,000',
+                    detail1: 'The Ashe family lives in India. Suvarna is 45 years old and she is a housewife. Her husband Ravindra is 53 years old and he owns a small business. They live along with their mother who is a retired woman and 2 sons. Hirabai, their mother, is 72 years old. Chandan, their son, is 26 years old and he helps them with their business. Their 19 years old son, Anjan is a student. The Navale family lives in a 1-bedroom house and have been living there for the past 36 years. The thing they like about the house is its surroundings, however, what bothers them is its isolated location. The house has interrupted electricity, toilet facility within the house yard, and safe water supply. The family also owns another house and some agricultural land. The Navale family purchases all their food supplies from the market. They cook their food on LPG fuel. They aspire to grow their business of agricultural products and leverage their land as an investment for the future of their son’s.',
+                    detail2: 'The family also owns another house and some agricultural land. The Navale family purchases all their food supplies from the market. They cook their food on LPG fuel. They aspire to grow their business of agricultural products and leverage their land as an investment for the future of their son’s.'
+                }
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-66.324462, -16.024695]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                message: 'Bar',
+                description: 'Hi! This is Ameya again! I aasure again that this app will live soon...',
+                image: Navale,
+                familyName: 'Navale family',
+                district: 'Anand',
+                state: 'Gujarat',
+                country: 'India',
+                address: 'Anand, Gujarat, India',
+                familyDetails: {
+                    familyMembers: '05',
+                    householdSpend: '$10,500',
+                    householdIncome: '$9,000',
+                    detail1: 'The Navale family lives in India. Sugat is 30 years old and he is a farmer. His wife Manjita is 22 years old and she is a daily wage worker. Their daughter Chitrakshi is 2 years old. The family lives in a small kutccha House that Sugat’s family has been living for last 20 years. The experience hourly electricity outages around 3 times a week. It has an outdoor toilet facility and decent water supply. They wish to provide their daughter with good quality education and better standard of living. They cook their food on LPG fuel. Drinking water is also available at their home and is safe to drink.',
+                    detail2: 'The family also owns another house and some agricultural land. The Navale family purchases all their food supplies from the market. They cook their food on LPG fuel. They aspire to grow their business of agricultural products and leverage their land as an investment for the future of their son’s.'
+                }
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-61.21582, -15.971891]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                message: 'Foo',
+                description: "Hi! I'm Ameya. This app will work fine",
+                image: Navale,
+                familyName: 'Joshi Family',
+                district: 'Dahod',
+                state: 'Gujarat',
+                country: 'India',
+                address: 'Kutch, Gujarat, India',
+                familyDetails: {
+                    familyMembers: '05',
+                    householdSpend: '$10,500',
+                    householdIncome: '$9,000',
+                    detail1: 'The Navale family lives in India. Sugat is 30 years old and he is a farmer. His wife Manjita is 22 years old and she is a daily wage worker. Their daughter Chitrakshi is 2 years old. The family lives in a small kutccha House that Sugat’s family has been living for last 20 years. The experience hourly electricity outages around 3 times a week. It has an outdoor toilet facility and decent water supply. They wish to provide their daughter with good quality education and better standard of living. They cook their food on LPG fuel. Drinking water is also available at their home and is safe to drink.',
+                    detail2: 'The family also owns another house and some agricultural land. The Navale family purchases all their food supplies from the market. They cook their food on LPG fuel. They aspire to grow their business of agricultural products and leverage their land as an investment for the future of their son’s.'
+                }
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-66.324462, -16.024695]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                message: 'Bar',
+                description: 'Hi! This is Ameya again! I aasure again that this app will live soon...',
+                image: Navale,
+                familyName: 'Shah family',
+                district: 'Navsari',
+                state: 'Gujarat',
+                country: 'India',
+                address: 'Anand, Gujarat, India',
+                familyDetails: ""
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-61.21582, -15.971891]
+            }
+        }
     ]
 }

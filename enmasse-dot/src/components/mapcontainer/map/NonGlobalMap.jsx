@@ -1,16 +1,15 @@
 import '../../../styles/mapcontainer/map/Map.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useEffect, useState, useRef } from 'react';
-import Map, { Marker, Popup } from 'react-map-gl';
+import Map, { Popup } from 'react-map-gl';
 import bbox from '@turf/bbox';
 import CoreSolutions from './CoreSolutions';
 import * as Constants from '../../../utils/constants/Constants';
 import MapPopup from './MapPopup';
 import MapFillLayer from './MapFillLayer';
 import MapCircleLayer from './MapCircleLayer';
-import { WebMercatorViewport } from 'viewport-mercator-project';
 
-function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCountry, selectedState, selectedDistrict, pointFeatures }) {
+function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCountry, selectedState, selectedDistrict, pointFeatures, handlePopupClick }) {
 	const TOKEN = Constants.TOKEN;
 	const transparentMapStyleV2 = Constants.transparentMapStyleV2;
 
@@ -254,6 +253,7 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 						>
 							<MapPopup
 								properties={feature.properties}
+								handlePopupClick={handlePopupClick}
 							/>
 						</Popup>
 					))

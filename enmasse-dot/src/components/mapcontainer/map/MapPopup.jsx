@@ -1,6 +1,6 @@
 import { FiArrowRight } from 'react-icons/fi';
 
-const MapPopup = ({ properties }) => {
+const MapPopup = ({ properties, handlePopupClick }) => {
     return (
         // <div className="map-popup map-popup-grey-text rounded">
         //     <h6>{name}</h6>
@@ -14,7 +14,7 @@ const MapPopup = ({ properties }) => {
             <div className="col-8 ps-1 d-flex flex-column justify-content-start">
                 <p className="map-popup-description text-start my-0">{properties.family}</p>
                 <p className="map-popup-description text-start my-0"><span className="green-text">{properties.annualSpend}</span> Annual Spend on Core Solutions</p>
-                <button className="map-popup-description border-0 bg-transparent green-text text-start p-0">Read more<FiArrowRight className='ms-1'/></button>
+                <button className="map-popup-description border-0 bg-transparent green-text text-start p-0" onClick={handlePopupClick}>Read more<FiArrowRight className='ms-1'/></button>
             </div>            
         </div>
     )

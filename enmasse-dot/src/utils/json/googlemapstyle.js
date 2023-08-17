@@ -1,5 +1,14 @@
 export const gmapstyle = [
   {
+    "featureType": "administrative.country",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#108041"
+      }
+    ]
+  },
+  {
     "elementType": "geometry",
     "stylers": [
       {

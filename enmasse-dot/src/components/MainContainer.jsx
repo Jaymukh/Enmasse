@@ -7,6 +7,7 @@ import OverlayContainer from './OverlayContainer';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import DashBoardContainer from './dashboardcontainer/DashBoardContainer';
+import FamilyContainer from './familyContainer/FamilyContainer';
 
 const customTheme = (outerTheme) =>
 	createTheme({
@@ -93,6 +94,7 @@ function MainContainer() {
 	const [mapDisplay, setMapDisplay] = useState(true);
 	const [visiblePanel, setVisiblePanel] = useState(0);
 	const [visibleDashboard, setVisibleDashboard] = useState(false);
+	const [familyInfoDisplay, setFamilyInfoDisplay] = useState(false);
 
 	const handleOverlay = (overlay) => {
 		setOverlay(overlay);
@@ -110,14 +112,19 @@ function MainContainer() {
 		setVisibleDashboard(flag);
 	}
 
+	const handlePopupClick = () => {
+		setFamilyInfoDisplay(true);
+	}
+
 	return (
 		<>
 			<ThemeProvider theme={customTheme(outerTheme)}>
 				<div className='w-100 primary-bg'>
 					<Header handleMapDisplay={handleMapDisplay} handleVisiblePanel={handleVisiblePanel} handleDisplayDashboard={handleDisplayDashboard} />
-					{mapDisplay && !visibleDashboard ? <MapContainer handleDisplayDashboard={handleDisplayDashboard} />
-						: (visibleDashboard ? <DashBoardContainer handleMapDisplay={handleMapDisplay} handleDisplayDashboard={handleDisplayDashboard} />
-							: <AccountContainer handleMapDisplay={handleMapDisplay} handleDisplayDashboard={handleDisplayDashboard} handleVisiblePanel={handleVisiblePanel} visiblePanel={visiblePanel} />)}
+					{mapDisplay && !visibleDashboard & !familyInfoDisplay ? <MapContainer handleDisplayDashboard={handleDisplayDashboard} handlePopupClick={handlePopupClick} />
+						: (visibleDashboard && !familyInfoDisplay ? <DashBoardContainer handleMapDisplay={handleMapDisplay} handleDisplayDashboard={handleDisplayDashboard} />
+							: !familyInfoDisplay ? <AccountContainer handleMapDisplay={handleMapDisplay} handleDisplayDashboard={handleDisplayDashboard} handleVisiblePanel={handleVisiblePanel} visiblePanel={visiblePanel} />
+								: <FamilyContainer />)}
 				</div>
 				{overlay ? (
 					<div className='overlay d-flex flex-wrap justify-content-center align-items-center'>

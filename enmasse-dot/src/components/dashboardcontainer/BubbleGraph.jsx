@@ -19,8 +19,8 @@ const BubbleGraph = () => {
                 <SelectYear />
             </div>
 			<div width='30rem' height='50rem' >
-				{/* <svg width={500} height={310} style={{ display: "inline-block" }}> */}
-				<svg width='100%' height='100%' style={{ display: "inline-block" }}>
+				<svg width={550} height={330} style={{ display: "inline-block" }}>
+				{/* <svg width='100%' height='100%' style={{ display: "inline-block" }}> */}
 					{root
 						.descendants()
 						.slice(1)
