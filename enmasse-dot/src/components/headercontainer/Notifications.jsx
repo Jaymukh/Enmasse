@@ -14,6 +14,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
+import WorkInProgressImage from '../../utils/images/work_in_progress.svg';
 
 function Notifications() {
 	const [open, setOpen] = useState(false);
@@ -99,7 +100,16 @@ function Notifications() {
 					onClick={() => toggleDrawer(false)}
 					onKeyDown={() => toggleDrawer(false)}
 				>
-					<List>
+					<div className="d-flex justify-content-center p-5">
+						<div className="" style={{ width: '18rem' }}>
+							<img src={WorkInProgressImage} className="card-img-top" alt="Image" width="100%" />
+							<div className="card-body">
+								<h5 className="card-title">Work in progress</h5>
+								<p className="card-text">Our team is actively developing these features for the upcoming updates. Keep an eye out for more information.</p>
+							</div>
+						</div>
+					</div>
+					{/* <List>
 						{notifications.map((item) => (
 							<ListItem
 								key={item.key}
@@ -126,7 +136,7 @@ function Notifications() {
 								<Divider />
 							</ListItem>
 						))}
-					</List>
+					</List> */}
 				</Box>
 			</Drawer>
 		</div>

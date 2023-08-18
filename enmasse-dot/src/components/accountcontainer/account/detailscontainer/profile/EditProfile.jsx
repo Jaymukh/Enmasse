@@ -4,6 +4,7 @@ import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import '../../../../../App.css';
 
 export default function Editprofile({
     selectedData,
@@ -22,7 +23,6 @@ export default function Editprofile({
 
     const handleUpdateClick = () => {
         handleUpdate(updatedData);
-        // setProfileData(updatedData);
     };
 
     return (

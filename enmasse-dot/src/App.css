@@ -129,7 +129,7 @@
 
 .SideBarContent {
 	height: 80vh;
-	right: 0;
+	right: 0; 
 	overflow: auto;
 }
 
@@ -155,9 +155,9 @@
 		padding-bottom: 6rem;
 	}
 
-	.SideBarIcon {
+	/* .SideBarIcon {
 		margin-left: 0;
-	}
+	} */
 }
 
 .tam-info {
@@ -477,6 +477,9 @@
 .bg-brown {
 	background-color: #c68f27;
 }
+.color-orange {
+	color: #D55038;
+  }
 
 /* MapPopup */
 
@@ -555,8 +558,9 @@
 }
 
 .invite-table-drawer {
-	overflow: auto;
-	height: 90%;
+    overflow: auto;
+    height: 90%;
+    padding-bottom: 6rem;
 }
 
 .font-87-5 {

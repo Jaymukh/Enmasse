@@ -5,6 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import * as Constants from '../../../../../utils/constants/Constants';
+import '../../../../../App.css';
 
 export default function InviteNew({
     openInviteNew,

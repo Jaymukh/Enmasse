@@ -1,11 +1,11 @@
-import '../../styles/headercontainer/ShareLocation.css';
+import '../../styles/headercontainer/ExploreNow.css';
 import React, { useState } from 'react';
 import { MdOutlineTravelExplore } from 'react-icons/md';
 import { MdClose } from 'react-icons/md';
 import { FiDownload } from 'react-icons/fi';
 import Drawer from '@mui/material/Drawer';
 
-function ShareLocation() {
+function ExploreNow() {
 	const [open, setOpen] = useState(false);
 
 	const toggleDrawer = (open) => {
@@ -19,7 +19,7 @@ function ShareLocation() {
 				onClick={() => toggleDrawer(true)}
 			>
 				<MdOutlineTravelExplore className='me-2' fontSize={20}/>
-				Map your Business
+				Explore Now
 			</button>
 			<Drawer
 				className='drawer'
@@ -35,7 +35,7 @@ function ShareLocation() {
 					className='d-flex flex-wrap justify-content-between mx-4 my-4'
 					role='presentation'
 				>
-					<h6 className='drawer-header mx-4'>Map your Business</h6>
+					<h6 className='drawer-header mx-4'>Explore Now</h6>
 					<button
 						className='close-btn'
 						onClick={() => toggleDrawer(false)}
@@ -75,4 +75,4 @@ function ShareLocation() {
 	);
 }
 
-export default ShareLocation;
+export default ExploreNow;

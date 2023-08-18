@@ -1,10 +1,8 @@
 import '../../../styles/mapcontainer/mapoptions/MapOptions.css';
-import React, { useState } from 'react';
-import { FiDownload } from 'react-icons/fi';
-import { Divider } from '@mui/material';
+import React from 'react';
 import Bookmarks from './Bookmarks';
-import Filters from './Filters';
 import SelectBox from './SelectBox';
+import DownloadData from './DownloadData';
 
 function MapOptions({
 	handleGlobal,
@@ -71,12 +69,13 @@ function MapOptions({
 				)}
 			</div>
 			<div className='col-xl-5 col-md-5 d-flex flex-wrap justify-content-end align-items-center'>
-				<button className='subheader-btn'>
+				<DownloadData />
+				{/* <button className='subheader-btn'>
 					<div className='d-flex flex-wrap'>
 						<FiDownload className='mt-1' />
-						<p className='px-2 my-0'>Download the data</p>
+						<p className='px-2 my-0'>Download data</p>
 					</div>
-				</button>
+				</button> */}
 				<Bookmarks />
 				{/* <Filters /> */}
 			</div>

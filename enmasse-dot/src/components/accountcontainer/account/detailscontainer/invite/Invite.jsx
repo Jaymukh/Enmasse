@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import AddIcon from '@mui/icons-material/Add';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
+import '../../../../../App.css';
 import * as Constants from '../../../../../utils/constants/Constants'
 import EditInvite from './EditInvite';
 import InviteNew from './InviteNew';
+import AddIcon from '@mui/icons-material/Add';
+import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material' ; 
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
+
+
 
 export default function Invite() {
 	const [inviteData, setInviteData] = useState(Constants.inviteData);
@@ -33,10 +30,12 @@ export default function Invite() {
 	};
 	const handleUpdate = (updatedRow) => {
 		setInviteData((prevData) =>
-			prevData.map((row) => (row.id === updatedRow.id ? updatedRow : row))
+		  prevData.map((row) => (row.id === updatedRow.id ? updatedRow : row))
 		);
+		console.log('updatedRow' + updatedRow);
+		console.log('inviteData' + inviteData);
 		handleCloseDialog();
-	};
+	  };
 
 
 	// function for Delete
@@ -50,12 +49,12 @@ export default function Invite() {
 		<div className='container bg-white w-90 h-100 mt-4 detail-container me-5'>
 			<div className="row w-100 h-10 d-flex flex-row justify-content-between pt-3 pl-4">
 				<h5 className='mt-2 col-2'>Invite</h5>
-				<button className='btn btn-outline-secondary width-fit-content-button' onClick={handleOpenInviteNew} ><AddIcon className='mx-1 mb-1  text-dark' />Invite New</button>
+				<button className='btn btn-outline-secondary width-fit-content-button' onClick={handleOpenInviteNew } ><AddIcon className='mx-1 mb-1 text-dark' />Invite New</button>
 			</div>
 			<hr />
-			<div className="row w-100 d-flex justify-content-center invite-table-drawer">
-				<TableContainer component={Paper} className='invite-table-width'>
-					<Table sx={{ minWidth: 650 }} aria-label="simple table">
+			<div className="row w-100 d-flex justify-content-center m-auto invite-table-drawer">
+				<TableContainer component={Paper} className='invite-table-width '>
+					<Table sx={{ minWidth: 650, marginBottom: '5rem' }} aria-label="simple table">
 						<TableHead>
 							<TableRow>
 								<TableCell align="left" variant='head' sx={{ fontWeight: '600' }}>Name</TableCell>
@@ -77,7 +76,7 @@ export default function Invite() {
 									<TableCell component="th" align="center" scope="row">{row.companyType}</TableCell>
 									<TableCell align="center" className='' >
 										<button type='transparent' className='btn-white'>
-											<EditIcon className='color-gray' onClick={() => handleEditClick(row)} />
+											<EditIcon className='color-gray' onClick={() => handleEditClick(row, index)} />
 										</button>
 										<button type='transparent' className='btn-white'>
 											<DeleteSweepIcon className='color-orange fs-5 ms-2' onClick={() => handleDeleteClick(index)} />

@@ -5,6 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import * as Constants from '../../../../../utils/constants/Constants';
+import '../../../../../App.css';
 
 export default function EditInvite({
     selectedData,
@@ -29,7 +30,7 @@ export default function EditInvite({
             <Drawer
                 anchor='right'
                 open={selectedData}
-                onClose={handleCloseDialog}
+                onClose={() => handleCloseDialog}
                 className='edit-profile-drawer-width edit-profile-drawer-padding'
             >
                 <Box className='d-flex flex-wrap justify-content-between mb-2'>
@@ -37,7 +38,7 @@ export default function EditInvite({
                         Edit
                     </h5>
                     <button className='bg-white border-0'>
-                        <CloseIcon onClick={handleCloseDialog} />
+                        <CloseIcon onClick={() => handleCloseDialog} />
                     </button>
                 </Box>
                 <Box className='d-flex justify-content-center flex-column'>
