@@ -19,7 +19,6 @@ function Header({handleVisiblePanel}) {
 			<div className="d-flex flex-wrap justify-content-between align-items-center mx-4">
 				<ExploreNow/>
 				<MapYourBusiness/>
-				{/* <Divider orientation="vertical" className='mx-3'/> */}
 				<MdLiveHelp fontSize={25} className='ms-4 me-3 mb-1 header-icon' />
 				<Notifications className='mx-2 header-icon'/>
 				<AccountOptions className='mx-2' handleVisiblePanel={handleVisiblePanel} />

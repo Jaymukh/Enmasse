@@ -54,25 +54,8 @@ export default function Settings() {
         },
     }));
 
-    const [selectedLanguage, setSelectedLanguage] = useState('EN');
-    const [selectedCurrency, setSelectedCurrency] = useState('INR');
-    const [selectedLocation, setSelectedLocation] = useState('India');
     // handle edit
     const [editMode, setEditMode] = useState(false);
-
-    // Event handler to handle changes in the select option
-
-    const handleSelectLanguage = (event) => {
-        setSelectedLanguage(event.target.value);
-    };
-
-    const handleSelectCurrency = (event) => {
-        setSelectedCurrency(event.target.value);
-    };
-
-    const handleSelectLocation = (event) => {
-        setSelectedLocation(event.target.value);
-    };
 
     var [open, setOpen] = useState(false);
 
