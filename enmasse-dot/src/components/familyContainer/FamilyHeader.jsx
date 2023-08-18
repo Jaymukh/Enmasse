@@ -1,10 +1,12 @@
 import React from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useNavigate } from 'react-router-dom';
 
-function FamilyHeader({ handleBackClick, selectedData, handleMapDisplay }) {
-	
+function FamilyHeader({ handleBackClick, selectedData }) {
+	const navigate = useNavigate();
+
 	const onNavigateBack = () => {
-		handleMapDisplay(true);
+		navigate(-1);
 	}
 
 	return (

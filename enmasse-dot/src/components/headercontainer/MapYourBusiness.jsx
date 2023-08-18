@@ -30,7 +30,7 @@ function MapYourBusiness() {
 				// sx={{
 				// 	width: 200,
 				// }}
-				style={{width: '25vw'}}
+				style={{ width: '25vw' }}
 				open={open}
 				onClose={() => toggleDrawer(false)}
 			>
@@ -48,19 +48,15 @@ function MapYourBusiness() {
 						<MdClose fontSize={27} />
 					</button>
 				</Box>
-				<div className='mx-5 my-1'>
-					<h6 className='contact-para'>
+				<div className='mx-5 my-1 dialog-div'>
+					<h6 className='contact-para fs-14'>
 						Why do we need this?
 					</h6>
-					<p className='text-wrap'>To plot your business and recommend the best opportunities for you.</p>
-					<div className="d-flex justify-content-center p-5">
-						<div className="" style={{ width: '18rem' }}>
-							<img src={WorkInProgressImage} className="card-img-top" alt="Image" width="100%" />
-							<div className="card-body">
-								<h5 className="card-title">Work in progress</h5>
-								<p className="card-text">Our team is actively developing these features for the upcoming updates. Keep an eye out for more information.</p>
-							</div>
-						</div>
+					<p className='text-wrap fs-12 grey-para'>To plot your business and recommend the best opportunities for you.</p>
+					<div className="d-flex flex-column justify-content-center align-items-center py-5">
+						<img src={WorkInProgressImage} className="wip-img" alt="Work in progress" width="60%" />
+						<h5 className="text-center fs-14 pt-5">Work in progress</h5>
+						<p className="text-center fs-12 grey-para">Our team is actively developing these features for the upcoming updates. Keep an eye out for more information.</p>
 					</div>
 				</div>
 

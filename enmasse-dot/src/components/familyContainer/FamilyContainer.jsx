@@ -6,7 +6,7 @@ import '../../App.css';
 import { families } from '../../utils/constants/Constants';
 
 
-function FamilyContainer({ handleMapDisplay }) {
+function FamilyContainer() {
 	const [selectedFamily, setSelectedFamily] = useState(null);
 	const [selectedData, setSelectedData] = useState(null);
 
@@ -27,7 +27,7 @@ function FamilyContainer({ handleMapDisplay }) {
 
 	return (
 		<div className="row w-100 fixed-bottom m-0" style={{ height: '90vh' }}>
-			<FamilyHeader selectedData={selectedData} handleBackClick={handleBackClick} handleMapDisplay={handleMapDisplay} />
+			<FamilyHeader selectedData={selectedData} handleBackClick={handleBackClick} />
 			{selectedData && Object.keys(selectedData).length > 0 ?
 				<Family selectedFamily={selectedFamily} selectedData={selectedData} handleCarouselSlide={handleCarouselSlide} /> : <Families handleFamilyVisible={handleFamilyVisible} />}
 		</div>

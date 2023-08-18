@@ -129,7 +129,7 @@
 
 .SideBarContent {
 	height: 80vh;
-	right: 0; 
+	right: 0;
 	overflow: auto;
 }
 
@@ -477,9 +477,10 @@
 .bg-brown {
 	background-color: #c68f27;
 }
+
 .color-orange {
 	color: #D55038;
-  }
+}
 
 /* MapPopup */
 
@@ -558,9 +559,9 @@
 }
 
 .invite-table-drawer {
-    overflow: auto;
-    height: 90%;
-    padding-bottom: 6rem;
+	overflow: auto;
+	height: 90%;
+	padding-bottom: 6rem;
 }
 
 .font-87-5 {
@@ -664,4 +665,8 @@ th {
 .select-year option:hover {
 	background-color: black;
 	color: white;
-  }
+}
+
+.dialog-div {
+	width: 21rem;
+}
