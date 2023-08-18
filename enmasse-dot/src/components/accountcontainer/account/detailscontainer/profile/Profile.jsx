@@ -34,27 +34,25 @@ export default function Profile() {
             <hr />
             <div className="row w-100">
                 <div className="col-3 d-flex justify-content-center">
-                    <div className='profile-image-box'>
-                        <img src="" alt="Profile Photo" />
-                    </div>
+                    <img src="" alt="Profile Photo" className='profile-image-box'/>
                 </div>
                 <div className="col-4">
                     <ul className='edit-profile-list'>
                         <li >
                             <p className="text-muted fs-6  mb-0">Name:</p>
-                            <p className="color-black">{Constants.profileData.name}</p>
+                            <p className="color-black">{profileData.name}</p>
                         </li>
                         <li >
                             <p className="text-muted fs-6  mb-0">Phone:</p>
-                            <p className="color-black">{Constants.profileData.phone}</p>
+                            <p className="color-black">{profileData.phone}</p>
                         </li>
                         <li >
                             <p className="text-muted fs-6  mb-0">Company Name:</p>
-                            <p className="color-black">{Constants.profileData.company}</p>
+                            <p className="color-black">{profileData.company}</p>
                         </li>
                         <li >
                             <p className="text-muted fs-6  mb-0">Role:</p>
-                            <p className="color-black">{Constants.profileData.role}</p>
+                            <p className="color-black">{profileData.role}</p>
                         </li>
                     </ul>
                 </div>
@@ -62,15 +60,15 @@ export default function Profile() {
                     <ul className='edit-profile-list'>
                         <li >
                             <p className="text-muted fs-6  mb-0">Email Id:</p>
-                            <p className="color-black">{Constants.profileData.email}</p>
+                            <p className="color-black">{profileData.email}</p>
                         </li>
                         <li >
                             <p className="text-muted fs-6  mb-0">Designation:</p>
-                            <p className="color-black">{Constants.profileData.designation}</p>
+                            <p className="color-black">{profileData.designation}</p>
                         </li>
                         <li >
                             <p className="text-muted fs-6  mb-0">Country:</p>
-                            <p className="color-black">{Constants.profileData.country}</p>
+                            <p className="color-black">{profileData.country}</p>
                         </li>
                     </ul>
                 </div>

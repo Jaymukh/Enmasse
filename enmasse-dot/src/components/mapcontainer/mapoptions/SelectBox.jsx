@@ -1,5 +1,5 @@
 import '../../../styles/mapcontainer/mapoptions/PrimarySelect.css';
-import React, { useState } from 'react';
+import React from 'react';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 

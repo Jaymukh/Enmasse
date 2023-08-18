@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import '../../../../../App.css';
 import LockIcon from '@mui/icons-material/Lock';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import Switch from '@mui/material/Switch';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import * as Constants from '../../../../../utils/constants/Constants';
 import ChangePassword from './ChangePassword';
+import EditSetting from './EditSetting';
 
 
 export default function Settings() {
@@ -54,7 +57,8 @@ export default function Settings() {
     const [selectedLanguage, setSelectedLanguage] = useState('EN');
     const [selectedCurrency, setSelectedCurrency] = useState('INR');
     const [selectedLocation, setSelectedLocation] = useState('India');
-
+    // handle edit
+    const [editMode, setEditMode] = useState(false);
 
     // Event handler to handle changes in the select option
 
@@ -79,33 +83,43 @@ export default function Settings() {
     const handleDrawer = (open) => {
         setOpen(open);
     }
+    // handle edit setting
+    const handleEditClick = (editMode) => {
+        setEditMode(editMode);
+    };
 
     return (
         <div className='container bg-white w-90 h-100 mt-4 detail-container me-5'>
             <div className="row w-100 h-10 d-flex flex-row justify-content-between pt-3 pl-4">
                 <h5 className='mt-2 col-2'>Settings</h5>
-                <button className='btn btn-outline-secondary width-fit-content-button' onClick={() => handleDrawer(true)}>
-                    <LockIcon className='mx-1 mb-1  color-black' />
-                    Change Password
-                </button>
+                <div className='mt-2 col-10 d-flex justify-content-end'>
+                    <button className='btn btn-outline-secondary width-fit-content-button me-2' onClick={() => handleEditClick(true)}>
+                        <ModeEditIcon className='mx-1 mb-1 color-black' />
+                        Edit Setting
+                    </button>
+                    <button className='btn btn-outline-secondary width-fit-content-button' onClick={() => handleDrawer(true)}>
+                        <LockIcon className='mx-1 mb-1  color-black' />
+                        Change Password
+                    </button>
+                </div>
             </div>
             <hr />
             <div className="row w-100 h-90">
                 <div className='col-5 d-flex justify-content-start flex-column text-justify m-4'>
                     <h6 className='mt-2 text-start'>Language</h6>
-                    <select className='mb-2 btn-outline-black inputBoxHeight text-left '>
+                    <select className='mb-2 btn-outline-black inputBoxHeight text-left disabled'>
                         {Constants.languages.map((data) => (
                             <option>{data.value}</option>
                         ))}
                     </select>
                     <h6 className='mt-2 text-start'>Currency</h6>
-                    <select className='mb-2 btn-outline-black inputBoxHeight text-left'>
+                    <select className='mb-2 btn-outline-black inputBoxHeight text-left disabled'>
                         {Constants.currency.map((data) => (
                             <option>{data.value}</option>
                         ))}
                     </select>
                     <h6 className='mt-2 text-start'>Location</h6>
-                    <select className='mb-2 btn-outline-black inputBoxHeight text-left'>
+                    <select className='mb-2 btn-outline-black inputBoxHeight text-left disabled'>
                         {Constants.location.map((data) => (
                             <option>{data.value}</option>
                         ))}
@@ -117,6 +131,7 @@ export default function Settings() {
                 </div>
             </div>
             {open && (<ChangePassword open={open} handleUpdateClick={handleUpdateClick} handleDrawer={handleDrawer} />)}
+            {editMode && (<EditSetting editMode={editMode} handleEditClick={handleEditClick} />)}
         </div>
     )
 }

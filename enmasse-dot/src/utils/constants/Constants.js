@@ -89,55 +89,55 @@ export const inviteData = [
         role: 'Admin',
         company: 'Enmasse',
         companyType: 'Enmasse'
-    },
-    {
+      },
+      {
         id: '1',
         name: 'SUDHA',
         email: 'sudha@gmail.com',
         role: 'Admin',
         company: 'Tarento',
         companyType: 'Enmasse'
-    },
-    {
+      },
+      {
         id: '2',
         name: 'DAYANA',
         email: 'dayana@gmail.com',
         role: 'Admin',
         company: 'Enmasse',
         companyType: 'Enmasse'
-    },
-    {
+      },
+      {
         id: '3',
         name: 'ILMA',
         email: 'ilma@gmail.com',
         role: 'Admin',
         company: 'Enmasse',
         companyType: 'Business'
-    },
-    {
+      },
+      {
         id: '4',
-        name: 'JAY',
-        email: 'jay@gmail.com',
+        name: 'Hashini',
+        email: 'hashini@gmail.com',
         role: 'Admin',
         company: 'Enmasse',
         companyType: 'Enmasse'
-    },
-    {
+      },
+      {
         id: '5',
-        name: 'SUDHA',
-        email: 'sudha@gmail.com',
+        name: 'Aditya',
+        email: 'aditya@gmail.com',
         role: 'Admin',
         company: 'Tarento',
         companyType: 'Enmasse'
-    },
-    {
+      },
+      {
         id: '6',
-        name: 'DAYANA',
-        email: 'dayana@gmail.com',
+        name: 'Shakshi',
+        email: 'shakshi@gmail.com',
         role: 'Admin',
         company: 'Enmasse',
         companyType: 'Enmasse'
-    },
+      },
 ];
 
 export const accountMenuItems = [
@@ -185,7 +185,7 @@ export const languages = [
 export const currency = [
     {
         key: 'INR',
-        value: 'Rupees'
+        value: 'INR'
     },
     {
         key: 'EURO',

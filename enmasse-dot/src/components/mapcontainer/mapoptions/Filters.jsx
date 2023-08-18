@@ -5,31 +5,29 @@ import { MdClose } from 'react-icons/md';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 
 function Filters() {
 	const [open, setOpen] = useState(false);
-	const [tabValue, setTabValue] = useState('1');
+	// const [tabValue, setTabValue] = useState('1');
 
 	const toggleDrawer = (open) => {
 		setOpen(open);
 	};
 
-	const handleChange = (event, newValue) => {
-		setTabValue(newValue);
-	};
+	// const handleChange = (event, newValue) => {
+	// 	setTabValue(newValue);
+	// };
 
-	var tabList = [
-		{
-			label: 'Domain Filters',
-			value: 1,
-		},
-		{
-			label: 'Cohort Filters',
-			value: 2,
-		},
-	];
+	// var tabList = [
+	// 	{
+	// 		label: 'Domain Filters',
+	// 		value: 1,
+	// 	},
+	// 	{
+	// 		label: 'Cohort Filters',
+	// 		value: 2,
+	// 	},
+	// ];
 	return (
 		<div className='Filters'>
 			<button
