@@ -3,7 +3,7 @@ import SideBar from './SideBar';
 import DetailsContainer from './detailscontainer/DetailsContainer';
 
 
-function Account({handleVisiblePanel, visiblePanel}) {
+function Account({ handleVisiblePanel, visiblePanel }) {
     
 	return (
 		<>

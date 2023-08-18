@@ -9,7 +9,7 @@ import MapPopup from './MapPopup';
 import MapFillLayer from './MapFillLayer';
 import MapCircleLayer from './MapCircleLayer';
 
-function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCountry, selectedState, selectedDistrict, pointFeatures, handlePopupClick }) {
+function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCountry, selectedState, selectedDistrict, pointFeatures }) {
 	const TOKEN = Constants.TOKEN;
 	const transparentMapStyleV2 = Constants.transparentMapStyleV2;
 
@@ -253,7 +253,6 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 						>
 							<MapPopup
 								properties={feature.properties}
-								handlePopupClick={handlePopupClick}
 							/>
 						</Popup>
 					))

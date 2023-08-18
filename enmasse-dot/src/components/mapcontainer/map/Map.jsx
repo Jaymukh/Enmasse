@@ -14,9 +14,7 @@ function Map({
 	selectedCountry,
 	selectedCountryCode,
 	selectedState,
-	selectedDistrict,
-	handleDisplayDashboard,
-	handlePopupClick
+	selectedDistrict
 }) {
 	const [features, setFeatures] = useState();
 	const [pointFeatures, setPointFeatures] = useState();
@@ -94,12 +92,11 @@ function Map({
 					selectedDistrict={selectedDistrict}
 					pointFeatures={pointFeatures}
 					handleZoom={handleZoom}
-					handlePopupClick={handlePopupClick}
 				/>
 			)}			
 			<div className='d-flex flex-row bottom-0 end-0 position-fixed' style={{zIndex: 998}}>
 				{/* <MapButtonGroup handleZoom={handleZoom}/> */}
-				<InsightBar handleDisplayDashboard={handleDisplayDashboard}/>		
+				<InsightBar/>		
 			</div>
 			
 		</div>

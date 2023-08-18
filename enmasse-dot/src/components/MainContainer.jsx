@@ -2,11 +2,11 @@ import { useState } from 'react';
 import '../App.css';
 import Header from './headercontainer/Header';
 import MapContainer from './mapcontainer/MapContainer';
-import AccountContainer from './accountcontainer/AccountContainer'
+import AccountContainer from './accountcontainer/AccountContainer';
 import OverlayContainer from './OverlayContainer';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
-import DashBoardContainer from './dashboardcontainer/DashBoardContainer';
+import DashBoard from './dashboardcontainer/DashBoard';
 import FamilyContainer from './familyContainer/FamilyContainer';
 
 const customTheme = (outerTheme) =>
@@ -122,7 +122,7 @@ function MainContainer() {
 				<div className='w-100 primary-bg'>
 					<Header handleMapDisplay={handleMapDisplay} handleVisiblePanel={handleVisiblePanel} handleDisplayDashboard={handleDisplayDashboard} />
 					{mapDisplay && !visibleDashboard & !familyInfoDisplay ? <MapContainer handleDisplayDashboard={handleDisplayDashboard} handlePopupClick={handlePopupClick} />
-						: (visibleDashboard && !familyInfoDisplay ? <DashBoardContainer handleMapDisplay={handleMapDisplay} handleDisplayDashboard={handleDisplayDashboard} />
+						: (visibleDashboard && !familyInfoDisplay ? <DashBoard handleMapDisplay={handleMapDisplay} handleDisplayDashboard={handleDisplayDashboard} />
 							: !familyInfoDisplay ? <AccountContainer handleMapDisplay={handleMapDisplay} handleDisplayDashboard={handleDisplayDashboard} handleVisiblePanel={handleVisiblePanel} visiblePanel={visiblePanel} />
 								: <FamilyContainer />)}
 				</div>

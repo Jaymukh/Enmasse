@@ -6,25 +6,25 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
-import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import { MdFormatListBulleted } from 'react-icons/md';
 import { MdArrowDropDown } from 'react-icons/md';
 import * as Constants from '../../utils/constants/Constants';
+import { useNavigate } from 'react-router-dom';
+import { RouteConstants } from '../../utils/constants/routeConstants';
 
-function AccountOptions({ handleMapDisplay, handleVisiblePanel, handleDisplayDashboard }) {
+function AccountOptions({ handleVisiblePanel }) {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
+	const navigate = useNavigate();
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
 
 	const handleClickMenuItem = (event, index) => {
-		handleVisiblePanel(index);
-		handleMapDisplay(false);
-		handleDisplayDashboard(false);
+		handleVisiblePanel(index);		
 		handleClose();
+		navigate(RouteConstants.profile);
 	}
 
 	const handleClose = () => {
@@ -42,7 +42,6 @@ function AccountOptions({ handleMapDisplay, handleVisiblePanel, handleDisplayDas
 						aria-controls={open ? 'account-menu' : undefined}
 						aria-haspopup="true"
 						aria-expanded={open ? 'true' : undefined}
-					// endIcon={<KeyboardArrowDownIcon />}
 					>
 						<Avatar sx={{ width: 30, height: 30, fontSize: 16 }}>M</Avatar>
 						<MdArrowDropDown className='mx-1' fontSize={25}/>

@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import globe from '../utils/images/globe.png';
 
 export default function Login({ handleLoggedIn }) {
-    const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState('');
     const [errorMessageEmail, setErrorMessageEmail] = useState('');
     const [errorMessagePassword, setErrorMessagePassword] = useState('');
@@ -49,9 +48,6 @@ export default function Login({ handleLoggedIn }) {
             setDisabled(false);
         }
     }
-    const handleShowPassword = () => {
-
-    }
 
     return (
         <div>
@@ -79,36 +75,10 @@ export default function Login({ handleLoggedIn }) {
                             <h5 className='fs-6'>Password</h5>
                             <p className='underline-text login-p'>Forget password</p>
                         </div>
-
                         <input type='password' className='my-1 px-2 inputBoxHeight' value={password} placeholder='Enter your password here' minLength="8" onChange={handlePasswordInput} />
                         {errorMessagePassword && <p className='text-danger'>{errorMessagePassword}</p>}
-                        {/* <OutlinedInput
-                            type={showPassword ? 'text' : 'password'}
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        onClick={handleShowPassword}
-                                        onMouseDown={handleShowPassword}
-                                        edge="end"
-                                    >
-                                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                            label="Password"
-                        /> */}
-                        <button className={disabled ? 'mb-2 mt-4 inputBoxHeight login-btn bg-secondary text-white fs-6' : 'mb-2 mt-4 inputBoxHeight login-btn bg-dark text-white fs-6'} disabled={disabled} onClick={handleLoggedIn}>Continue</button>
+                        <button className={disabled ? 'mb-2 mt-4 inputBoxHeight login-btn bg-secondary text-white fs-6' : 'mb-2 mt-4 inputBoxHeight login-btn bg-dark text-white fs-6'} disabled={disabled} onClick={() => handleLoggedIn(true)}>Continue</button>
                         <p className='text-muted mb-0 mt-2 login-p'>By clicking on continue you are agreeing to the Enmasse <a href='/' className='black login-p'>Terms & conditions</a> and <a href='/' className='black'>Privacy policies</a></p>
-
-                        {/* <h3>Login</h3>
-                        <p className='paragraph'>Login with the credentials you have received in your mail.</p>
-                        <a href="/" className='black request-link'> Request now</a>
-                        <h6>Email</h6>
-                        <input type="email" className='mediumMarginTopBottom inputBoxHeight login-btn px-3' name="fname" placeholder='Email' />
-                        <h6>Password</h6>
-                        <input type="password" className='mediumMarginTopBottom inputBoxHeight login-btn px-3' name="fname" placeholder='Password' />
-                        <button className='mediumMarginTopBottom inputBoxHeight grayBtnClr login-btn' onClick={handleLoggedIn}>Continue</button>
-                        <p>By clicking on continue you are agreeing to the Enmasse <a href='/' className='black'>Terms & conditions</a> and <a href='/' className='black'>Privacy policies</a></p> */}
                     </div>
                 </div>
             </div>

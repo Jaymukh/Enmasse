@@ -4,12 +4,20 @@ import { BiSolidInfoCircle } from 'react-icons/bi';
 import { FiArrowRight } from 'react-icons/fi';
 import { BiSolidChevronRightCircle , BiSolidChevronLeftCircle} from 'react-icons/bi';
 import * as Constants from '../utils/constants/Constants';
+import { useNavigate } from 'react-router-dom';
+import { RouteConstants } from '../utils/constants/routeConstants';
 
-export default function InsightBar({ handleDisplayDashboard }) {
+export default function InsightBar() {
     const [visible, setVisible] = useState(true);
+    var navigate = useNavigate();
+
     const onDialog = () => {
         setVisible(!visible);
     };
+
+    const handleBtnPress = () => {
+        navigate(RouteConstants.dashboards);
+    }
 
     return (
         <div className={visible? 'sideBar-parent-expended' : 'sideBar-parent-collapsed'} >
@@ -80,7 +88,8 @@ export default function InsightBar({ handleDisplayDashboard }) {
                             );
                         })}
                     </div>
-                    <button className='btn btn-dark rounded w-100' onClick={() => handleDisplayDashboard(true)} >Explore more<FiArrowRight className='ms-2' /></button>
+                    {/* <button className='btn btn-dark rounded w-100' onClick={() => handleDisplayDashboard(true)} >Explore more<FiArrowRight className='ms-2' /></button> */}
+                    <button className='btn btn-dark rounded w-100' onClick={() => handleBtnPress()} >Explore more<FiArrowRight className='ms-2' /></button>
                 </div>
             </div>
         </div>

@@ -1,12 +1,6 @@
-import { useState } from 'react';
 import './App.css';
-import Header from './components/headercontainer/Header';
-import MapContainer from './components/mapcontainer/MapContainer';
-import AccountContainer from './components/accountcontainer/AccountContainer'
-import OverlayContainer from './components/OverlayContainer';
-import { outlinedInputClasses } from '@mui/material/OutlinedInput';
-import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import Router from './Router';
+import { BrowserRouter } from 'react-router-dom';
 
 
 function App() {
@@ -26,7 +20,9 @@ function App() {
 					''
 				)}
 			</ThemeProvider> */}
-			<Router />
+			<BrowserRouter>
+				<Router />
+			</BrowserRouter>
 		</div>
 	);
 }
