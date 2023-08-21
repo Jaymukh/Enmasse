@@ -342,6 +342,7 @@
 
 .paragraph {
 	margin: 0rem;
+	color: #000000;
 }
 
 .request-link {
@@ -378,6 +379,7 @@
 	border: none;
 	border-radius: 3%;
 	font-family: 'Poppins', sans-serif;
+	width: 11rem;
 }
 
 .round-btn {

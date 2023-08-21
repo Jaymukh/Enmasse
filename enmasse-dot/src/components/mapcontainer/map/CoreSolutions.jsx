@@ -74,7 +74,7 @@ const CoreSolutions = ({ handleViewStories, handleChangeRb, selectedRb }) => {
             </div>
             <div className="d-flex flex-row bg-white mt-2 mx-1 px-3 py-2 core-sol-div">
                 <BsFillChatLeftFill size={16} color="#7F7F7F" className="mt-1"/>
-                <p className="paragraph mx-2">View Stories</p>
+                <p className="paragraph mx-2 fs-12">View Stories</p>
                 <AntSwitch inputProps={{ 'aria-label': 'ant design' }} onChange={(event) => handleViewStories(event.target.checked)}/>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import '../../../styles/mapcontainer/map/Map.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useState } from 'react';
-import GlobalMap from './GobalMap';
+import GlobalMap from './GlobalMap';
 import NonGlobalMap from './NonGlobalMap';
 import axios from 'axios';
 import * as turf from '@turf/turf';

@@ -1,6 +1,6 @@
 import '../../../styles/mapcontainer/map/Map.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback  } from 'react';
 import Map, { Popup } from 'react-map-gl';
 import bbox from '@turf/bbox';
 import CoreSolutions from './CoreSolutions';
@@ -8,8 +8,21 @@ import * as Constants from '../../../utils/constants/Constants';
 import MapPopup from './MapPopup';
 import MapFillLayer from './MapFillLayer';
 import MapCircleLayer from './MapCircleLayer';
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import * as MapConstants from '../../../utils/json/googlemapstyle';
 
 function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCountry, selectedState, selectedDistrict, pointFeatures }) {
+	const center = {
+		lat: 20.5937,
+		lng: 78.9629
+	};
+
+	const mapOptions = {
+		disableDefaultUI: true, // Disables default UI, including zoom buttons
+		zoomControl: false, // Disables only the zoom control (zoom buttons)
+		styles: MapConstants.NonGlobalMapStyle
+	};
+
 	const TOKEN = Constants.TOKEN;
 	const transparentMapStyleV2 = Constants.transparentMapStyleV2;
 
@@ -88,8 +101,8 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 		if (features && mapContainer) {
 			const { clientWidth, clientHeight } = mapContainer;
 
-			const bounds = bbox(features); 
-			const [minLng, minLat, maxLng, maxLat] = bounds; 
+			const bounds = bbox(features);
+			const [minLng, minLat, maxLng, maxLat] = bounds;
 
 			const centerLng = (maxLng + minLng) / 2;
 			const centerLat = (maxLat + minLat) / 2;
@@ -213,6 +226,17 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 		],
 	};
 
+	const [map, setMap] = useState(null);
+
+	const onLoad = useCallback(function callback(map) {
+		setMap(map);
+		map.data.addGeoJson(features);
+	}, []);
+
+	const onUnmount = useCallback(function callback(map) {
+		setMap(null);
+	}, []);
+
 	return (
 		<div
 			className='row'
@@ -257,8 +281,9 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 						</Popup>
 					))
 				)}
+			</Map>
 
-				{/* {pointFeatures && (
+			{/* {pointFeatures && (
 					pointFeatures.features.map((feature, index) => (
 						<Marker
 							key={index}
@@ -267,10 +292,30 @@ function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCoun
 						>
 						</Marker>
 					))
-				)} */}
-
-				<CoreSolutions handleViewStories={handleViewStories} handleChangeRb={handleChangeRb} selectedRb={selectedRb} />
-			</Map>
+				)}*/}
+			{/* <LoadScript googleMapsApiKey="AIzaSyBS2A07XHOScEqDgy9d3iKhGSb1IfHQnkE">
+				<GoogleMap mapContainerStyle={MapConstants.containerStyle} center={center} zoom={1.5} options={mapOptions} onClick={handleMapClick} >
+					
+				</GoogleMap>
+			</LoadScript> */}
+			{/* <LoadScript
+				googleMapsApiKey='AIzaSyBS2A07XHOScEqDgy9d3iKhGSb1IfHQnkE'
+				language="en"
+				region="us"
+				libraries={["drawing", "visualization", "geometry", "places"]}
+			>
+				<GoogleMap
+					mapContainerClassName="App-map"
+					zoom={12}
+					version="weekly"
+					on
+					mapContainerStyle={MapConstants.containerStyle}
+					center={center}
+					onLoad={onLoad}
+					onUnmount={onUnmount}
+				></GoogleMap>
+			</LoadScript> */}
+			<CoreSolutions handleViewStories={handleViewStories} handleChangeRb={handleChangeRb} selectedRb={selectedRb} />
 		</div>
 	);
 }
