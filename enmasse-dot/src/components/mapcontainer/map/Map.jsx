@@ -8,6 +8,7 @@ import * as turf from '@turf/turf';
 import InsightBar from '../../InsightBar';
 import MapButtonGroup from './MapButtonGroup';
 import DashboardContainer from '../../dashboardcontainer/ScatterGraph';
+import StateMap from './StateMap';
 
 function Map({
 	global,
@@ -21,7 +22,7 @@ function Map({
 	const [zoom, setZoom] = useState();
 
 	const handleZoom = (event, zoomIn) => {
-		return zoomIn;	
+		return zoomIn;
 	}
 
 	const handleImportFeature = async (code) => {
@@ -80,25 +81,33 @@ function Map({
 				<GlobalMap
 					features={features}
 					handleImportFeature={handleImportFeature}
-					handleZoom= {handleZoom}
-				/>
-			) : (
-				<NonGlobalMap
-					features={features}
-					handleImportFeature={handleImportFeature}
-					countryCode={selectedCountryCode}
-					selectedCountry={selectedCountry}
-					selectedState={selectedState}
-					selectedDistrict={selectedDistrict}
-					pointFeatures={pointFeatures}
 					handleZoom={handleZoom}
 				/>
-			)}			
-			<div className='d-flex flex-row bottom-0 end-0 position-fixed' style={{zIndex: 998}}>
+				// ) : (
+				// 	<NonGlobalMap
+				// 		features={features}
+				// 		handleImportFeature={handleImportFeature}
+				// 		countryCode={selectedCountryCode}
+				// 		selectedCountry={selectedCountry}
+				// 		selectedState={selectedState}
+				// 		selectedDistrict={selectedDistrict}
+				// 		pointFeatures={pointFeatures}
+				// 		handleZoom={handleZoom}
+				// 	/>
+				// )}
+			) : (
+				<StateMap
+					features={features}
+					handleImportFeature={handleImportFeature}
+					selectedCountry={selectedCountry}
+					selectedState={selectedState}
+					selectedDistrict={selectedDistrict} />
+			)}
+			<div className='d-flex flex-row bottom-0 end-0 position-fixed' style={{ zIndex: 998 }}>
 				{/* <MapButtonGroup handleZoom={handleZoom}/> */}
-				<InsightBar/>		
+				<InsightBar />
 			</div>
-			
+
 		</div>
 	);
 }
