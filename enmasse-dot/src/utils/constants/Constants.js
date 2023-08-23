@@ -22,11 +22,11 @@ export const API_KEY = 'RGb6AwVV6Tr7NvKYBvBPJH1Qi2nDcVS0egmZgUQX8nM';
 export const revgeocodeURL = 'https://revgeocode.search.hereapi.com/v1/revgeocode?at=';
 
 export const options = [
-    { key: 0, label: 'All', type: 'radius-all' },
-    { key: 1, label: 'Healthcare', type: 'radius-edu' },
-    { key: 2, label: 'Education', type: 'radius-agri' },
-    { key: 3, label: 'Agri Markets', type: 'radius-health' },
-    { key: 4, label: 'Financial', type: 'radius-fin' },
+    { key: 0, label: 'All', type: 'radius_all' },
+    { key: 1, label: 'Healthcare', type: 'radius_edu' },
+    { key: 2, label: 'Education', type: 'radius_agri' },
+    { key: 3, label: 'Agri Markets', type: 'radius_healthcare' },
+    { key: 4, label: 'Financial', type: 'radius_fin' },
 ];
 
 export const countryData = [

@@ -8,7 +8,6 @@ import * as Constants from '../../../utils/constants/Constants';
 import MapPopup from './MapPopup';
 import MapFillLayer from './MapFillLayer';
 import MapCircleLayer from './MapCircleLayer';
-import { GoogleMap, LoadScript, Data, Polygon } from '@react-google-maps/api';
 import * as MapConstants from '../../../utils/json/googlemapstyle';
 
 function NonGlobalMap({ features, handleImportFeature, countryCode, selectedCountry, selectedState, selectedDistrict, pointFeatures }) {
