@@ -13,7 +13,7 @@ const MapPopup = ({ properties }) => {
         <div className="map-popup map-popup-grey-text rounded row h-100">
             <div className="col-4 px-0">
                 {/* <img width={100} height={100} src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="/> */}
-                <img className="map-popup-story-img rounded ms-2" src={properties.image} />
+                <img className="map-popup-story-img rounded" src={properties.image} />
             </div>
             <div className="col-8 ps-1 d-flex flex-column justify-content-start">
                 <p className="map-popup-description text-start my-0">{properties.family}</p>

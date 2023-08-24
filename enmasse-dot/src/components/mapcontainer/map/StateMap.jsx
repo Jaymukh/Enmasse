@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, InfoWindow } from '@react-google-maps/api';
 import * as MapConstants from '../../../utils/json/googlemapstyle';
+import { storyFeatures } from '../../../utils/constants/Constants';
 import CoreSolutions from './CoreSolutions';
+import MapPopup from './MapPopup';
 
 const StateMap = ({ features, handleImportFeature, selectedCountry, selectedState, selectedDistrict, pointFeatures }) => {
     const mapRef = useRef(null);
@@ -136,6 +138,22 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
                     onLoad={handleMapLoad}
                     options={mapOptions}
                 >
+                    {storyFeatures && viewStories && (
+                        storyFeatures.map((feature, index) => (
+                            <InfoWindow
+                                className='info-window'
+                                position={feature.position}
+                                // onClose={handleHoverEnd}
+                                closeOnClick={false}
+                                closeButton={false}
+                                options={{ disableAutoPan: true }}
+                            >
+                                <MapPopup
+                                    properties={feature.properties}
+                                />
+                            </InfoWindow>
+                        ))
+                    )}
                 </GoogleMap>
             </LoadScript>
             <CoreSolutions handleViewStories={handleViewStories} handleChangeRb={handleChangeRb} selectedRb={selectedRb} />

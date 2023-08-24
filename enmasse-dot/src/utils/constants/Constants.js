@@ -90,55 +90,55 @@ export const inviteData = [
         role: 'Admin',
         company: 'Enmasse',
         companyType: 'Enmasse'
-      },
-      {
+    },
+    {
         id: '1',
         name: 'SUDHA',
         email: 'sudha@gmail.com',
         role: 'Admin',
         company: 'Tarento',
         companyType: 'Enmasse'
-      },
-      {
+    },
+    {
         id: '2',
         name: 'DAYANA',
         email: 'dayana@gmail.com',
         role: 'Admin',
         company: 'Enmasse',
         companyType: 'Enmasse'
-      },
-      {
+    },
+    {
         id: '3',
         name: 'ILMA',
         email: 'ilma@gmail.com',
         role: 'Admin',
         company: 'Enmasse',
         companyType: 'Business'
-      },
-      {
+    },
+    {
         id: '4',
         name: 'Hashini',
         email: 'hashini@gmail.com',
         role: 'Admin',
         company: 'Enmasse',
         companyType: 'Enmasse'
-      },
-      {
+    },
+    {
         id: '5',
         name: 'Aditya',
         email: 'aditya@gmail.com',
         role: 'Admin',
         company: 'Tarento',
         companyType: 'Enmasse'
-      },
-      {
+    },
+    {
         id: '6',
         name: 'Shakshi',
         email: 'shakshi@gmail.com',
         role: 'Admin',
         company: 'Enmasse',
         companyType: 'Enmasse'
-      },
+    },
 ];
 
 export const accountMenuItems = [
@@ -457,3 +457,112 @@ export const families = {
         }
     ]
 }
+
+// export const storyFeatures = {
+//     type: 'FeatureCollection',
+//     features: [
+//         {
+//             type: 'Feature',
+//             geometry: {
+//                 type: 'Point',
+//                 coordinates: [77.11790108415168, 28.643326173465816],
+//             },
+//             properties: {
+//                 radius: 15,
+//                 id: 1,
+//                 family: "5 Family members",
+//                 annualSpend: '$6000',
+//                 image: 'https://s3.ap-south-1.amazonaws.com/kronos-new-tarento/1/userprofile/1841/1657528681838_Ameya%20Shetty.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230807T085110Z&X-Amz-SignedHeaders=host&X-Amz-Expires=299&X-Amz-Credential=AKIAS2D3QDFYXIAJ2TAB%2F20230807%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=fe32f142787a47fdf38bb6b994d0ac3882c862ffb42bcf2c6fa3e3d95f39d059'
+//             },
+//         },
+//         {
+//             type: 'Feature',
+//             geometry: {
+//                 type: 'Point',
+//                 coordinates: [80.25064909780843, 15.886294542878717],
+//             },
+//             properties: {
+//                 radius: 15,
+//                 id: 1,
+//                 family: "3 Family members",
+//                 annualSpend: '$3000',
+//                 image: 'https://s3.ap-south-1.amazonaws.com/kronos-new-tarento/1/userprofile/1841/1657528681838_Ameya%20Shetty.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230807T085110Z&X-Amz-SignedHeaders=host&X-Amz-Expires=299&X-Amz-Credential=AKIAS2D3QDFYXIAJ2TAB%2F20230807%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=fe32f142787a47fdf38bb6b994d0ac3882c862ffb42bcf2c6fa3e3d95f39d059'
+//             },
+//         },
+//         {
+//             type: 'Feature',
+//             geometry: {
+//                 type: 'Point',
+//                 coordinates: [76.51049281262189, 14.956060982956439],
+//             },
+//             properties: {
+//                 radius: 15,
+//                 id: 1,
+//                 family: "6 Family members",
+//                 annualSpend: '$6000',
+//                 image: 'https://s3.ap-south-1.amazonaws.com/kronos-new-tarento/1/userprofile/1841/1657528681838_Ameya%20Shetty.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230807T085110Z&X-Amz-SignedHeaders=host&X-Amz-Expires=299&X-Amz-Credential=AKIAS2D3QDFYXIAJ2TAB%2F20230807%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=fe32f142787a47fdf38bb6b994d0ac3882c862ffb42bcf2c6fa3e3d95f39d059'
+//             },
+//         },
+//         {
+//             type: 'Feature',
+//             geometry: {
+//                 type: 'Point',
+//                 coordinates: [83.92233007923814, 20.161197887069193],
+//             },
+//             properties: {
+//                 radius: 15,
+//                 id: 1,
+//                 family: "3 Family members",
+//                 annualSpend: '$5000',
+//                 image: 'https://s3.ap-south-1.amazonaws.com/kronos-new-tarento/1/userprofile/1841/1657528681838_Ameya%20Shetty.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230807T085110Z&X-Amz-SignedHeaders=host&X-Amz-Expires=299&X-Amz-Credential=AKIAS2D3QDFYXIAJ2TAB%2F20230807%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=fe32f142787a47fdf38bb6b994d0ac3882c862ffb42bcf2c6fa3e3d95f39d059'
+//             },
+//         }
+//     ],
+// };
+
+export const storyFeatures = [
+    {
+
+        position: { lng: 77.11790108415168, lat: 28.643326173465816 },
+        properties: {
+            radius: 15,
+            id: 1,
+            family: "5 Family members",
+            annualSpend: '$6000',
+            image: 'https://s3.ap-south-1.amazonaws.com/kronos-new-tarento/1/userprofile/1841/1657528681838_Ameya%20Shetty.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230807T085110Z&X-Amz-SignedHeaders=host&X-Amz-Expires=299&X-Amz-Credential=AKIAS2D3QDFYXIAJ2TAB%2F20230807%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=fe32f142787a47fdf38bb6b994d0ac3882c862ffb42bcf2c6fa3e3d95f39d059'
+        },
+    },
+    {
+
+        position: { lng: 80.25064909780843, lat: 15.886294542878717 },
+        properties: {
+            radius: 15,
+            id: 1,
+            family: "3 Family members",
+            annualSpend: '$3000',
+            image: 'https://s3.ap-south-1.amazonaws.com/kronos-new-tarento/1/userprofile/1841/1657528681838_Ameya%20Shetty.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230807T085110Z&X-Amz-SignedHeaders=host&X-Amz-Expires=299&X-Amz-Credential=AKIAS2D3QDFYXIAJ2TAB%2F20230807%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=fe32f142787a47fdf38bb6b994d0ac3882c862ffb42bcf2c6fa3e3d95f39d059'
+        },
+    },
+    {
+
+        position: { lng: 76.51049281262189, lat: 14.956060982956439 },
+        properties: {
+            radius: 15,
+            id: 1,
+            family: "6 Family members",
+            annualSpend: '$6000',
+            image: 'https://s3.ap-south-1.amazonaws.com/kronos-new-tarento/1/userprofile/1841/1657528681838_Ameya%20Shetty.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230807T085110Z&X-Amz-SignedHeaders=host&X-Amz-Expires=299&X-Amz-Credential=AKIAS2D3QDFYXIAJ2TAB%2F20230807%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=fe32f142787a47fdf38bb6b994d0ac3882c862ffb42bcf2c6fa3e3d95f39d059'
+        },
+    },
+    {
+
+        position: { lng: 83.92233007923814, lat: 20.161197887069193 },
+        properties: {
+            radius: 15,
+            id: 1,
+            family: "3 Family members",
+            annualSpend: '$5000',
+            image: 'https://s3.ap-south-1.amazonaws.com/kronos-new-tarento/1/userprofile/1841/1657528681838_Ameya%20Shetty.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230807T085110Z&X-Amz-SignedHeaders=host&X-Amz-Expires=299&X-Amz-Credential=AKIAS2D3QDFYXIAJ2TAB%2F20230807%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=fe32f142787a47fdf38bb6b994d0ac3882c862ffb42bcf2c6fa3e3d95f39d059'
+        },
+    }
+]
