@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { GoogleMap, LoadScript, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, InfoWindow, Popup } from '@react-google-maps/api';
 import * as MapConstants from '../../../utils/json/googlemapstyle';
 import { storyFeatures } from '../../../utils/constants/Constants';
 import CoreSolutions from './CoreSolutions';
