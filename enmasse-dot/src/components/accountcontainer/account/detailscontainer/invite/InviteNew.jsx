@@ -50,7 +50,7 @@ export default function InviteNew({
                     <input type="email" placeholder="Enter your Email ID" value={newData.email} name='email'
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black drawer-input-box-height' />
                     <h6 className='my-1 font-87-5'>Role</h6>
-                    <input type="tel" maxlength="10" placeholder="Enter your phone number" value={newData.role} name='role'
+                    <input type="tel" maxlength="10" placeholder="Enter your role" value={newData.role} name='role'
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black drawer-input-box-height' />
                     <h6 className='my-1 font-87-5'>Company</h6>
                     <Select

@@ -395,9 +395,21 @@
 	opacity: 0.8;
 	width: 100vw;
 	height: 100vh;
+<<<<<<< HEAD
 }
 
 .EHinfograpic-div-2 {
+=======
+  }
+  .circle { 
+	width: 20rem;
+	height: 20rem;
+	border-radius: 10rem;
+	background-color: transparent;
+  }
+  
+  .EHinfograpic-div-2 {
+>>>>>>> 8b662041df1c7a431debbc1b12c90b4b4161225a
 	width: 20vw;
 	margin-top: 15rem;
 	margin-right: 5rem !important;

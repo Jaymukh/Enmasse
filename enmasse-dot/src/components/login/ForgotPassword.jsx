@@ -9,8 +9,6 @@ export default function ForgotPassword(
         forgotPasswordEmailError,
         disabledSendEmail,
         handleSendEmail,
-        showEmailSentModal,
-        closeEmailSentModal
     }) {
 
     return (
