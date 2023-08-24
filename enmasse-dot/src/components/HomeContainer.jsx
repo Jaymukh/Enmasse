@@ -3,11 +3,7 @@ import Header from './headercontainer/Header';
 import MapContainer from './mapcontainer/MapContainer';
 import OverlayContainer from '../components/overlaycontainer/OverlayContainer';
 
-const HomeContainer = ({ handleVisiblePanel, handleOverlay, overlay }) => {
-    const [showInfographic, setShowInfographic] =useState(0);
-	const handleInfographic = (showInfographic) => {
-		setShowInfographic(showInfographic);
-	};
+const HomeContainer = ({ handleVisiblePanel, handleOverlay, handleInfographic, overlay, showInfographic }) => {
 
     return (
         <>

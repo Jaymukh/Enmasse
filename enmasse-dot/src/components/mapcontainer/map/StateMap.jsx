@@ -149,7 +149,8 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
                                 options={{
                                     disableAutoPan: true, 
                                     padding: 0, 
-                                    
+                                    maxWidth:250,
+                                    borderRadius: 0,                                        
                                 }}
                             >
                                 <MapPopup

@@ -157,11 +157,6 @@ export const accountMenuItems = [
         icon: <Settings fontSize="small" />
     },
     {
-        key: 3,
-        text: "Admin Directory",
-        icon: <MdFormatListBulleted fontSize="small" />
-    },
-    {
         key: 2,
         text: "Invite",
         icon: <MdGroupAdd fontSize="small" />

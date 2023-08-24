@@ -95,6 +95,8 @@ const AppRouter = () => {
     const [isLogged, setIsLogged] = useState(false);
     const [visiblePanel, setVisiblePanel] = useState(0);
     const [overlay, setOverlay] = useState(true);
+    const [showInfographic, setShowInfographic] =useState(0);
+	
 
     const navigate = useNavigate();
 
@@ -119,16 +121,20 @@ const AppRouter = () => {
         setOverlay(overlay);
     };
 
+    const handleInfographic = (showInfographic) => {
+		setShowInfographic(showInfographic);
+	};
+
     return (
         <ThemeProvider theme={customTheme(outerTheme)}>
             <Suspense fallback={<div className=""></div>}>
                 <Routes>
                     <Route path={RouteConstants.login} element={<Login handleLoggedIn={handleLoggedIn} />} />
                     <Route element={<ProtectedRoute isLogged={isLogged} />}>
-                        <Route path={RouteConstants.root} element={<HomeContainer handleVisiblePanel={handleVisiblePanel} handleOverlay={handleOverlay} overlay={overlay} />} />
-                        <Route path={RouteConstants.dashboards} element={<DashboardContainer handleVisiblePanel={handleVisiblePanel} />} />
-                        <Route path={RouteConstants.stories} element={<StoryContainer handleVisiblePanel={handleVisiblePanel} />} />
-                        <Route path={RouteConstants.profile} element={<ProfileContainer handleVisiblePanel={handleVisiblePanel} visiblePanel={visiblePanel} />} />
+                        <Route path={RouteConstants.root} element={<HomeContainer handleVisiblePanel={handleVisiblePanel} handleOverlay={handleOverlay} handleInfographic={handleInfographic} overlay={overlay} showInfographic={showInfographic} />} />
+                        <Route path={RouteConstants.dashboards} element={<DashboardContainer handleVisiblePanel={handleVisiblePanel} handleOverlay={handleOverlay} handleInfographic={handleInfographic} />} />
+                        <Route path={RouteConstants.stories} element={<StoryContainer handleVisiblePanel={handleVisiblePanel} handleOverlay={handleOverlay} handleInfographic={handleInfographic} />} />
+                        <Route path={RouteConstants.profile} element={<ProfileContainer handleVisiblePanel={handleVisiblePanel} handleOverlay={handleOverlay} handleInfographic={handleInfographic} visiblePanel={visiblePanel} />} />
                     </Route>
                 </Routes>
             </Suspense >

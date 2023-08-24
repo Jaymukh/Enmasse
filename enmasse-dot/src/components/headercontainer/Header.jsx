@@ -6,9 +6,14 @@ import AccountOptions from './AccountOptions';
 import Notifications from './Notifications';
 import MapYourBusiness from './MapYourBusiness';
 import ExploreNow from './ExploreNow';
+import { useNavigate } from 'react-router-dom';
+import { RouteConstants } from '../../utils/constants/routeConstants';
 
-function Header({handleVisiblePanel, handleOverlay, handleInfographic}) {
+function Header({ handleVisiblePanel, handleOverlay, handleInfographic }) {
+	const navigate = useNavigate();
+
 	const handleHelp = () => {
+		navigate(RouteConstants.root);
 		handleOverlay(true);
 		handleInfographic(1);
 	}
