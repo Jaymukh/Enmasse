@@ -127,7 +127,7 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
         <div className='row'
             style={{ height: '81vh', width: '100vw', zIndex: 999 }}>
             <LoadScript
-                googleMapsApiKey='AIzaSyBS2A07XHOScEqDgy9d3iKhGSb1IfHQnkE'
+                googleMapsApiKey={MapConstants.googleMapsApiKey}
             // libraries={["drawing", "visualization", "geometry", "places"]}
             >
                 <GoogleMap
