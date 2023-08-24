@@ -21,7 +21,7 @@ const MapPopup = ({ properties }) => {
                     <span className="green-text pe-1">{properties.annualSpend} </span>
                     Annual Spend on Core Solutions
                 </p>
-                <button className="map-popup-description border-0 bg-transparent green-text text-start p-0" onClick={handlePopupClick}>Read more<FiArrowRight className='ms-1' /></button>
+                <button className="map-popup-description border-0 bg-transparent green-text text-start p-0" onClick={handlePopupClick}>Read more<FiArrowRight className='color-green ms-1' /></button>
             </div>
         </div>
     )
