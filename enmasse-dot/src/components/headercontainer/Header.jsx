@@ -1,4 +1,5 @@
 import '../../styles/headercontainer/Header.css';
+import '../../App.css';
 import React from 'react';
 import { MdLiveHelp } from 'react-icons/md';
 import AccountOptions from './AccountOptions';
@@ -23,7 +24,7 @@ function Header({handleVisiblePanel, handleOverlay, handleInfographic}) {
 			<div className="d-flex flex-wrap justify-content-between align-items-center mx-4">
 				<ExploreNow/>
 				<MapYourBusiness/>
-				<MdLiveHelp fontSize={25} className='ms-4 me-3 mb-1 header-icon' onClick={() => handleHelp()} />
+				<button className='border-0 btn-white' onClick={() => handleHelp()} ><MdLiveHelp fontSize={25} className='ms-4 me-3 mb-1 header-icon' /></button>
 				<Notifications className='mx-2 header-icon'/>
 				<AccountOptions className='mx-2' handleVisiblePanel={handleVisiblePanel} />
 			</div>
