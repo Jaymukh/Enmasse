@@ -8,6 +8,7 @@ import * as turf from '@turf/turf';
 import InsightBar from '../../InsightBar';
 import MapButtonGroup from './MapButtonGroup';
 import DashboardContainer from '../../dashboardcontainer/ScatterGraph';
+import StateMap from './StateMap';
 
 function Map({
 	global,
@@ -21,7 +22,7 @@ function Map({
 	const [zoom, setZoom] = useState();
 
 	const handleZoom = (event, zoomIn) => {
-		return zoomIn;	
+		return zoomIn;
 	}
 
 	const handleImportFeature = async (code) => {
@@ -41,12 +42,33 @@ function Map({
 						const centroid = turf.centroid(feature);
 						return turf.point(centroid.geometry.coordinates, feature.properties);
 					});
-					console.log(pointFeatures);
 					const geoJsonData = {
 						"type": 'FeatureCollection',
 						"features": pointFeatures,
 					};
-					setPointFeatures(geoJsonData);
+					setPointFeatures(pointFeatures);
+					// setPointFeatures([
+					// 	{
+					// 		center: { lat: 20.5937, lng: 78.9629 },
+					// 		radius: 100000, // in meters
+					// 	},
+					// 	{
+					// 		center: { lat: 19.0760, lng: 72.8777 },
+					// 		radius: 30000,
+					// 	},
+					// 	{
+					// 		center: { lat: 27.75356495721335, lng: 95.02293978104811 },
+					// 		radius: 30000,
+					// 	},
+					// 	{
+					// 		center: { lat: 17.830499887086678, lng: 78.89114589359214 },
+					// 		radius: 30000,
+					// 	},
+					// 	{
+					// 		center: { lat: 26.42117938687067, lng: 80.1305153658293 },
+					// 		radius: 40000,
+					// 	},
+					// ])
 				} else if (!selectedDistrict && selectedState) {
 					var state = selectedState.toUpperCase();
 					var module = await import(
@@ -80,25 +102,35 @@ function Map({
 				<GlobalMap
 					features={features}
 					handleImportFeature={handleImportFeature}
-					handleZoom= {handleZoom}
-				/>
-			) : (
-				<NonGlobalMap
-					features={features}
-					handleImportFeature={handleImportFeature}
-					countryCode={selectedCountryCode}
-					selectedCountry={selectedCountry}
-					selectedState={selectedState}
-					selectedDistrict={selectedDistrict}
-					pointFeatures={pointFeatures}
 					handleZoom={handleZoom}
 				/>
-			)}			
-			<div className='d-flex flex-row bottom-0 end-0 position-fixed' style={{zIndex: 998}}>
+				// ) : (
+				// 	<NonGlobalMap
+				// 		features={features}
+				// 		handleImportFeature={handleImportFeature}
+				// 		countryCode={selectedCountryCode}
+				// 		selectedCountry={selectedCountry}
+				// 		selectedState={selectedState}
+				// 		selectedDistrict={selectedDistrict}
+				// 		pointFeatures={pointFeatures}
+				// 		handleZoom={handleZoom}
+				// 	/>
+				// )}
+			) : (
+				<StateMap
+					features={features}
+					handleImportFeature={handleImportFeature}
+					selectedCountry={selectedCountry}
+					selectedState={selectedState}
+					selectedDistrict={selectedDistrict} 
+					pointFeatures={pointFeatures} 
+				/>
+			)}
+			<div className='d-flex flex-row bottom-0 end-0 position-fixed' style={{ zIndex: 998 }}>
 				{/* <MapButtonGroup handleZoom={handleZoom}/> */}
-				<InsightBar/>		
+				<InsightBar />
 			</div>
-			
+
 		</div>
 	);
 }

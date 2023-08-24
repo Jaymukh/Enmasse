@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from "react";
 import { BsFillChatLeftFill } from 'react-icons/bs';
 import * as Constants from '../../../utils/constants/Constants';
 import Switch from '@mui/material/Switch';
@@ -46,7 +46,7 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
 	},
 }));
 
-const CoreSolutions = ({ handleViewStories, handleChangeRb, selectedRb }) => {    
+const CoreSolutions = ({ handleViewStories, handleChangeRb, selectedRb }) => {
     const options = Constants.options;
 
     return (
@@ -64,7 +64,7 @@ const CoreSolutions = ({ handleViewStories, handleChangeRb, selectedRb }) => {
                                     key={option.key}
                                     value={option.key}
                                     checked={selectedRb === option.key}
-                                    onChange={handleChangeRb}
+                                    onChange={(event) => handleChangeRb(event, option)}
                                 />
                                 {option.label}
                             </label>

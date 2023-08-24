@@ -31,7 +31,7 @@ function GlobalMap({ features, handleImportFeature }) {
 			className='MapContainer row'
 			style={{ height: '81vh', width: '100vw', zIndex: 999 }}
 		>
-			<LoadScript googleMapsApiKey="AIzaSyBS2A07XHOScEqDgy9d3iKhGSb1IfHQnkE">
+			<LoadScript googleMapsApiKey={MapConstants.googleMapsApiKey}>
 				<GoogleMap mapContainerStyle={MapConstants.containerStyle} center={center} zoom={1.5} options={mapOptions} onClick={handleMapClick} >
 				</GoogleMap>
 			</LoadScript>
