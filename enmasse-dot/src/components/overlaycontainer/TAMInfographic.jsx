@@ -16,7 +16,7 @@ export default function TAMInfographic({handleInfographic, handleOverlay}) {
                 <button className="btn btn-light btn-height" onClick={() => handleOverlay(false)}>Next</button>
             </div>
           </div>
-          <img src={img6} alt="Girl in a jacket" width="300" height="300" className='TotalAdressableMarketImg' />
+          <img src={img6} alt="TAM Infographic" width="300" className='TotalAdressableMarketImg' />
        </div>
     </div>
   )
