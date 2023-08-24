@@ -7,7 +7,7 @@ import { families } from '../../../utils/constants/Constants';
 
 function FamilySidePanel({ selectedFamily, selectedData, handleCarouselSlide }) {
     return (
-        <div className='col-3 d-flex justify-content-center align-items-center'>
+        <div className='col-3 d-flex justify-content-center align-items-center h-100'>
             <Box sx={{ width: '100%', maxWidth: 360, height: '98%', flexDirection: 'column', justifyContent: 'center', margin: 'auto' }} >
                 <div className="card bg-white my-6" style={{ width: 'fit-content', height: 'fit-content', marginBottom: '2rem' }}>
                     <h5 className="card-title">Map</h5>

@@ -3,8 +3,9 @@ import '../../../../../App.css';
 import * as Constants from '../../../../../utils/constants/Constants'
 import EditInvite from './EditInvite';
 import InviteNew from './InviteNew';
+import ConfirmDelete from './ConfirmDelete';
 import AddIcon from '@mui/icons-material/Add';
-import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material' ; 
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 
@@ -14,14 +15,9 @@ export default function Invite() {
 	const [inviteData, setInviteData] = useState(Constants.inviteData);
 	const [selectedData, setSelectedData] = useState(null);
 	const [openInviteNew, setOpenInviteNew] = useState(false);
-
-	const handleOpenInviteNew = () => {
-		setOpenInviteNew(true);
-	};
-	const handleCloseInviteNew = () => {
-		setOpenInviteNew(false);
-	};
-
+	const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false); // Confirm Delete Model
+	const [selectedIndex, setSelectedIndex] = useState(null);
+	
 	const handleEditClick = (row) => {
 		setSelectedData(row);
 	};
@@ -30,26 +26,40 @@ export default function Invite() {
 	};
 	const handleUpdate = (updatedRow) => {
 		setInviteData((prevData) =>
-		  prevData.map((row) => (row.id === updatedRow.id ? updatedRow : row))
+			prevData.map((row) => (row.id === updatedRow.id ? updatedRow : row))
 		);
 		console.log('updatedRow' + updatedRow);
 		console.log('inviteData' + inviteData);
 		handleCloseDialog();
-	  };
+	};
 
-
+	// invite new drawer
+	const handleOpenInviteNew = () => {
+		setOpenInviteNew(true);
+	};
+	const handleCloseInviteNew = () => {
+		setOpenInviteNew(false);
+	}; 
+	
+	// Confirm Delete Model
+	const handleConfirmDeleteModal = (showConfirmDeleteModal, index) => {
+		setShowConfirmDeleteModal(showConfirmDeleteModal);
+		setSelectedIndex(index);
+		// handleDeleteClick(index);
+	};
 	// function for Delete
-	const handleDeleteClick = (index) => {
+	const handleDeleteClick = (selectedIndex) => {
 		var data = [...inviteData];
-		data.splice(index, 1);
+		data.splice(selectedIndex, 1);
 		setInviteData(data);
+		handleConfirmDeleteModal(false);
 	};
 
 	return (
 		<div className='container bg-white w-90 h-100 mt-4 detail-container me-5'>
 			<div className="row w-100 h-10 d-flex flex-row justify-content-between pt-3 pl-4">
 				<h5 className='mt-2 col-2'>Invite</h5>
-				<button className='btn btn-outline-secondary width-fit-content-button' onClick={handleOpenInviteNew } ><AddIcon className='mx-1 mb-1 text-dark' />Invite New</button>
+				<button className='btn btn-outline-secondary width-fit-content-button' onClick={handleOpenInviteNew} ><AddIcon className='mx-1 mb-1 text-dark' />Invite New</button>
 			</div>
 			<hr />
 			<div className="row w-100 d-flex justify-content-center m-auto invite-table-drawer">
@@ -78,8 +88,11 @@ export default function Invite() {
 										<button type='transparent' className='btn-white'>
 											<EditIcon className='color-gray' onClick={() => handleEditClick(row, index)} />
 										</button>
-										<button type='transparent' className='btn-white'>
+										{/* <button type='transparent' className='btn-white'>
 											<DeleteSweepIcon className='color-orange fs-5 ms-2' onClick={() => handleDeleteClick(index)} />
+										</button> */}
+										<button type='transparent' className='btn-white'>
+											<DeleteSweepIcon className='color-orange fs-5 ms-2' onClick={() => handleConfirmDeleteModal(true, index)} />
 										</button>
 									</TableCell>
 								</TableRow>
@@ -88,10 +101,15 @@ export default function Invite() {
 					</Table>
 				</TableContainer>
 			</div>
-			{selectedData && <EditInvite selectedData={selectedData} handleEditClick={handleEditClick} handleCloseDialog={handleCloseDialog} handleUpdate={handleUpdate} />}
+			{selectedData && 
+			<EditInvite selectedData={selectedData} handleEditClick={handleEditClick} handleCloseDialog={handleCloseDialog} handleUpdate={handleUpdate} />}
 
-			{openInviteNew && <InviteNew openInviteNew={openInviteNew} setOpenInviteNew={setOpenInviteNew} handleOpenInviteNew={handleOpenInviteNew} handleCloseInviteNew={handleCloseInviteNew} inviteData={inviteData} setInviteData={setInviteData} />}
+			{openInviteNew && 
+			<InviteNew openInviteNew={openInviteNew} setOpenInviteNew={setOpenInviteNew} handleOpenInviteNew={handleOpenInviteNew} handleCloseInviteNew={handleCloseInviteNew} inviteData={inviteData} setInviteData={setInviteData} />}
 
+			{showConfirmDeleteModal && 
+			<ConfirmDelete showConfirmDeleteModal={showConfirmDeleteModal} 
+			handleConfirmDeleteModal={handleConfirmDeleteModal} handleDeleteClick={handleDeleteClick} />}
 		</div>
 
 

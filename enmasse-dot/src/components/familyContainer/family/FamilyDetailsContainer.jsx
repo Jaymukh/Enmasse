@@ -3,7 +3,7 @@ import React from 'react';
 function FamilyDetailsContainer({ selectedFamily, selectedData }) {
 
     return (
-        <div className='col-6 py-2' style={{ height: '98%', overflow: 'auto' }}>
+        <div className='col-6 py-2 h-100' style={{ height: '98%', overflow: 'auto' }}>
             <div className="card mb-3 OneFamilySidePanelWidth my-3">
                 <div className='d-flex flex-row mx-2 p-3'>
                     <h5 className="card-title">{selectedData.properties.familyName}</h5>
@@ -26,11 +26,11 @@ function FamilyDetailsContainer({ selectedFamily, selectedData }) {
                     </div>
                 </div>
                 <div className="card-body">
-                    <img src={selectedData.properties.image} alt="Girl in a jacket" width="700" height="400" className='imgBorderRadious' />
+                    <img src={selectedData.properties.image} alt="Family Name" width="100%" height="auto" className='imgBorderRadious' />
                     <p className=" card-text OneFamilyCardText p-1 my-2">{selectedData.properties.familyDetails.detail1}</p>
                     <div className='d-flex flex-row justify-content-around'>
-                        <img src={selectedData.properties.image} alt="Girl in a jacket" width="330" height="180" className='imgBorderRadious' />
-                        <img src={selectedData.properties.image} alt="Girl in a jacket" width="330" height="180" className='imgBorderRadious' />
+                        <img src={selectedData.properties.image} alt="Family Name" width="330" height="180" className='imgBorderRadious' />
+                        <img src={selectedData.properties.image} alt="Family Name" width="330" height="180" className='imgBorderRadious' />
                     </div>
                     <p className="card-text OneFamilyCardText p-1 my-2">{selectedData.properties.familyDetails.detail2}</p>
                 </div>

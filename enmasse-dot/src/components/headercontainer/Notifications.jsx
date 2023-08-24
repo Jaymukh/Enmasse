@@ -70,8 +70,8 @@ function Notifications() {
 
 	return (
 		<div className='Notifications'>
-			<button className='close-btn' onClick={() => toggleDrawer(true)}>
-				<MdNotifications fontSize={25} className='header-icon' />
+			<button className='border-0 btn-white' onClick={() => toggleDrawer(true)}>
+				<MdNotifications fontSize={25} className='mb-1 header-icon' />
 			</button>
 
 			<Drawer

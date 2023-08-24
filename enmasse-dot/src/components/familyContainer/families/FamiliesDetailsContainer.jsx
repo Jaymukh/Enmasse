@@ -4,8 +4,8 @@ import { families } from '../../../utils/constants/Constants';
 function FamiliesDetailsContainer({ handleFamilyVisible }) {
 
     return (
-        <div className='col-9 py-2 mb-6' style={{ height: '98%' }}>
-            <h5 className="text-left">Families in {families.place}</h5>
+        <div className='col-9 py-2 mb-6 h-100' style={{ height: '98%' }}>
+            <h5 className="text-start">Families in {families.place}</h5>
             <div className=' w-100 h-100 mb-6' style={{ overflow: 'auto' }}>
                 <div className='row mb-6' style={{ marginBottom: '5rem' }}>
                     {families.family.map((data, index) => (

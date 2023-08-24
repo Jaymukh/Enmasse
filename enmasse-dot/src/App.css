@@ -392,6 +392,12 @@
 	width: 100vw;
 	height: 100vh;
   }
+  .circle { 
+	width: 20rem;
+	height: 20rem;
+	border-radius: 10rem;
+	background-color: transparent;
+  }
   
   .EHinfograpic-div-2 {
 	width: 20vw;
