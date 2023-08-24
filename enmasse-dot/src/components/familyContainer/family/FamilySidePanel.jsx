@@ -8,9 +8,9 @@ import { FiArrowRight } from 'react-icons/fi';
 
 function FamilySidePanel({ selectedFamily, selectedData, handleCarouselSlide }) {
     return (
-        <div className='col-3 d-flex justify-content-center align-items-center'>
-            <Box sx={{ width: '100%', maxWidth: 360, height: '98%', flexDirection: 'column', justifyContent: 'center', margin: 'auto' }} >
-                <div className="card bg-white my-6 pt-3 d-flex flex-column justify-content-center align-items-center" 
+        <div className='col-3 d-flex mt-4 flex-column'>
+            {/* <Box sx={{ width: '100%', maxWidth: 360, height: '98%', flexDirection: 'column', justifyContent: 'center', margin: 'auto' }} > */}
+                <div className="card fam-details-card bg-white my-6 pt-3 d-flex flex-column justify-content-center align-items-center" 
                 style={{ width: '20rem', height: '20rem', marginBottom: '2rem' }}
                 // style={{ width: 'fit-content', height: 'fit-content', marginBottom: '2rem' }}
                 >
@@ -41,7 +41,7 @@ function FamilySidePanel({ selectedFamily, selectedData, handleCarouselSlide }) 
                         <MdOutlineArrowForward className='iconNextPrev' fontSize={20} aria-hidden="true"></MdOutlineArrowForward>
                     </button>
                 </div>
-            </Box >
+            {/* </Box > */}
         </div >
     );
 }

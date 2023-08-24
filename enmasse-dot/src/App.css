@@ -791,3 +791,20 @@ th {
 .iconNextPrev {
 	color: var(--blackColor);
 }
+
+.family-empty-btn {
+	border: 1px solid #111827;
+	border-radius: 5px;
+	background-color: var(--secondaryColor);
+	color: #111827;
+	padding: 0.5rem;
+}
+
+.fs-20 {
+	font-size: 1.25rem;
+}
+
+.fam-details-card {
+	border-radius: 5px;
+	border: var(--secondaryColor);
+}
