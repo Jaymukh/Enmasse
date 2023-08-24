@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import '../styles/OverlayContainer.css';
 
-function OverlayContainer({ handleOverlay }) {
+function LandingPage({ handleInfographic, handleOverlay }) {
+
 	return (
-		<div className='OverlayContainer'>
+
+		<div>
 			<h4 className='text-white mb-3'>
 				Hello! Welcome to Enmasse | D.O.T.S
 			</h4>
 			<div className='d-flex flex-column px-5 mx-5'>
-				<button className='transparent-btn border border-white bg-transparent text-white px-4 py-2 rounded-1 mx-5 my-2'>
+				<button className='transparent-btn border border-white bg-transparent text-white px-4 py-2 rounded-1 mx-5 my-2' onClick={() => handleInfographic(1)}>
 					Start Exploring
 				</button>
 				<button
@@ -22,4 +23,4 @@ function OverlayContainer({ handleOverlay }) {
 	);
 }
 
-export default OverlayContainer;
+export default LandingPage;

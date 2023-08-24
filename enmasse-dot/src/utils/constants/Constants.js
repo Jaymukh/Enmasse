@@ -455,5 +455,20 @@ export const families = {
                 coordinates: [-61.21582, -15.971891]
             }
         }
-    ]
-}
+    ]}
+
+export const explorePlaces = [
+    {
+        state:'Andhra Pradesh',
+        districts:['Anantapur', 'Chittoor', 'East Godavari', 'Guntur','Krishna']
+    },
+    {
+        state:'Gujarat',
+        districts:['Ahmedabad', 'Amreli', 'Anand', 'Kutch'] 
+
+    },
+    {
+        state:'Kerala',
+        districts:['Thiruvananthapuram', 'Thrissur']
+    }
+]

@@ -320,6 +320,23 @@
 	width: 50vw;
 	height: 100vh;
 }
+/* terms and condition */
+.dialog-width {
+	max-width: 50vw;  
+	/* margin: 1.75rem auto;   */
+  }
+
+  .Dialog-p{
+	text-align: start;  
+	font-size: small;  
+  }
+  .Dialog-btn-width {
+	width:8rem;  
+  }
+  .color-green {
+	color: green;  
+  }
+  
 
 @media only screen and (max-width: 850px) {
 	.login-update-box {
@@ -358,6 +375,62 @@
 	position: fixed;
 	bottom: 0;
 }
+/* EHinfographic*/
+
+.bg-img {
+	/* background-image: url('./images/img3.png'); */
+	background-repeat: no-repeat;
+	width: 100vw;
+	height: 100vh;
+	background-size: cover;
+	
+  }
+  
+  .bg-black-opacity {
+	background-color: #282c34;
+	opacity: 0.8;
+	width: 100vw;
+	height: 100vh;
+  }
+  
+  .EHinfograpic-div-2 {
+	width: 20vw;
+	margin-top: 15rem;
+	margin-right: 5rem !important;
+	text-align: left;
+  }
+  
+  .imgBorderRadiousinfograpic {
+	border-radius: 20.7rem;
+	margin-top: 20rem;
+  }
+  
+  .contextualinfo {
+	/* margin-left: 39rem; */
+	border-radius: 20.7rem;
+	margin-top: 7rem;
+	margin-right: -42rem;
+  }
+  
+  
+  .btn-height{
+	height: 2rem;
+	width: 5rem;
+	padding-bottom: 2rem;
+  }
+  
+  .TotalAdressableMarket-div-2 {
+	width: 20vw;
+	margin-top: 25rem;
+	margin-right: 5rem !important;
+	text-align: left;
+  }
+  
+  .TotalAdressableMarketImg {
+		border-radius: 20.7rem;
+		margin-top: 22rem;
+		margin-right: -42rem;
+  }
 
 /* Core Solutions */
 .rb-label {
@@ -461,6 +534,9 @@
 
 .color-black {
 	color: black;
+}
+.color-white { 
+	color: white;
 }
 
 .btn-outline-black {

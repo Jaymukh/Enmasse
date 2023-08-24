@@ -6,7 +6,11 @@ import Notifications from './Notifications';
 import MapYourBusiness from './MapYourBusiness';
 import ExploreNow from './ExploreNow';
 
-function Header({handleVisiblePanel}) {
+function Header({handleVisiblePanel, handleOverlay, handleInfographic}) {
+	const handleHelp = () => {
+		handleOverlay(true);
+		handleInfographic(1);
+	}
 	return (
 		<div className="d-flex flex-wrap justify-content-between border-bottom bg-white py-3 my-0 w-100" style={{ height: '11.5vh' }} >
 			<div className="d-flex flex-wrap justify-content-between">
@@ -19,7 +23,7 @@ function Header({handleVisiblePanel}) {
 			<div className="d-flex flex-wrap justify-content-between align-items-center mx-4">
 				<ExploreNow/>
 				<MapYourBusiness/>
-				<MdLiveHelp fontSize={25} className='ms-4 me-3 mb-1 header-icon' />
+				<MdLiveHelp fontSize={25} className='ms-4 me-3 mb-1 header-icon' onClick={() => handleHelp()} />
 				<Notifications className='mx-2 header-icon'/>
 				<AccountOptions className='mx-2' handleVisiblePanel={handleVisiblePanel} />
 			</div>

@@ -98,7 +98,7 @@ const AppRouter = () => {
 
     const navigate = useNavigate();
 
-    const Login = useMemo(() => React.lazy(() => import("./components/Login")), []);
+    const Login = useMemo(() => React.lazy(() => import("./components/login/Login")), []);
     const HomeContainer = useMemo(() => React.lazy(() => import("./components/HomeContainer")), []);
     const DashboardContainer = useMemo(() => React.lazy(() => import("./components/DashboardContainer")), []);
     const StoryContainer = useMemo(() => React.lazy(() => import("./components/StoryContainer")), []);
