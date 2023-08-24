@@ -146,7 +146,11 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
                                 // onClose={handleHoverEnd}
                                 closeOnClick={false}
                                 closeButton={false}
-                                options={{ disableAutoPan: true }}
+                                options={{
+                                    disableAutoPan: true, 
+                                    padding: 0, 
+                                    
+                                }}
                             >
                                 <MapPopup
                                     properties={feature.properties}
