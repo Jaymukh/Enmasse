@@ -8,15 +8,22 @@ export default function TermsAndConditions({
     <div>
       <div className={`modal ${showTermsAndConditionsModal ? 'show' : ''}`} tabIndex="-1" role="dialog" style={{ display: showTermsAndConditionsModal ? 'block' : 'none' }}>
         <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered dialog-width">
-          <div className="modal-content">
-            <div className="modal-body d-flex flex-column justify-content-center align-items-center m-auto p-6">
-              <div className='d-flex flex-row justify-content-between w-100'>
+          <div className="modal-content p-6">
+          <div className=' modal-header d-flex flex-row justify-content-between w-100'>
                 <div className="d-flex flex-row">
                   <h5 >Terms and Conditions</h5>
                   <p className=' mx-2 Dialog-p'>Last updated: DD/MM/YYYY</p>
                 </div>
                 <button type="button" className="btn-close" onClick={closeTermsAndConditionsModal}></button>
               </div>
+            <div className="modal-body d-flex flex-column justify-content-center align-items-center m-auto p-6 modal-padding">
+              {/* <div className='d-flex flex-row justify-content-between w-100 modal-header-padding'>
+                <div className="d-flex flex-row">
+                  <h5 >Terms and Conditions</h5>
+                  <p className=' mx-2 Dialog-p'>Last updated: DD/MM/YYYY</p>
+                </div>
+                <button type="button" className="btn-close" onClick={closeTermsAndConditionsModal}></button>
+              </div> */}
               <div className=" d-flex flex-column justify-content-start modal-dialog-scrollable my-2">
                 <p className='Dialog-p'>Please read these Terms and Conditions (“Terms”) carefully before using our services. By accessing or using our services, you agree to be bound by these Terms. If you do not agree with any part of these Terms, you may not use our services.</p>
                 <h6 className='text-start'>1. General</h6>

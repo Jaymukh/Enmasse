@@ -12,14 +12,14 @@ function FamiliesDetailsContainer({ handleFamilyVisible }) {
                         <div className='col-4'>
                             <div className="card m-2" onClick={() => handleFamilyVisible(index)}>
                                 <img className="" style={{ width: '100% !important', height: '60% !important', objectFit: 'cover !important' }} src={data.properties.image} alt="Family image" />
-                                <div className="card-body">
+                                <div className="card-body text-start">
                                     <h5 className="card-title text-left">{data.properties.familyName}</h5>
                                     <p className="card-text text-left">{data.properties.district}, {data.properties.state}, {data.properties.country}</p>
-                                    <p className="card-text text-left">
-                                        <b>{data.properties.familyMembers}</b> Family Members <br />
-                                        <b className='text-success'>{data.properties.householdSpend} </b> Household Spend<br />
-                                        <b>{data.properties.householdIncome}</b> Household Income
-                                    </p>
+                                    {(data.properties.familyDetails) && <p className="card-text text-left">
+                                        <b>{data.properties.familyDetails.familyMembers}</b> Family Members <br />
+                                        <b className='text-success'>{data.properties.familyDetails.householdSpend} </b> Household Spend<br />
+                                        <b>{data.properties.familyDetails.householdIncome}</b> Household Income
+                                    </p>}
                                 </div>
                             </div>
                         </div>
