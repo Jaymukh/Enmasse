@@ -49,6 +49,7 @@ export default function Invite() {
 	};
 	// function for Delete
 	const handleDeleteClick = (selectedIndex) => {
+		console.log(inviteData);
 		var data = [...inviteData];
 		data.splice(selectedIndex, 1);
 		setInviteData(data);

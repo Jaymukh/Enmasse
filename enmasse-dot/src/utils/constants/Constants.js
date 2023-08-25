@@ -2,9 +2,6 @@ import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from '@mui/icons-material/Settings';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import Avatar from '@mui/material/Avatar';
-import Settings from '@mui/icons-material/Settings';
-import { MdFormatListBulleted } from 'react-icons/md';
-import { MdGroupAdd } from 'react-icons/md';
 import Navale from '../images/family-sample.png';
 
 export const TOKEN =
@@ -154,12 +151,12 @@ export const accountMenuItems = [
     {
         key: 1,
         text: "Settings",
-        icon: <Settings fontSize="small" />
+        icon: <SettingsIcon fontSize='small' />
     },
     {
         key: 2,
         text: "Invite",
-        icon: <MdGroupAdd fontSize="small" />
+        icon: <GroupAddIcon fontSize='small'/>
     },
 ];
 

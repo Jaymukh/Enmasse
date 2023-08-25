@@ -66,6 +66,15 @@ function ExploreNow() {
 		setSelectedDistricts(Constants.explorePlaces); // Keep the entire array
 		setSelectedPlaceType("state");
 	};
+	const onhandeClose = () =>{
+        setSelectedValue('');
+        setInputValue();
+        setSelectedDistricts(Constants.explorePlaces);
+        setSelectedDistrictOptions(Constants.explorePlaces);
+        setSelectedPlaceType("state");
+        setSelectedshowDiv(true);
+    };
+
 
 	return (
 		<div>
@@ -82,7 +91,7 @@ function ExploreNow() {
 					<div className="modal-content dialog-width">
 						<div className="d-flex flex-row justify-content-between">
 							<h4 className="modal-title my-3 mx-4" id="staticBackdropLabel">Explore Now</h4>
-							<button type="button" className="btn-close my-3 mx-3" data-bs-dismiss="modal" aria-label="Close">
+							<button type="button" className="btn-close my-3 mx-3" data-bs-dismiss="modal" aria-label="Close" onClick={() => onhandeClose()}>
 							</button>
 						</div>
 						<div className="modal-body d-flex flex-column justify-content-start mx-2">
