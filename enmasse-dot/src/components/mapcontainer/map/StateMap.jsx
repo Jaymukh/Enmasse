@@ -76,8 +76,40 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
                     strokeWeight: 0.35,
                 };
             });
-            // const bounds = new window.google.maps.LatLngBounds();
-            // map.fitBounds(bounds);
+
+            const bounds = new window.google.maps.LatLngBounds();
+            features.features.forEach(feature => {
+                processCoordinates(feature.geometry.coordinates);
+            });
+
+            function processCoordinates(coordinates) {
+                if (Array.isArray(coordinates[0])) {
+                    // Multi-part geometry, like a polygon with holes or a multi-line string
+                    coordinates.forEach(coordSet => {
+                        processCoordinates(coordSet);
+                    });
+                } else {
+                    // Single set of coordinates
+                    bounds.extend(new window.google.maps.LatLng(coordinates[1], coordinates[0]));
+                }
+            }
+
+            // Set map center and zoom level based on bounding box
+            map.fitBounds(bounds);
+
+            // Calculate distance between two points
+            // const distance = window.google.maps.geometry.spherical.computeDistanceBetween(
+            //     bounds.getSouthWest(),
+            //     bounds.getNorthEast()
+            // );
+
+            // // Calculate zoom level based on distance and map's width
+            // const zoomLevel = Math.log2(
+            //     (40075016.686 * 0.00001 * map.getDiv().offsetWidth) / distance
+            // );
+
+            // // Set calculated zoom level (you might want to limit this to a reasonable range)
+            // map.setZoom(zoomLevel);
         }
     }, [map, features]);
 
@@ -128,7 +160,7 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
             style={{ height: '81vh', width: '100vw', zIndex: 999 }}>
             <LoadScript
                 googleMapsApiKey={MapConstants.googleMapsApiKey}
-            // libraries={["drawing", "visualization", "geometry", "places"]}
+                // libraries={["drawing", "visualization", "geometry", "places"]}
             >
                 <GoogleMap
                     ref={mapRef}
@@ -147,10 +179,10 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
                                 closeOnClick={false}
                                 closeButton={false}
                                 options={{
-                                    disableAutoPan: true, 
-                                    padding: 0, 
-                                    maxWidth:250,
-                                    borderRadius: 0,                                        
+                                    disableAutoPan: true,
+                                    padding: 0,
+                                    maxWidth: 250,
+                                    borderRadius: 0,
                                 }}
                             >
                                 <MapPopup
