@@ -48,7 +48,7 @@ export default function Invite() {
 		// handleDeleteClick(index);
 	};
 	// function for Delete
-	const handleDeleteClick = (selectedIndex) => {
+	const handleDeleteClick = () => {
 		console.log(inviteData);
 		var data = [...inviteData];
 		data.splice(selectedIndex, 1);
@@ -110,7 +110,7 @@ export default function Invite() {
 
 			{showConfirmDeleteModal && 
 			<ConfirmDelete showConfirmDeleteModal={showConfirmDeleteModal} 
-			handleConfirmDeleteModal={handleConfirmDeleteModal} handleDeleteClick={handleDeleteClick} />}
+			handleConfirmDeleteModal={handleConfirmDeleteModal} selectedIndex={selectedIndex} handleDeleteClick={handleDeleteClick} />}
 		</div>
 
 

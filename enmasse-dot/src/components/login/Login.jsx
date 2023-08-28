@@ -170,38 +170,6 @@ export default function Login({ handleLoggedIn }) {
                         showTermsAndConditionsModal={showTermsAndConditionsModal}
                     />
                 )}
-
-                {/* terms and condition  */}
-                {/* <div className="modal fade" id="TermsandConditions" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered dialog-width">
-                        <div className="modal-content dialog-width">
-                            <div className="d-flex flex-row justify-content-between">
-                                <div className="d-flex flex-row my-3 mx-3">
-                                    <h5 className="modal-title " id="staticBackdropLabel">Terms and Conditions</h5>
-                                    <p className='my-2 mx-2 Dialog-p'>Last updated: DD/MM/YYYY</p>
-                                </div>
-                                <button type="button" className="btn-close my-3 mx-3" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div className="modal-body d-flex flex-column justify-content-start mx-2">
-                                <p className='Dialog-p'>Please read these Terms and Conditions (“Terms”) carefully before using our services. By accessing or using our services, you agree to be bound by these Terms. If you do not agree with any part of these Terms, you may not use our services.</p>
-                                <h5 className='d-flex justify-content-start'>1. General</h5>
-                                <p className='Dialog-p'>1.1 These Terms apply to all users of our services, including but not limited to website visitors, customers, and clients.</p>
-                                <p className='Dialog-p'>1.2 Our services may include, but are not limited to, the provision of information, products, and online resources.</p>
-                                <p className='Dialog-p'>1.3 We reserve the right to modify, update, or discontinue our services at any time without prior notice.</p>
-                                <h5 className='d-flex justify-content-start'>2. Intellectual Property</h5>
-                                <p className='Dialog-p'>2.1 All content and materials provided through our services, including but not limited to text, graphics, logos, images, videos, and software, are the property of our company and are protected by applicable intellectual property laws.</p>
-                                <p className='Dialog-p'>2.2 You may not reproduce, distribute, modify, display, or use any of our intellectual property without our prior written consent.</p>
-                                <h5 className='d-flex justify-content-start'>3. User Responsibilities</h5>
-                                <p className='Dialog-p'>3.1 By using our services, you agree to provide accurate and current information and to ensure the security of your account credentials.</p>
-                            </div>
-                            <div className="d-flex justify-content-center">
-                                <button type="button" className="btn btn-dark Dialog-btn-width my-2" data-bs-dismiss="modal">Agree</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
-
-
             </div>
         </div>
     )
