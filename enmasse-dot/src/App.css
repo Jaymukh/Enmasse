@@ -326,11 +326,13 @@
 	max-width: 50vw;
 	/* margin: 1.75rem auto;   */
 }
-.modal-padding{
+
+.modal-padding {
 	padding: auto 10rem;
 
 }
-.modal-header-padding{
+
+.modal-header-padding {
 	padding-top: 1rem;
 
 }
@@ -403,15 +405,16 @@
 	opacity: 0.8;
 	width: 100vw;
 	height: 100vh;
-  }
-  .circle { 
+}
+
+.circle {
 	width: 20rem;
 	height: 20rem;
 	border-radius: 10rem;
 	background-color: transparent;
-  }
-  
-  .EHinfograpic-div-2 {
+}
+
+.EHinfograpic-div-2 {
 	width: 20vw;
 	margin-top: 15rem;
 	margin-right: 5rem !important;
@@ -823,7 +826,26 @@ th {
 	border: var(--secondaryColor);
 }
 
-.static-map{
+.static-map {
 	height: 20rem;
 	width: 20rem;
+}
+
+.fam-side-map-div {
+	height: fit-content;
+	width: fit-content;
+}
+
+.family-card-container {
+	width: 20.875rem;
+}
+
+.story-map-div {
+	border: 1px solid #0D0B0B14;
+	border-radius: 5px;
+}
+
+.map-container-sm {
+	width: 18rem;
+	height: 20rem;
 }

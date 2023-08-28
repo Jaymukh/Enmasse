@@ -10,8 +10,8 @@ const StaticMap = () => {
     const [map, setMap] = useState(null);
 
     const [center, setCenter] = useState({
-        lat: 22.228778205001706,
-        lng: 71.52453903811127
+        lat: 20.5937,
+        lng: 78.9629
     });
 
     const mapOptions = {
@@ -23,19 +23,20 @@ const StaticMap = () => {
     const loadGeoJSON = async (map) => {
         try {
             var module = await import(
-                './../utils/json/geojson/states/GUJARAT_STATE.geojson'
+                './../utils/json/geojson/countries/IN.geo.json'
             );
-            var response = await axios.get(module.default);
-            var data = response.data;
-            const centroid = turf.centroid(data);
-            setCenter(centroid.geometry.coordinates);
+            // var response = await axios.get(module.default);
+            // var data = response.data;
+            var data = module.default;
+            console.log(data);
+            // const centroid = turf.centroid(data);
+            // setCenter(centroid.geometry.coordinates);
             setGeoJSON(data);
             map.data.forEach((feature) => {
                 map.data.remove(feature);
             });
             map.data.addGeoJson(data);
             setFeatureStyle(map);
-            console.log(centroid.geometry.coordinates);
         } catch (error) {
             console.error('Error importing file', error);
         }
@@ -76,17 +77,17 @@ const StaticMap = () => {
             <LoadScript
                 googleMapsApiKey={MapConstants.googleMapsApiKey}
             >
-                <GoogleMap
-                    zoom={5}
-                    mapContainerStyle={MapConstants.containerStyle}
-                    center={center}
-                    onLoad={handleMapLoad}
-                    options={mapOptions}
-                >
-                </GoogleMap>
+            <GoogleMap
+                zoom={3.5}
+                mapContainerStyle={MapConstants.containerStyle}
+                center={center}
+                onLoad={handleMapLoad}
+                options={mapOptions}
+            >
+            </GoogleMap>
             </LoadScript>
         </div>
-        
+
     )
 }
 
