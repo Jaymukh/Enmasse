@@ -96,20 +96,6 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
 
             // Set map center and zoom level based on bounding box
             map.fitBounds(bounds);
-
-            // Calculate distance between two points
-            // const distance = window.google.maps.geometry.spherical.computeDistanceBetween(
-            //     bounds.getSouthWest(),
-            //     bounds.getNorthEast()
-            // );
-
-            // // Calculate zoom level based on distance and map's width
-            // const zoomLevel = Math.log2(
-            //     (40075016.686 * 0.00001 * map.getDiv().offsetWidth) / distance
-            // );
-
-            // // Set calculated zoom level (you might want to limit this to a reasonable range)
-            // map.setZoom(zoomLevel);
         }
     }, [map, features]);
 

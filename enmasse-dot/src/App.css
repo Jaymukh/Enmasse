@@ -822,3 +822,8 @@ th {
 	border-radius: 5px;
 	border: var(--secondaryColor);
 }
+
+.static-map{
+	height: 20rem;
+	width: 20rem;
+}
