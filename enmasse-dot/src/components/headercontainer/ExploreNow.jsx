@@ -1,9 +1,9 @@
 import '../../styles/headercontainer/ExploreNow.css';
 import React, { useState } from 'react';
-import { MdOutlineTravelExplore } from 'react-icons/md';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
+import { MdOutlineTravelExplore } from 'react-icons/md';
 import * as Constants from '../../utils/constants/Constants';
 
 function ExploreNow() {
@@ -13,6 +13,23 @@ function ExploreNow() {
 	const [selectedDistricts, setSelectedDistricts] = useState([]);
 	const [selectedDistrictOptions, setSelectedDistrictOptions] = useState([]);
 	const [selectedPlaceType, setSelectedPlaceType] = useState('state');
+	const [showExploreNowModal, setShowExploreNowModal] = useState(false); // explore now dialog
+	// explore now dialog open and close functions
+	const openExploreNowModal = () => {
+		setShowExploreNowModal(true);
+	};
+
+	const closeExploreNowModal = () => {
+		setShowExploreNowModal(false);
+		setSelectedValue('');
+        setInputValue();
+        setSelectedDistricts(Constants.explorePlaces);
+        setSelectedDistrictOptions(Constants.explorePlaces);
+        setSelectedPlaceType("state");
+        setSelectedshowDiv(true);
+
+	};
+
 
 	const handleStateChange = (event, newValue, clear) => {
 		//setSelectedValue(newValue);
@@ -66,19 +83,99 @@ function ExploreNow() {
 		setSelectedDistricts(Constants.explorePlaces); // Keep the entire array
 		setSelectedPlaceType("state");
 	};
-	const onhandeClose = () =>{
-        setSelectedValue('');
-        setInputValue();
-        setSelectedDistricts(Constants.explorePlaces);
-        setSelectedDistrictOptions(Constants.explorePlaces);
-        setSelectedPlaceType("state");
-        setSelectedshowDiv(true);
-    };
-
 
 	return (
 		<div>
-			<button
+			<button className='btn btn-black me-2' onClick={() => openExploreNowModal()} >
+				<MdOutlineTravelExplore className='me-2' fontSize={20} />
+				Explore Now
+			</button>
+			<div className={`modal ${showExploreNowModal ? 'show' : ''}`} tabIndex="-1" role="dialog" style={{ display: showExploreNowModal ? 'block' : 'none', borderStyle: 'inset' }}>
+				<div className="modal-dialog  modal-dialog-centered dialog-width">
+					<div className="modal-content">
+						<div className="modal-body d-flex flex-column justify-content-center w-auto m-3">
+							<div className='d-flex flex-row justify-content-between'>
+								<h5 >Explore Now</h5>
+								<button type="button" className="btn-close" onClick={() => closeExploreNowModal()}></button>
+							</div>
+							<p className='text-start '>Are you sure you want to delete this row?</p>
+							<div className='modal-dialog-scrollable'>
+								<p className='Dialog-p'>Explore the available list of regions in our platform. Our team is working on getting more regions unlocked for you !</p>
+								<div className='d-flex flex-row justify-content-start'>
+									<h5 className='my-2'>{selectedValue}</h5>
+									{selectedValue && ( // Show clear button only when inputValue is not empty
+										<button type="button" className="btn-close my-3 mx-3 close-btn" onClick={clearInput} />
+									)}
+								</div>
+								<Stack spacing={2} sx={{ width: 300 }} className='my-4'>
+									<Autocomplete
+										id="free-solo-demo"
+										onInputChange={onhandleInputChange}
+										value={inputValue}
+										freeSolo
+										// options={Constants.explorePlaces.map((option) => option.state)}
+										options={selectedPlaceType === "districts"
+											? selectedDistrictOptions
+											: Constants.explorePlaces.map((option) => option.state)}
+										onChange={handleStateChange}
+										renderInput={(params) => (
+											<TextField
+												{...params}
+												label="search"
+												inputProps={{
+													...params.inputProps,
+													style: {
+														height: '1rem',
+														textAlign: 'left',
+														display: 'flex',
+														alignItems: 'center',
+													},
+												}}
+											/>
+										)}
+									/>
+								</Stack>
+								<div>
+									{selectedshowDiv ? (
+										// Show this div when selectedValue is true
+										<div>
+											{Constants.explorePlaces.map((item) => (
+												<div key={item.state}>
+													<h5 className='d-flex justify-content-start'>{item.state}</h5>
+													<hr></hr>
+													<div className="row">
+														{item.districts.map((district) => (
+															<div className="col-4 d-flex justify-content-start" key={district}>
+																<p className='color-green'>{district}</p>
+															</div>
+														))}
+													</div>
+												</div>
+											))}
+										</div>
+									) : (
+										// Show this div when selectedValue is false
+										<div className="div2">
+											<h5 className='d-flex justify-content-start'>{selectedValue}</h5>
+											<hr></hr>
+											<div className="row">
+												{selectedDistricts.map((district) => (
+													<div className="col-4 d-flex justify-content-start" key={district}>
+														<p className='color-green'>{district}</p>
+													</div>
+												))}
+											</div>
+										</div>
+									)}
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			{/* <button
 				className='btn btn-black me-2'
 				data-bs-toggle="modal"
 				data-bs-target="#ExploreNow"
@@ -91,7 +188,7 @@ function ExploreNow() {
 					<div className="modal-content dialog-width">
 						<div className="d-flex flex-row justify-content-between">
 							<h4 className="modal-title my-3 mx-4" id="staticBackdropLabel">Explore Now</h4>
-							<button type="button" className="btn-close my-3 mx-3" data-bs-dismiss="modal" aria-label="Close" onClick={() => onhandeClose()}>
+							<button type="button" className="btn-close my-3 mx-3" data-bs-dismiss="modal" aria-label="Close" onClick={() => onhandleClose()}>
 							</button>
 						</div>
 						<div className="modal-body d-flex flex-column justify-content-start mx-2">
@@ -167,7 +264,7 @@ function ExploreNow() {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 }
