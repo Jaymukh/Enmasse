@@ -101,7 +101,7 @@ const options = {
 
 const LineGraph = () => {
     return (
-        <div className='white-bg py-3 dashboard-col px-4'>
+        <div className='white-bg py-3 dashboard-col px-4 h-100'>
             <h6 className='text-start fs-14 mb-3'>EH Population Growth</h6>
             <Line data={data} options={options} />
         </div>
