@@ -6,14 +6,14 @@ import DistrictSidebar from './DistrictSidebar';
 import '../../../App.css';
 
 
-function Family({selectedFamily, handleCarouselSlide, selectedData}) {
+function Family({selectedFamily, selectedData, handleCarouselSlide, handleBackClick}) {
 	return (
 		<>
 			<FamilySidePanel selectedFamily={selectedFamily} selectedData={selectedData} handleCarouselSlide={handleCarouselSlide} />
 			
 			{selectedData.properties.familyDetails ? 
 			<FamilyDetailsContainer selectedData={selectedData} handleCarouselSlide={handleCarouselSlide} /> :
-			<FamilyDetailsEmptyContainer selectedData={selectedData} handleCarouselSlide={handleCarouselSlide} />}
+			<FamilyDetailsEmptyContainer selectedData={selectedData} handleCarouselSlide={handleCarouselSlide} handleBackClick={handleBackClick} />}
 
 			<DistrictSidebar selectedData={selectedData} />
 		</>

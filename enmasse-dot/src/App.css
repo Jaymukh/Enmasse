@@ -350,6 +350,9 @@
 	color: green;
 }
 
+.bold-text {
+	font-weight: 500;
+}
 
 @media only screen and (max-width: 850px) {
 	.login-update-box {
@@ -705,6 +708,10 @@
 	font-size: 0.688rem;
 }
 
+.fs-21 {
+	font-size: 1.313rem;
+}
+
 .dashboard-col {
 	border: 1px solid #1118261A;
 	border-radius: 5px;
@@ -852,4 +859,15 @@ th {
 .map-container-sm {
 	width: 18rem;
 	height: 20rem;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.currency-select-box {
+	border: 1px solid #1118261A;
+	border-radius: 2px;
+	width: 6rem;
+	max-height: 2rem !important;
 }
