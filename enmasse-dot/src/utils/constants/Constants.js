@@ -14,8 +14,6 @@ export const transparentMapStyleV2 = 'mapbox://styles/dayanaedwin/clk9irdd300pf0
 
 export const mapStyle = 'mapbox://styles/dayanaedwin/cljoaqv3800kl01pj2o567vfj';
 
-export const API_KEY = 'RGb6AwVV6Tr7NvKYBvBPJH1Qi2nDcVS0egmZgUQX8nM';
-
 export const revgeocodeURL = 'https://revgeocode.search.hereapi.com/v1/revgeocode?at=';
 
 export const options = [
@@ -464,68 +462,6 @@ export const explorePlaces = [
         districts:['Thiruvananthapuram', 'Thrissur']
     }
 ]
-
-// export const storyFeatures = {
-//     type: 'FeatureCollection',
-//     features: [
-//         {
-//             type: 'Feature',
-//             geometry: {
-//                 type: 'Point',
-//                 coordinates: [77.11790108415168, 28.643326173465816],
-//             },
-//             properties: {
-//                 radius: 15,
-//                 id: 1,
-//                 family: "5 Family members",
-//                 annualSpend: '$6000',
-//                 image: 'https://s3.ap-south-1.amazonaws.com/kronos-new-tarento/1/userprofile/1841/1657528681838_Ameya%20Shetty.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230807T085110Z&X-Amz-SignedHeaders=host&X-Amz-Expires=299&X-Amz-Credential=AKIAS2D3QDFYXIAJ2TAB%2F20230807%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=fe32f142787a47fdf38bb6b994d0ac3882c862ffb42bcf2c6fa3e3d95f39d059'
-//             },
-//         },
-//         {
-//             type: 'Feature',
-//             geometry: {
-//                 type: 'Point',
-//                 coordinates: [80.25064909780843, 15.886294542878717],
-//             },
-//             properties: {
-//                 radius: 15,
-//                 id: 1,
-//                 family: "3 Family members",
-//                 annualSpend: '$3000',
-//                 image: 'https://s3.ap-south-1.amazonaws.com/kronos-new-tarento/1/userprofile/1841/1657528681838_Ameya%20Shetty.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230807T085110Z&X-Amz-SignedHeaders=host&X-Amz-Expires=299&X-Amz-Credential=AKIAS2D3QDFYXIAJ2TAB%2F20230807%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=fe32f142787a47fdf38bb6b994d0ac3882c862ffb42bcf2c6fa3e3d95f39d059'
-//             },
-//         },
-//         {
-//             type: 'Feature',
-//             geometry: {
-//                 type: 'Point',
-//                 coordinates: [76.51049281262189, 14.956060982956439],
-//             },
-//             properties: {
-//                 radius: 15,
-//                 id: 1,
-//                 family: "6 Family members",
-//                 annualSpend: '$6000',
-//                 image: 'https://s3.ap-south-1.amazonaws.com/kronos-new-tarento/1/userprofile/1841/1657528681838_Ameya%20Shetty.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230807T085110Z&X-Amz-SignedHeaders=host&X-Amz-Expires=299&X-Amz-Credential=AKIAS2D3QDFYXIAJ2TAB%2F20230807%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=fe32f142787a47fdf38bb6b994d0ac3882c862ffb42bcf2c6fa3e3d95f39d059'
-//             },
-//         },
-//         {
-//             type: 'Feature',
-//             geometry: {
-//                 type: 'Point',
-//                 coordinates: [83.92233007923814, 20.161197887069193],
-//             },
-//             properties: {
-//                 radius: 15,
-//                 id: 1,
-//                 family: "3 Family members",
-//                 annualSpend: '$5000',
-//                 image: 'https://s3.ap-south-1.amazonaws.com/kronos-new-tarento/1/userprofile/1841/1657528681838_Ameya%20Shetty.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230807T085110Z&X-Amz-SignedHeaders=host&X-Amz-Expires=299&X-Amz-Credential=AKIAS2D3QDFYXIAJ2TAB%2F20230807%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=fe32f142787a47fdf38bb6b994d0ac3882c862ffb42bcf2c6fa3e3d95f39d059'
-//             },
-//         }
-//     ],
-// };
 
 export const storyFeatures = [
     {
