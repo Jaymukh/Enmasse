@@ -12,7 +12,9 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
     const [viewStories, setViewStories] = useState(false);
     const [selectedRb, setSelectedRb] = useState(0);
     const [selectedCoreSoln, setSelectedCoreSoln] = useState({ key: 0, label: 'All', type: 'radius_all' });
+    const [focused, setFocused] = useState(0);
 
+    const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
     const center = {
         lat: 20.5937,
         lng: 78.9629
@@ -58,6 +60,10 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
         circles.forEach((circle) => circle.setMap(null));
         setCircles([]);
     };
+
+    const handleFocused = (index) => {
+        setFocused(index);
+    }
 
     useEffect(() => {
         if (map && features) {
@@ -140,13 +146,12 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
         clearCircles();
     }, [selectedCountry, selectedState, selectedDistrict]);
 
-
     return (
         <div className='row'
             style={{ height: '81vh', width: '100vw', zIndex: 999 }}>
             <LoadScript
-                googleMapsApiKey={MapConstants.googleMapsApiKey}
-                // libraries={["drawing", "visualization", "geometry", "places"]}
+                googleMapsApiKey={apiKey}
+            // libraries={["drawing", "visualization", "geometry", "places"]}
             >
                 <GoogleMap
                     ref={mapRef}
@@ -162,17 +167,20 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
                                 className='info-window'
                                 position={feature.position}
                                 // onClose={handleHoverEnd}
-                                closeOnClick={false}
-                                closeButton={false}
+                                // closeOnClick={false}
+                                // closeButton={false}
                                 options={{
-                                    disableAutoPan: true,
+                                    // disableAutoPan: true,
                                     padding: 0,
                                     maxWidth: 250,
                                     borderRadius: 0,
+                                    zIndex : focused === index ? 1000 : 0
                                 }}
                             >
                                 <MapPopup
                                     properties={feature.properties}
+                                    handleFocused={handleFocused}
+                                    index={index}
                                 />
                             </InfoWindow>
                         ))

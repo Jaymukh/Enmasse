@@ -2,15 +2,15 @@ import { FiArrowRight } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import { RouteConstants } from '../../../utils/constants/routeConstants';
 
-const MapPopup = ({ properties }) => {
+const MapPopup = ({ properties, handleFocused, index }) => {
     var navigate = useNavigate();
 
-    const handlePopupClick = () => {
+    const handlePopupClick = (event) => {
         navigate(RouteConstants.stories);
     }
 
     return (
-        <div className="map-popup map-popup-grey-text rounded row h-100">
+        <div className="map-popup map-popup-grey-text rounded row h-100" onClick={() => handleFocused(index)}>
             <div className="col-4 px-0">
                 {/* <img width={100} height={100} src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="/> */}
                 <img className="map-popup-story-img rounded" src={properties.image} />
@@ -21,7 +21,7 @@ const MapPopup = ({ properties }) => {
                     <span className="green-text pe-1">{properties.annualSpend} </span>
                     Annual Spend on Core Solutions
                 </p>
-                <button className="map-popup-description border-0 bg-transparent green-text text-start p-0" onClick={handlePopupClick}>Read more<FiArrowRight className='color-green ms-1' /></button>
+                <button className="map-popup-description border-0 bg-transparent green-text text-start p-0" onClick={(event) => handlePopupClick(event)}>Read more<FiArrowRight className='color-green ms-1' /></button>
             </div>
         </div>
     )

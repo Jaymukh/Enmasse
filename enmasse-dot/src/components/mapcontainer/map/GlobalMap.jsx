@@ -3,6 +3,7 @@ import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import * as MapConstants from '../../../utils/json/googlemapstyle';
 
 function GlobalMap({ features, handleImportFeature }) {
+	const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 	const center = {
 		lat: 20.5937,
 		lng: 78.9629
@@ -31,7 +32,7 @@ function GlobalMap({ features, handleImportFeature }) {
 			className='MapContainer row'
 			style={{ height: '81vh', width: '100vw', zIndex: 999 }}
 		>
-			<LoadScript googleMapsApiKey={MapConstants.googleMapsApiKey}>
+			<LoadScript googleMapsApiKey={apiKey}>
 				<GoogleMap mapContainerStyle={MapConstants.containerStyle} center={center} zoom={1.5} options={mapOptions} onClick={handleMapClick} >
 				</GoogleMap>
 			</LoadScript>

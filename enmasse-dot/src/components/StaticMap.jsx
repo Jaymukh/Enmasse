@@ -13,6 +13,7 @@ const StaticMap = () => {
         lat: 20.5937,
         lng: 78.9629
     });
+    const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
     const mapOptions = {
         disableDefaultUI: true,
@@ -75,7 +76,7 @@ const StaticMap = () => {
     return (
         <div style={{ height: '100%', width: '100%' }} className='d-flex flex-column align-items-center justify-content-center'>
             <LoadScript
-                googleMapsApiKey={MapConstants.googleMapsApiKey}
+                googleMapsApiKey={apiKey}
             >
             <GoogleMap
                 zoom={3.5}
