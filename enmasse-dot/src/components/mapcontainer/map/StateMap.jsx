@@ -28,8 +28,6 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
 
     const handleMapLoad = useCallback((mapInstance) => {
         setMap(mapInstance);
-        // const bounds = new window.google.maps.LatLngBounds();
-        // mapInstance.fitBounds(bounds);
         mapInstance.circles = [];
     }, []);
 
@@ -167,10 +165,8 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
                                 className='info-window'
                                 position={feature.position}
                                 // onClose={handleHoverEnd}
-                                // closeOnClick={false}
-                                // closeButton={false}
+                                closeButton={false}
                                 options={{
-                                    // disableAutoPan: true,
                                     padding: 0,
                                     maxWidth: 250,
                                     borderRadius: 0,

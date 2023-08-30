@@ -29,7 +29,7 @@ function MapContainer() {
 	};
 
 	const handleCountryChange = (event) => {
-		const value = event.target.value;
+		const value = event.target.value;		
 		const selectedItem = countries.find(item => {
 			return item.name === value;
 		});

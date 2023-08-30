@@ -2,12 +2,9 @@ import '../../../styles/mapcontainer/map/Map.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useState } from 'react';
 import GlobalMap from './GlobalMap';
-import NonGlobalMap from './NonGlobalMap';
 import axios from 'axios';
 import * as turf from '@turf/turf';
 import InsightBar from '../../InsightBar';
-import MapButtonGroup from './MapButtonGroup';
-import DashboardContainer from '../../dashboardcontainer/ScatterGraph';
 import StateMap from './StateMap';
 
 function Map({
@@ -19,7 +16,6 @@ function Map({
 }) {
 	const [features, setFeatures] = useState();
 	const [pointFeatures, setPointFeatures] = useState();
-	const [zoom, setZoom] = useState();
 
 	const handleZoom = (event, zoomIn) => {
 		return zoomIn;
@@ -42,33 +38,7 @@ function Map({
 						const centroid = turf.centroid(feature);
 						return turf.point(centroid.geometry.coordinates, feature.properties);
 					});
-					const geoJsonData = {
-						"type": 'FeatureCollection',
-						"features": pointFeatures,
-					};
 					setPointFeatures(pointFeatures);
-					// setPointFeatures([
-					// 	{
-					// 		center: { lat: 20.5937, lng: 78.9629 },
-					// 		radius: 100000, // in meters
-					// 	},
-					// 	{
-					// 		center: { lat: 19.0760, lng: 72.8777 },
-					// 		radius: 30000,
-					// 	},
-					// 	{
-					// 		center: { lat: 27.75356495721335, lng: 95.02293978104811 },
-					// 		radius: 30000,
-					// 	},
-					// 	{
-					// 		center: { lat: 17.830499887086678, lng: 78.89114589359214 },
-					// 		radius: 30000,
-					// 	},
-					// 	{
-					// 		center: { lat: 26.42117938687067, lng: 80.1305153658293 },
-					// 		radius: 40000,
-					// 	},
-					// ])
 				} else if (!selectedDistrict && selectedState) {
 					var state = selectedState.toUpperCase();
 					var module = await import(
@@ -104,18 +74,6 @@ function Map({
 					handleImportFeature={handleImportFeature}
 					handleZoom={handleZoom}
 				/>
-				// ) : (
-				// 	<NonGlobalMap
-				// 		features={features}
-				// 		handleImportFeature={handleImportFeature}
-				// 		countryCode={selectedCountryCode}
-				// 		selectedCountry={selectedCountry}
-				// 		selectedState={selectedState}
-				// 		selectedDistrict={selectedDistrict}
-				// 		pointFeatures={pointFeatures}
-				// 		handleZoom={handleZoom}
-				// 	/>
-				// )}
 			) : (
 				<StateMap
 					features={features}
@@ -127,7 +85,6 @@ function Map({
 				/>
 			)}
 			<div className='d-flex flex-row bottom-0 end-0 position-fixed' style={{ zIndex: 998 }}>
-				{/* <MapButtonGroup handleZoom={handleZoom}/> */}
 				<InsightBar />
 			</div>
 
