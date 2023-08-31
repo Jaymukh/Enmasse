@@ -86,7 +86,7 @@ function MapOptions({
 				<button className='subheader-btn' onClick={() => openWIPDrawer("Download data")}>
 					<div className='d-flex flex-wrap'>
 						<FiDownload className='mt-1' />
-						<p className='px-2 my-0'>Download data</p>
+						<p className='px-2 my-1 fs-12'>Download data</p>
 					</div>
 				</button>
 				<button
@@ -95,7 +95,7 @@ function MapOptions({
 			>
 				<div className='d-flex flex-wrap'>
 					<MdBookmarks className='mt-1' />
-					<p className='mx-2 my-0'>Bookmarks</p>
+					<p className='mx-2 my-1 fs-12'>Bookmarks</p>
 				</div>
 			</button>
 				{/* <Bookmarks /> */}

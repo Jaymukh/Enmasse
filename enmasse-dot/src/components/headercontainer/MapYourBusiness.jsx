@@ -2,9 +2,7 @@ import '../../styles/headercontainer/MapYourBusiness.css';
 import React, { useState } from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { MdClose } from 'react-icons/md';
-import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Typography from '@mui/material/Typography';
 import WorkInProgressImage from '../../utils/images/work_in_progress.svg';
 
 function MapYourBusiness() {
@@ -26,28 +24,21 @@ function MapYourBusiness() {
 			<Drawer
 				className='drawer'
 				anchor='right'
-				// hideBackdrop="true"
-				// sx={{
-				// 	width: 200,
-				// }}
 				style={{ width: '25vw' }}
 				open={open}
 				onClose={() => toggleDrawer(false)}
 			>
-				<Box
-					className='d-flex flex-wrap justify-content-between mx-4 my-4'
-					role='presentation'
-				>
-					<Typography variant='h6' className='drawer-header mx-4'>
+				<div className='d-flex flex-wrap justify-content-between mx-3 my-4'>
+					<h5 className='fs-21'>
 						Map Your Business
-					</Typography>
+					</h5>
 					<button
 						className='close-btn'
 						onClick={() => toggleDrawer(false)}
 					>
 						<MdClose fontSize={27} />
 					</button>
-				</Box>
+				</div>
 				<div className='mx-5 my-1 dialog-div'>
 					<h6 className='contact-para fs-14'>
 						Why do we need this?
