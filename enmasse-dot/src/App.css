@@ -99,11 +99,8 @@
 
 /* sidebar css */
 .sideBar-parent-expended {
-	height: 80vh;
-	width: 23vw;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
+	height: 81vh;
+	width: 27vw;
 	background-color: white;
 }
 
@@ -165,6 +162,14 @@
 	border: 1px solid #108041;
 	border-radius: 5px;
 	color: var(--secondaryColor);
+	width: 95%;
+}
+
+.tam-info-grey {
+	background-color: #E6E7E9;
+	border: 1px solid #1118261A;
+	border-radius: 5px;
+	color: var(--blackColor);
 	width: 95%;
 }
 
@@ -718,6 +723,10 @@
 	font-size: 1.313rem;
 }
 
+.fs-16 {
+	font-size: 1rem;
+}
+
 .dashboard-col {
 	border: 1px solid #1118261A;
 	border-radius: 5px;
@@ -880,4 +889,9 @@ th {
 
 .story-header-btn {
 	width: 7rem;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
 }

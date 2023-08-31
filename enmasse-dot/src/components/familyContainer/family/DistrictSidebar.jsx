@@ -54,7 +54,6 @@ function DistrictSidebar({ selectedData }) {
                             <h6 className='text-left fs-18'>$3 Trillion</h6>
                             <p className='fs-11 m-0'>Total Addressable Market</p>
                         </div>
-
                     </div>
                     <div className='col-sm-11 col-md-11 col-lg-5 col-xl-5 mx-2 my-2 card py-2 d-flex align-items-start text-start' >
                         <h6 className='fs-14 insight-bar-green-color'>400 Thousand</h6>

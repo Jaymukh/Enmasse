@@ -2,14 +2,31 @@ import '../App.css';
 import React, { useState } from 'react';
 import { BiSolidInfoCircle } from 'react-icons/bi';
 import { FiArrowRight } from 'react-icons/fi';
-import { BiSolidChevronRightCircle , BiSolidChevronLeftCircle} from 'react-icons/bi';
+import { BiSolidChevronRightCircle, BiSolidChevronLeftCircle } from 'react-icons/bi';
 import * as Constants from '../utils/constants/Constants';
 import { useNavigate } from 'react-router-dom';
 import { RouteConstants } from '../utils/constants/routeConstants';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
+
+const options = [
+    {
+        currency: "US Dollar",
+        symbol: "$"
+    },
+    {
+        currency: "Indian Rupee",
+        symbol: '₹'
+    }
+];
 
 export default function InsightBar() {
     const [visible, setVisible] = useState(true);
     var navigate = useNavigate();
+    const [currency, setCurrency] = useState("US Dollar");
+
+    const handleChangeCurrency = (event) => {
+        setCurrency(event.target.value);
+    }
 
     const onDialog = () => {
         setVisible(!visible);
@@ -20,11 +37,54 @@ export default function InsightBar() {
     }
 
     return (
-        <div className={visible? 'sideBar-parent-expended' : 'sideBar-parent-collapsed'} >
-            <button onClick={onDialog} className='btn-white SideBarIcon'>
+        // <div className={visible ? 'sideBar-parent-expended' : 'sideBar-parent-collapsed'} >
+        <div className='sideBar-parent-expended py-4 me-3' style={{overflow: 'auto', overflowX: 'hidden'}} >
+            {/* <button onClick={onDialog} className='btn-white SideBarIcon'>
                 {visible ? <BiSolidChevronRightCircle size={35} /> : <BiSolidChevronLeftCircle size={35} />}
-            </button>
-            <div className='SideBar'>
+            </button> */}
+
+            {/* <div className='py-4 px-2 bg-white px-0' style={{ height: '98%', overflow: 'auto' }}> */}
+            <div className='d-flex justify-content-between align-items-start px-3'>
+                <div className='d-flex justify-content-start'>
+                    <h6 className='me-2 ms-1 fs-18'>EnMasses Thesis</h6>
+                    <AiOutlineInfoCircle fontSize={20} color='#606060' />
+                </div>
+                <select className='currency-select-box px-2 py-1 fs-11' value={currency} onChange={handleChangeCurrency}>
+                    {options.map((option, key) => <option key={key} value={option.currency}>{option.currency} {option.symbol}</option>)}
+                </select>
+            </div>
+            {Constants.countryData.map((data, key) => (
+                <>
+                    <h6 className='fs-16 text-start px-3 my-1 ms-1'>{data.country}</h6>
+                    <div className="row d-flex justify-content-center py-2">
+                        <div className='col-sm-11 col-md-11 col-lg-5 col-xl-5 mx-2 my-2 card py-2 d-flex align-items-start text-start' >
+                            <h6 className='fs-14'>{data.households}</h6>
+                            <p className='fs-11 m-0'>Total Households</p>
+                        </div>
+                        <div className='col-sm-11 col-md-11	col-lg-5 col-xl-5 mx-2 my-2 card py-2 d-flex align-items-start text-start'>
+                            <h6 className='fs-14'>{data.population}</h6>
+                            <p className='fs-11 m-0'>Total Population</p>
+                        </div>
+                        <div className='col-11 p-0 d-flex flex-column align-items-center justify-content-center text-start py-2'>
+                            <div className='tam-info-grey p-2 d-flex flex-column justify-content-center'>
+                                <h6 className='text-left fs-18'>{data.tam}</h6>
+                                <p className='fs-11 m-0'>Total Addressable Market</p>
+                            </div>
+                        </div>
+                        <div className='col-sm-11 col-md-11 col-lg-5 col-xl-5 mx-2 my-2 card py-2 d-flex align-items-start text-start' >
+                            <h6 className='fs-14 insight-bar-green-color'>{data.entrepreneurialHouseholds}</h6>
+                            <p className='fs-11 m-0'>Number of Entrepreneurial Households (EH)</p>
+                        </div>
+                        <div className='col-sm-11 col-md-11	col-lg-5 col-xl-5 mx-2 my-2 card py-2 d-flex align-items-start text-start'>
+                            <h6 className='fs-14 insight-bar-green-color'>{data.medianSpendonCoreSoln}</h6>
+                            <p className='fs-11 m-0'>Median Annual EH Household Spend</p>
+                        </div>
+                    </div>
+                </>))
+            }
+            {/* </div> */}
+
+            {/* <div className='SideBar'>
                 <h6 className='text-start my-3'>EnMasses Thesis</h6>
                 <div className='SideBarContent'>
                     <div className='p-2'>
@@ -88,10 +148,9 @@ export default function InsightBar() {
                             );
                         })}
                     </div>
-                    {/* <button className='btn btn-dark rounded w-100' onClick={() => handleDisplayDashboard(true)} >Explore more<FiArrowRight className='ms-2' /></button> */}
                     <button className='btn btn-dark rounded w-100' onClick={() => handleBtnPress()} >Explore more<FiArrowRight className='ms-2' /></button>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
