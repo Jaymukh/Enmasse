@@ -874,6 +874,10 @@ th {
 .currency-select-box {
 	border: 1px solid #1118261A;
 	border-radius: 2px;
-	width: 6rem;
+	width: 6.5rem;
 	max-height: 2rem !important;
+}
+
+.story-header-btn {
+	width: 7rem;
 }
