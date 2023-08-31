@@ -98,16 +98,15 @@ function ExploreNow() {
 								<h5 >Explore Now</h5>
 								<button type="button" className="btn-close" onClick={() => closeExploreNowModal()}></button>
 							</div>
-							<p className='text-start '>Are you sure you want to delete this row?</p>
 							<div className='modal-dialog-scrollable'>
 								<p className='Dialog-p'>Explore the available list of regions in our platform. Our team is working on getting more regions unlocked for you !</p>
 								<div className='d-flex flex-row justify-content-start'>
-									<h5 className='my-2'>{selectedValue}</h5>
+									<h5 className=''>{selectedValue}</h5>
 									{selectedValue && ( // Show clear button only when inputValue is not empty
-										<button type="button" className="btn-close my-3 mx-3 close-btn" onClick={clearInput} />
+										<button type="button" className="btn-close mx-3" onClick={ () => clearInput() } />
 									)}
 								</div>
-								<Stack spacing={2} sx={{ width: 300 }} className='my-4'>
+								<Stack spacing={2} sx={{ width: 300 }} className=''>
 									<Autocomplete
 										id="free-solo-demo"
 										onInputChange={onhandleInputChange}
@@ -121,7 +120,7 @@ function ExploreNow() {
 										renderInput={(params) => (
 											<TextField
 												{...params}
-												label="search"
+												label="Search"
 												inputProps={{
 													...params.inputProps,
 													style: {
@@ -135,7 +134,7 @@ function ExploreNow() {
 										)}
 									/>
 								</Stack>
-								<div>
+								<div className='my-4'>
 									{selectedshowDiv ? (
 										// Show this div when selectedValue is true
 										<div>
