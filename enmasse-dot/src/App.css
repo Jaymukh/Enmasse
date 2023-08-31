@@ -161,9 +161,15 @@
 }
 
 .tam-info {
-	background-color: #e7f2ec;
-	border: 1px solid #6fb28c;
+	background-color: #108041;
+	border: 1px solid #108041;
 	border-radius: 5px;
+	color: var(--secondaryColor);
+	width: 95%;
+}
+
+.insight-bar-green-color {
+	color: #108041;
 }
 
 .btn-white {
