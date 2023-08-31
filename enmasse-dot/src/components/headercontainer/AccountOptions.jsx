@@ -45,7 +45,6 @@ function AccountOptions({ handleVisiblePanel }) {
 						aria-expanded={open ? 'true' : undefined}
 					>
 						<Avatar sx={{ width: 30, height: 30, fontSize: 16 }}>M</Avatar>
-						<MdArrowDropDown className='mx-1' fontSize={25}/>
 					</IconButton>
 				</Tooltip>
 			</div>

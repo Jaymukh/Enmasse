@@ -1,6 +1,6 @@
 import '../../styles/headercontainer/MapYourBusiness.css';
 import React, { useState } from 'react';
-import { FaMapMarkerAlt } from 'react-icons/fa';
+import { MdOutlineShareLocation } from 'react-icons/md';
 import { MdClose } from 'react-icons/md';
 import Drawer from '@mui/material/Drawer';
 import WorkInProgressImage from '../../utils/images/work_in_progress.svg';
@@ -15,10 +15,10 @@ function MapYourBusiness() {
 	return (
 		<div >
 			<button
-				className='btn btn-white mx-2'
+				className='btn btn-white mx-2 fs-13'
 				onClick={() => toggleDrawer(true)}
 			>
-				<FaMapMarkerAlt className='me-2' fontSize={20} />
+				<MdOutlineShareLocation className='me-2' fontSize={20} color='#111827' />
 				Map Your Business
 			</button>
 			<Drawer

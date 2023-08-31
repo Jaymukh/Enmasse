@@ -299,7 +299,7 @@
 }
 
 .grayBtnClr {
-	background-color: #111827;
+	background-color: #111827 !important;
 	color: #FFFFFF;
 
 }
@@ -705,6 +705,10 @@
 
 .fs-12 {
 	font-size: 0.75rem;
+}
+
+.fs-13 {
+	font-size: 0.813rem;
 }
 
 .fs-18 {

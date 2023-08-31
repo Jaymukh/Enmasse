@@ -86,7 +86,7 @@ function ExploreNow() {
 
 	return (
 		<div>
-			<button className='btn btn-black me-2' onClick={() => openExploreNowModal()} >
+			<button className='btn btn-black me-2 fs-13 grayBtnClr' onClick={() => openExploreNowModal()} >
 				<MdOutlineTravelExplore className='me-2' fontSize={20} />
 				Explore Now
 			</button>
