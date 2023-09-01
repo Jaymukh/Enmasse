@@ -23,7 +23,8 @@ function DistrictSidebar({ selectedData }) {
     }
 
     return (
-        <div className='col-3 py-4 px-2 bg-white px-0' style={{ height: '98%', overflow: 'auto' }}>
+        // <div className='col-3 py-4 px-2 bg-white px-0' style={{ height: '98%', overflow: 'auto' }}>
+        <div className='py-4 px-2 bg-white px-0 h-100' style={{ overflow: 'auto' }}>
             <div className='d-flex justify-content-between align-items-start px-2'>
                 <div>
                     <h6 className='fs-18'>Kutch</h6>
