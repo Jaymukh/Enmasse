@@ -108,6 +108,34 @@ export default function Login({ handleLoggedIn }) {
         setShowTermsAndConditionsModal(false);
     };
 
+    function handleResponse(response) {
+        console.log(response);
+        return response.text().then((text) => {
+            const data = text && JSON.parse(text);
+            console.log(data);
+            return data;
+        });
+    }
+
+    const handleLogin = (flag) => {
+        var url = process.env.REACT_APP_API_URL;
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(
+                {
+                    "email_id":"test@gmail.com",
+                    "password": "Admin@123"
+                }
+            ),
+        };
+        const result = fetch( url +'users/login/', requestOptions).then(handleResponse);
+        handleLoggedIn(flag)
+    }
+
     return (
         <div>
             <div className='row mx-0' style={{ height: '100vh', width: '100vw' }} >
@@ -136,7 +164,7 @@ export default function Login({ handleLoggedIn }) {
                         </div>
                         <input type='password' className='my-1 px-2 inputBoxHeight' value={password} placeholder='Enter your password here' minLength="8" onChange={handlePasswordInput} />
                         {errorMessagePassword && <p className='text-danger'>{errorMessagePassword}</p>}
-                        <button className={disabled ? 'mb-2 mt-4 inputBoxHeight login-btn bg-secondary text-white fs-6' : 'mb-2 mt-4 inputBoxHeight login-btn bg-dark text-white fs-6'} disabled={disabled} onClick={() => handleLoggedIn(true)}>Continue</button>
+                        <button className={disabled ? 'mb-2 mt-4 inputBoxHeight login-btn bg-secondary text-white fs-6' : 'mb-2 mt-4 inputBoxHeight login-btn bg-dark text-white fs-6'} disabled={disabled} onClick={() => handleLogin(true)}>Continue</button>
                         {/* <p className='text-muted mb-0 mt-2 login-p'>By clicking on continue you are agreeing to the Enmasse <a href='/' className='black login-p'>Terms & conditions</a> and <a href='/' className='black' >Privacy policies</a></p> */}
 
                         <p className='text-muted mb-0 mt-2 login-p'>By clicking on continue you are agreeing to the Enmasse
