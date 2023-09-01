@@ -100,7 +100,7 @@
 /* sidebar css */
 .sideBar-parent-expended {
 	height: 81vh;
-	width: 27vw;
+	width: 25vw;
 	background-color: white;
 }
 
@@ -661,7 +661,7 @@
 	vertical-align: middle;
 	border: 1px solid black;
 	padding: 0.375rem 0.75rem;
-	line-height: 1.5;
+	/* line-height: 1.5; */
 	border-radius: 0.25rem;
 }
 
@@ -708,7 +708,7 @@
 }
 
 .fs-13 {
-	font-size: 0.813rem;
+	font-size: 0.813rem !important;
 }
 
 .fs-18 {
@@ -734,6 +734,15 @@
 .fs-24 {
 	font-size: 1.5rem !important;
 }
+
+.fs-31 {
+	font-size: 1.983rem;
+}
+
+.fs-15 {
+	font-size: 0.938rem;
+}
+
 
 .dashboard-col {
 	border: 1px solid #1118261A;
@@ -902,4 +911,26 @@ th {
 ::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */
+}
+
+.font-lato {
+	font-family: 'Lato', sans-serif;	
+}
+
+.right-border {
+	border-right: 1.75px solid #DDDFE3;
+}
+
+.grey-light-color {
+	color: #727374;
+}
+
+.overlay-card {
+	position: absolute;
+	top: 0;
+	z-index: 998;
+}
+
+.map {
+	position: relative;
 }

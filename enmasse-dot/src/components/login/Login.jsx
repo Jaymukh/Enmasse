@@ -4,6 +4,7 @@ import globe from '../../utils/images/globe.png';
 import ForgotPassword from './ForgotPassword';
 import EmailSent from './EmailSent';
 import TermsAndConditions from './TermsAndConditions';
+import GlobalOverlayCard from '../GlobalOverlayCard';
 
 export default function Login({ handleLoggedIn }) {
     // login component
@@ -144,6 +145,8 @@ export default function Login({ handleLoggedIn }) {
                         </p>
                     </div>
                 </div>
+
+                
 
                 {showForgotPasswordModal && (
                     <ForgotPassword closeForgotPasswordModal={closeForgotPasswordModal}

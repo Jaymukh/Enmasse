@@ -6,6 +6,7 @@ import axios from 'axios';
 import * as turf from '@turf/turf';
 import InsightBar from '../../InsightBar';
 import StateMap from './StateMap';
+import GlobalOverlayCard from '../../GlobalOverlayCard';
 
 function Map({
 	global,
@@ -67,7 +68,8 @@ function Map({
 	};
 
 	return (
-		<div>
+		<div className='map'>
+			<GlobalOverlayCard />
 			{global ? (
 				<GlobalMap
 					features={features}
