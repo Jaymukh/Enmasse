@@ -6,7 +6,6 @@ import axios from 'axios';
 import * as turf from '@turf/turf';
 import InsightBar from '../../InsightBar';
 import StateMap from './StateMap';
-import GlobalOverlayCard from '../../GlobalOverlayCard';
 
 function Map({
 	global,
@@ -68,8 +67,7 @@ function Map({
 	};
 
 	return (
-		<div className='map'>
-			<GlobalOverlayCard />
+		<div >			
 			{global ? (
 				<GlobalMap
 					features={features}
@@ -85,10 +83,7 @@ function Map({
 					selectedDistrict={selectedDistrict} 
 					pointFeatures={pointFeatures} 
 				/>
-			)}
-			<div className='d-flex flex-row bottom-0 end-0 position-fixed' style={{ zIndex: 998 }}>
-				<InsightBar />
-			</div>
+			)}	
 
 		</div>
 	);
