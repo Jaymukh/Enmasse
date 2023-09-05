@@ -109,13 +109,6 @@ const AppRouter = () => {
     const StoryContainer = useMemo(() => React.lazy(() => import("./components/StoryContainer")), []);
     const ProfileContainer = useMemo(() => React.lazy(() => import("./components/ProfileContainer")), []);
 
-    const handleLoggedIn = (flag) => {
-        setIsLogged(flag);
-        if (flag) {
-            navigate(RouteConstants.root);
-        }
-    }
-
     const handleVisiblePanel = (index) => {
         setVisiblePanel(index);
     };
@@ -132,7 +125,7 @@ const AppRouter = () => {
         <ThemeProvider theme={customTheme(outerTheme)}>
             <Suspense fallback={<div className=""></div>}>
                 <Routes>
-                    <Route path={RouteConstants.login} element={<Login handleLoggedIn={handleLoggedIn} />} />
+                    <Route path={RouteConstants.login} element={<Login />} />
                     <Route element={<ProtectedRoute auth={auth} />}>
                         <Route path={RouteConstants.root} element={<HomeContainer handleVisiblePanel={handleVisiblePanel} handleOverlay={handleOverlay} handleInfographic={handleInfographic} overlay={overlay} showInfographic={showInfographic} />} />
                         <Route path={RouteConstants.dashboards} element={<DashboardContainer handleVisiblePanel={handleVisiblePanel} handleOverlay={handleOverlay} handleInfographic={handleInfographic} />} />

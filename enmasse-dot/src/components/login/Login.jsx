@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { useUserService } from '../../services';
 
 
-export default function Login({ handleLoggedIn }) {    
+export default function Login() {    
     // login component
     const [email, setEmail] = useState('');
     const [errorMessageEmail, setErrorMessageEmail] = useState('');
@@ -118,30 +118,7 @@ export default function Login({ handleLoggedIn }) {
         .catch(error => {
             console.log(error);
         });
-        //console.log(useUserService)
-        // //var url = `${process.env.REACT_APP_API_URL}/users/login/`;
-        // var url = `/users/login/`;
-        // const requestOptions = {
-        //     method: 'POST',
-        //     headers: {
-        //         Accept: 'application/json',
-        //         'Content-type': 'application/json',
-        //     },
-        //     body: JSON.stringify(
-        //         {
-        //             "email_id": "dots_admin@enmasse.world",
-        //             "password": "Welcome@123"
-        //         }
-        //     ),
-        // };
-        // const result = fetch(url, requestOptions).then(handleResponse);
-        // handleLoggedIn(flag);
     }
-
-    // interface IFormValues {
-    //     username: string;
-    //     password: string;
-    // }
 
     const validationSchema = Yup.object().shape({
         username: Yup.string().required('Username is required').email("Username is not a valid email"),
@@ -149,7 +126,6 @@ export default function Login({ handleLoggedIn }) {
     });
 
     const formOptions = { resolver: yupResolver(validationSchema) };
-    // const { register, handleSubmit, formState } = useForm<IFormValues>(formOptions);
     const { register, handleSubmit, formState } = useForm(formOptions);
     const { errors, isSubmitting } = formState;
 

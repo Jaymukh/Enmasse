@@ -15,7 +15,6 @@ const useUserService = () => {
     const location = useLocation();
 
     const login = (email_id, password) => {
-        // return fetchWrapper.post(new URL(`${baseUrl}${loginURL}`), { username, password })
         return fetchWrapper.post(loginURL, { email_id, password })
 
             .then(user => {
@@ -25,7 +24,6 @@ const useUserService = () => {
 
                 // get return url from location state or default to home page
                 const from = (!location.pathname || location.pathname === '/login') ? RouteConstants.root : location.pathname;
-                // const { from }  = { from: { pathname: location.pathname ||  RouteConstants.root } };
                 navigate(from);
             });
     }
