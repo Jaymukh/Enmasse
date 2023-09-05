@@ -121,7 +121,7 @@ const AppRouter = () => {
 		setShowInfographic(showInfographic);
 	};
 
-    return (
+    return (    
         <ThemeProvider theme={customTheme(outerTheme)}>
             <Suspense fallback={<div className=""></div>}>
                 <Routes>

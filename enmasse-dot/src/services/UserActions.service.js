@@ -8,6 +8,7 @@ const useUserService = () => {
     // const baseUrl = `${process.env.REACT_APP_BASE_API_URL}`;
     const loginURL = '/users/login/';
     const getAllURL = '/users/all/';
+    const getUserDetailsURL = '/users/me';
     const fetchWrapper = useFetchWrapper();
     const setAuth = useSetRecoilState(authState);
     const setUsers = useSetRecoilState(usersState);
@@ -41,13 +42,14 @@ const useUserService = () => {
     } 
 
     function getUserDetails() {
-        return fetchWrapper.get().then(setLoggedUser);
+        return fetchWrapper.get(getUserDetailsURL).then(setLoggedUser);
     }
 
     return {
         login,
         logout,
-        getAll
+        getAll,
+        getUserDetails
     }
 }
 

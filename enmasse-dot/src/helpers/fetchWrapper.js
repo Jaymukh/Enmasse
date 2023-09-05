@@ -29,7 +29,7 @@ function useFetchWrapper() {
     
     function authHeader(url) {
         // return auth header with jwt if user is logged in and request is to the api url
-        const token = auth?.Token;
+        const token = auth?.tokens?.access;
         const isLoggedIn = !!token;
         if (isLoggedIn) {
             return { Authorization: `Bearer ${token}` };
@@ -59,3 +59,4 @@ function useFetchWrapper() {
 }
 
 export { useFetchWrapper };
+
