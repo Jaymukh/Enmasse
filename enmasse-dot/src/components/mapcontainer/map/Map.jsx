@@ -1,10 +1,8 @@
 import '../../../styles/mapcontainer/map/Map.css';
-import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useState } from 'react';
 import GlobalMap from './GlobalMap';
 import axios from 'axios';
 import * as turf from '@turf/turf';
-import InsightBar from '../../InsightBar';
 import StateMap from './StateMap';
 
 function Map({

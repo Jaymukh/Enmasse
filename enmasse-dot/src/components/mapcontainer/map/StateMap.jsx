@@ -123,14 +123,14 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
                     return new window.google.maps.Circle({
                         center: center,
                         radius: feature.properties[radius],
-                        options: {
+                        // options: {
                             fillColor: '#FFFFFF',
                             fillOpacity: fillOpacity,
                             strokeColor: '#FFFFFF',
                             strokeOpacity: 1,
                             strokeWeight: 1,
                             zIndex: 100,
-                        },
+                        // },
                         map: map,
                     });
                 });

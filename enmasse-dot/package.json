@@ -2,7 +2,9 @@
   "name": "enmasse-dot",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://34.74.103.54",
   "dependencies": {
+    "@hookform/resolvers": "^3.3.1",
     "@mui/icons-material": "^5.13.7",
     "@mui/material": "^5.13.7",
     "@react-google-maps/api": "^2.19.2",
@@ -23,12 +25,15 @@
     "react-bootstrap": "^2.8.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.46.0",
     "react-icons": "^4.10.1",
     "react-lottie": "^1.2.3",
     "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
     "recharts": "^2.7.3",
-    "web-vitals": "^2.1.4"
+    "recoil": "^0.7.7",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -53,6 +58,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://34.74.103.54"
+  }
 }

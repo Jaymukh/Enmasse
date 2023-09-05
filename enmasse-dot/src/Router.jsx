@@ -3,6 +3,8 @@ import { Routes, Route, Navigate, useNavigate, Outlet } from 'react-router-dom';
 import { RouteConstants } from "./utils/constants/routeConstants";
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
+import { useRecoilValue } from "recoil";
+import { authState } from "./states";
 
 const customTheme = (outerTheme) =>
     createTheme({
@@ -82,16 +84,17 @@ const customTheme = (outerTheme) =>
         },
     });
 
-const ProtectedRoute = ({ isLogged, children }) => {
-    if (!isLogged) {
-        return <Navigate to={RouteConstants.login} />;
-    }
-    return <Outlet />;
+const ProtectedRoute = ({ auth, redirectPath = RouteConstants.root, children }) => {
+    if (!Object.keys(auth).length) {
+        return <Navigate to={redirectPath} />;
+      }
+    // return <Outlet />;
+    return children ? children : <Outlet />;
 }
 
 const AppRouter = () => {
     const outerTheme = useTheme();
-
+    const auth = useRecoilValue(authState);
     const [isLogged, setIsLogged] = useState(false);
     const [visiblePanel, setVisiblePanel] = useState(0);
     const [overlay, setOverlay] = useState(true);
@@ -130,7 +133,7 @@ const AppRouter = () => {
             <Suspense fallback={<div className=""></div>}>
                 <Routes>
                     <Route path={RouteConstants.login} element={<Login handleLoggedIn={handleLoggedIn} />} />
-                    <Route element={<ProtectedRoute isLogged={isLogged} />}>
+                    <Route element={<ProtectedRoute auth={auth} />}>
                         <Route path={RouteConstants.root} element={<HomeContainer handleVisiblePanel={handleVisiblePanel} handleOverlay={handleOverlay} handleInfographic={handleInfographic} overlay={overlay} showInfographic={showInfographic} />} />
                         <Route path={RouteConstants.dashboards} element={<DashboardContainer handleVisiblePanel={handleVisiblePanel} handleOverlay={handleOverlay} handleInfographic={handleInfographic} />} />
                         <Route path={RouteConstants.stories} element={<StoryContainer handleVisiblePanel={handleVisiblePanel} handleOverlay={handleOverlay} handleInfographic={handleInfographic} />} />
