@@ -4,14 +4,20 @@ import globe from '../../utils/images/globe.png';
 import ForgotPassword from './ForgotPassword';
 import EmailSent from './EmailSent';
 import TermsAndConditions from './TermsAndConditions';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from "react-hook-form";
+import { useUserService } from '../../services';
 
-export default function Login({ handleLoggedIn }) {
+
+export default function Login() {    
     // login component
     const [email, setEmail] = useState('');
     const [errorMessageEmail, setErrorMessageEmail] = useState('');
     const [errorMessagePassword, setErrorMessagePassword] = useState('');
     const [password, setPassword] = useState('');
     const [disabled, setDisabled] = useState(true);
+    const userService = useUserService();
 
     const handleEmailInput = (event) => {
         const email = event.target.value;
@@ -107,6 +113,22 @@ export default function Login({ handleLoggedIn }) {
         setShowTermsAndConditionsModal(false);
     };
 
+    const handleLogin = (flag) => {
+        userService.login(email, password)
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
+    const validationSchema = Yup.object().shape({
+        username: Yup.string().required('Username is required').email("Username is not a valid email"),
+        password: Yup.string().required('Password is required')
+    });
+
+    const formOptions = { resolver: yupResolver(validationSchema) };
+    const { register, handleSubmit, formState } = useForm(formOptions);
+    const { errors, isSubmitting } = formState;
+
     return (
         <div>
             <div className='row mx-0' style={{ height: '100vh', width: '100vw' }} >
@@ -135,7 +157,7 @@ export default function Login({ handleLoggedIn }) {
                         </div>
                         <input type='password' className='my-1 px-2 inputBoxHeight' value={password} placeholder='Enter your password here' minLength="8" onChange={handlePasswordInput} />
                         {errorMessagePassword && <p className='text-danger'>{errorMessagePassword}</p>}
-                        <button className={disabled ? 'mb-2 mt-4 inputBoxHeight login-btn bg-secondary text-white fs-6' : 'mb-2 mt-4 inputBoxHeight login-btn bg-dark text-white fs-6'} disabled={disabled} onClick={() => handleLoggedIn(true)}>Continue</button>
+                        <button className={disabled ? 'mb-2 mt-4 inputBoxHeight login-btn bg-secondary text-white fs-6' : 'mb-2 mt-4 inputBoxHeight login-btn bg-dark text-white fs-6'} disabled={disabled} onClick={() => handleLogin(true)}>Continue</button>
                         {/* <p className='text-muted mb-0 mt-2 login-p'>By clicking on continue you are agreeing to the Enmasse <a href='/' className='black login-p'>Terms & conditions</a> and <a href='/' className='black' >Privacy policies</a></p> */}
 
                         <p className='text-muted mb-0 mt-2 login-p'>By clicking on continue you are agreeing to the Enmasse
@@ -144,6 +166,8 @@ export default function Login({ handleLoggedIn }) {
                         </p>
                     </div>
                 </div>
+
+
 
                 {showForgotPasswordModal && (
                     <ForgotPassword closeForgotPasswordModal={closeForgotPasswordModal}

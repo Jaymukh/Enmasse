@@ -26,36 +26,44 @@ export const options = [
 
 export const countryData = [
     {
+        country: 'Global',
+        households: '1.65 Billion',
+        population: '8 Billion',
+        medianSpendonCoreSoln: '$6000',
+        entrepreneurialHouseholds: '500 Million',
+        tam: '$3 Trillion'
+    },
+    {
         country: 'India',
-        population: '1.39B',
-        annualAverageIncome: '$7500',
-        entrepreneurialHouseholds: '200M',
-        totalAddressableMarket: '$1 Trillion',
-        button: 'Explore More'
+        households: '285 Million',
+        population: '1.4 Billion',
+        medianSpendonCoreSoln: '$5000',
+        entrepreneurialHouseholds: '200 Million',
+        tam: '$1 Trillion',
     },
     {
         country: 'Central & South America',
+        households: '8 Billion',
         population: '1.39B',
         annualAverageIncome: '$7500',
         entrepreneurialHouseholds: '200M',
-        totalAddressableMarket: '$1 Trillion',
-        button: 'Explore More'
+        tam: '$1 Trillion',
     },
     {
         country: 'South East Asia',
+        households: '8 Billion',
         population: '1.39B',
         annualAverageIncome: '$7500',
         entrepreneurialHouseholds: '200M',
-        totalAddressableMarket: '$1 Trillion',
-        button: 'Explore More'
+        tam: '$1 Trillion',
     },
     {
         country: 'Africa',
+        households: '8 Billion',
         population: '1.39B',
         annualAverageIncome: '$7500',
         entrepreneurialHouseholds: '200M',
-        totalAddressableMarket: '$1 Trillion',
-        button: 'Explore More'
+        tam: '$1 Trillion',
     }
 ];
 

@@ -5,6 +5,7 @@ import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import { MdOutlineTravelExplore } from 'react-icons/md';
 import * as Constants from '../../utils/constants/Constants';
+import { RxExternalLink } from 'react-icons/rx';
 
 function ExploreNow() {
 	const [selectedValue, setSelectedValue] = useState('');
@@ -22,11 +23,11 @@ function ExploreNow() {
 	const closeExploreNowModal = () => {
 		setShowExploreNowModal(false);
 		setSelectedValue('');
-        setInputValue();
-        setSelectedDistricts(Constants.explorePlaces);
-        setSelectedDistrictOptions(Constants.explorePlaces);
-        setSelectedPlaceType("state");
-        setSelectedshowDiv(true);
+		setInputValue();
+		setSelectedDistricts(Constants.explorePlaces);
+		setSelectedDistrictOptions(Constants.explorePlaces);
+		setSelectedPlaceType("state");
+		setSelectedshowDiv(true);
 
 	};
 
@@ -76,7 +77,6 @@ function ExploreNow() {
 		setInputValue('');
 	};
 	const clearInput = () => {
-		debugger;
 		setSelectedValue('');
 		setInputValue();
 		setSelectedshowDiv(true);
@@ -86,7 +86,7 @@ function ExploreNow() {
 
 	return (
 		<div>
-			<button className='btn btn-black me-2' onClick={() => openExploreNowModal()} >
+			<button className='btn btn-black me-2 fs-13 grayBtnClr' onClick={() => openExploreNowModal()} >
 				<MdOutlineTravelExplore className='me-2' fontSize={20} />
 				Explore Now
 			</button>
@@ -95,15 +95,15 @@ function ExploreNow() {
 					<div className="modal-content">
 						<div className="modal-body d-flex flex-column justify-content-center w-auto m-3">
 							<div className='d-flex flex-row justify-content-between'>
-								<h5 >Explore Now</h5>
+								<h5 className='fs-24'>Explore Now</h5>
 								<button type="button" className="btn-close" onClick={() => closeExploreNowModal()}></button>
 							</div>
 							<div className='modal-dialog-scrollable'>
-								<p className='Dialog-p'>Explore the available list of regions in our platform. Our team is working on getting more regions unlocked for you !</p>
+								<p className='Dialog-p fs-12'>Explore the available list of regions in our platform. Our team is working on getting more regions unlocked for you !</p>
 								<div className='d-flex flex-row justify-content-start'>
 									<h5 className=''>{selectedValue}</h5>
 									{selectedValue && ( // Show clear button only when inputValue is not empty
-										<button type="button" className="btn-close mx-3" onClick={ () => clearInput() } />
+										<button type="button" className="btn-close mx-3" onClick={() => clearInput()} />
 									)}
 								</div>
 								<Stack spacing={2} sx={{ width: 300 }} className=''>
@@ -112,7 +112,6 @@ function ExploreNow() {
 										onInputChange={onhandleInputChange}
 										value={inputValue}
 										freeSolo
-										// options={Constants.explorePlaces.map((option) => option.state)}
 										options={selectedPlaceType === "districts"
 											? selectedDistrictOptions
 											: Constants.explorePlaces.map((option) => option.state)}
@@ -140,7 +139,11 @@ function ExploreNow() {
 										<div>
 											{Constants.explorePlaces.map((item) => (
 												<div key={item.state}>
-													<h5 className='d-flex justify-content-start'>{item.state}</h5>
+													<div className='d-flex justify-content-start'>
+														<h5 className='d-flex justify-content-start me-2'>{item.state}</h5>
+														<button className='border-0 white-bg mb-1'><RxExternalLink /></button>
+													</div>
+
 													<hr></hr>
 													<div className="row">
 														{item.districts.map((district) => (
@@ -174,96 +177,6 @@ function ExploreNow() {
 					</div>
 				</div>
 			</div>
-			{/* <button
-				className='btn btn-black me-2'
-				data-bs-toggle="modal"
-				data-bs-target="#ExploreNow"
-			>
-				<MdOutlineTravelExplore className='me-2' fontSize={20} />
-				Explore Now
-			</button>
-			<div className="modal fade" id="ExploreNow" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-				<div className="modal-dialog modal-dialog-scrollable modal-dialog-centered dialog-width">
-					<div className="modal-content dialog-width">
-						<div className="d-flex flex-row justify-content-between">
-							<h4 className="modal-title my-3 mx-4" id="staticBackdropLabel">Explore Now</h4>
-							<button type="button" className="btn-close my-3 mx-3" data-bs-dismiss="modal" aria-label="Close" onClick={() => onhandleClose()}>
-							</button>
-						</div>
-						<div className="modal-body d-flex flex-column justify-content-start mx-2">
-							<p className='Dialog-p'>Explore the available list of regions in our platform. Our team is working on getting more regions unlocked for you !</p>
-							<div className='d-flex flex-row justify-content-start'>
-								<h5 className='my-2'>{selectedValue}</h5>
-								{selectedValue && ( // Show clear button only when inputValue is not empty
-									<button type="button" className="btn-close my-3 mx-3 close-btn" onClick={clearInput} />
-								)}
-							</div>
-							<Stack spacing={2} sx={{ width: 300 }} className='my-4'>
-								<Autocomplete
-									id="free-solo-demo"
-									onInputChange={onhandleInputChange}
-									value={inputValue}
-									freeSolo
-									// options={Constants.explorePlaces.map((option) => option.state)}
-									options={selectedPlaceType === "districts"
-										? selectedDistrictOptions
-										: Constants.explorePlaces.map((option) => option.state)}
-									onChange={handleStateChange}
-									renderInput={(params) => (
-										<TextField
-											{...params}
-											label="search"
-											inputProps={{
-												...params.inputProps,
-												style: {
-													height: '1rem',
-													textAlign: 'left',
-													display: 'flex',
-													alignItems: 'center',
-												},
-											}}
-										/>
-									)}
-								/>
-							</Stack>
-							<div>
-								{selectedshowDiv ? (
-									// Show this div when selectedValue is true
-									<div>
-										{Constants.explorePlaces.map((item) => (
-											<div key={item.state}>
-												<h5 className='d-flex justify-content-start'>{item.state}</h5>
-												<hr></hr>
-												<div className="row">
-													{item.districts.map((district) => (
-														<div className="col-4 d-flex justify-content-start" key={district}>
-															<p className='color-green'>{district}</p>
-														</div>
-													))}
-												</div>
-											</div>
-										))}
-									</div>
-								) : (
-									// Show this div when selectedValue is false
-									<div className="div2">
-										<h5 className='d-flex justify-content-start'>{selectedValue}</h5>
-										<hr></hr>
-										<div className="row">
-											{selectedDistricts.map((district) => (
-												<div className="col-4 d-flex justify-content-start" key={district}>
-													<p className='color-green'>{district}</p>
-												</div>
-											))}
-										</div>
-									</div>
-								)}
-
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> */}
 		</div>
 	);
 }

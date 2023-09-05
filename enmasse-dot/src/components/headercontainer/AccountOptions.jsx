@@ -9,14 +9,15 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import Logout from '@mui/icons-material/Logout';
-import { MdArrowDropDown } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { RouteConstants } from '../../utils/constants/routeConstants';
+import { useUserService } from '../../services';
 
 function AccountOptions({ handleVisiblePanel }) {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 	const navigate = useNavigate();
+	const userService = useUserService();
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -26,6 +27,11 @@ function AccountOptions({ handleVisiblePanel }) {
 		handleVisiblePanel(index);		
 		handleClose();
 		navigate(RouteConstants.profile);
+	}
+
+	const handleLogout = () => {
+		userService.logout();
+		handleClose();
 	}
 
 	const handleClose = () => {
@@ -45,7 +51,6 @@ function AccountOptions({ handleVisiblePanel }) {
 						aria-expanded={open ? 'true' : undefined}
 					>
 						<Avatar sx={{ width: 30, height: 30, fontSize: 16 }}>M</Avatar>
-						<MdArrowDropDown className='mx-1' fontSize={25}/>
 					</IconButton>
 				</Tooltip>
 			</div>
@@ -69,7 +74,7 @@ function AccountOptions({ handleVisiblePanel }) {
 						</MenuItem>
 					))}					
 					<Divider className='my-0'/>
-					<MenuItem onClick={handleClose} className="menu-font-size mb-0" >
+					<MenuItem onClick={handleLogout} className="menu-font-size mb-0" >
 						<ListItemIcon>
 							<Logout fontSize="small" />
 						</ListItemIcon>
