@@ -16,7 +16,7 @@ const HomeContainer = ({ handleVisiblePanel, handleOverlay, handleInfographic, o
 
     const getUserDetails = () => {
         userService.getUserDetails().then((response) => {
-            if (Object.keys(response).length > 0) {
+            if (response) {
                 setLoggedUser(response);
             }
         });
