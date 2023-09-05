@@ -1,7 +1,7 @@
 import { useSetRecoilState } from 'recoil';
 import { RouteConstants } from '../utils/constants/routeConstants';
 import { useFetchWrapper } from '../helpers';
-import { authState, usersState } from '../states';
+import { authState, usersState, loggedUserState } from '../states';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const useUserService = () => {
@@ -11,6 +11,7 @@ const useUserService = () => {
     const fetchWrapper = useFetchWrapper();
     const setAuth = useSetRecoilState(authState);
     const setUsers = useSetRecoilState(usersState);
+    const setLoggedUser = useSetRecoilState(loggedUserState);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -38,6 +39,10 @@ const useUserService = () => {
     function getAll() {
         return fetchWrapper.get(getAllURL).then(setUsers);
     } 
+
+    function getUserDetails() {
+        return fetchWrapper.get().then(setLoggedUser);
+    }
 
     return {
         login,
