@@ -84,24 +84,19 @@ const customTheme = (outerTheme) =>
         },
     });
 
-const ProtectedRoute = ({ auth, redirectPath = RouteConstants.root, children }) => {
+const ProtectedRoute = ({ auth, redirectPath = RouteConstants.login, children }) => {
     if (!Object.keys(auth).length) {
         return <Navigate to={redirectPath} />;
       }
-    // return <Outlet />;
-    return children ? children : <Outlet />;
+    return <Outlet />;
 }
 
-const AppRouter = () => {
+const Router = () => {
     const outerTheme = useTheme();
     const auth = useRecoilValue(authState);
-    const [isLogged, setIsLogged] = useState(false);
     const [visiblePanel, setVisiblePanel] = useState(0);
     const [overlay, setOverlay] = useState(true);
     const [showInfographic, setShowInfographic] =useState(0);
-	
-
-    const navigate = useNavigate();
 
     const Login = useMemo(() => React.lazy(() => import("./components/login/Login")), []);
     const HomeContainer = useMemo(() => React.lazy(() => import("./components/HomeContainer")), []);
@@ -138,4 +133,4 @@ const AppRouter = () => {
     );
 };
 
-export default AppRouter;
+export default Router;
