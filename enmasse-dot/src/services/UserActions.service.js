@@ -1,21 +1,19 @@
 import { useSetRecoilState } from 'recoil';
 import { RouteConstants } from '../utils/constants/routeConstants';
 import { useFetchWrapper } from '../helpers';
-import { authState, usersState, loggedUserState } from '../states';
+import { authState } from '../states';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { APIS } from '../constants';
 
 const useUserService = () => {
     // const baseUrl = `${process.env.REACT_APP_BASE_API_URL}`;
-    const loginURL = '/users/login/';
-    const getAllURL = '/users/all/';
-    const getUserDetailsURL = '/users/me';
     const fetchWrapper = useFetchWrapper();
     const setAuth = useSetRecoilState(authState);
     const navigate = useNavigate();
     const location = useLocation();
 
     const login = (email_id, password) => {
-        return fetchWrapper.post(loginURL, { email_id, password })
+        return fetchWrapper.post(APIS.USERS.LOGIN, { email_id, password })
             .then(user => {
                 console.log("User data from API:", user);
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -37,11 +35,11 @@ const useUserService = () => {
     }
 
     function getAll() {
-        return fetchWrapper.get(getAllURL);
+        return fetchWrapper.get(APIS.USERS.APIS.GET_ALL_USERS);
     }
 
     function getUserDetails() {
-        return fetchWrapper.get(getUserDetailsURL);
+        return fetchWrapper.get(APIS.USERS.GET_LOGGED_USER);
     }
 
     return {

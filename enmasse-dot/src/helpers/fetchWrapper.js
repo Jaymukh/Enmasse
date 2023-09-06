@@ -20,9 +20,26 @@ function useFetchWrapper() {
             const token = auth?.tokens?.access;
             const isLoggedIn = !!token;
             const isTokenExpired = checkTokenExpired(token);
-
             if (isLoggedIn && !isTokenExpired) {
                 config.headers['Authorization'] = `Bearer ${token}`;
+            } if (isLoggedIn && isTokenExpired) {
+                try {
+                    const newAccessToken = getRefreshToken();
+                    const updatedAuth = {
+                        ...auth,
+                        tokens: {
+                            ...auth.tokens,
+                            access: newAccessToken
+                        }
+                    };
+                    setAuth(updatedAuth);
+                    localStorage.setItem('user', JSON.stringify(updatedAuth));
+                    return { Authorization: `Bearer ${newAccessToken}` };
+                } catch (error) {
+                    console.error('Error refreshing access token:', error);
+                    // You can choose to log the user out or handle this error differently
+                    return {};
+                }
             }
 
             return config;
