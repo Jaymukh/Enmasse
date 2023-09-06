@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../../../../App.css';
 import * as Constants from '../../../../../utils/constants/Constants'
 import EditInvite from './EditInvite';
@@ -8,7 +8,9 @@ import AddIcon from '@mui/icons-material/Add';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
-
+import { usersState} from "../../../../../states";
+import { useRecoilState } from "recoil";
+import { useUserService } from '../../../../../services';
 
 
 export default function Invite() {
@@ -17,6 +19,21 @@ export default function Invite() {
 	const [openInviteNew, setOpenInviteNew] = useState(false);
 	const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false); // Confirm Delete Model
 	const [selectedIndex, setSelectedIndex] = useState(null);
+	// all user's data
+	const [users, setUsers] = useRecoilState(usersState);
+	const userService = useUserService();
+	//function to get all the users
+	useEffect(() => {
+        getUsers();
+    }, []);
+
+    const getUsers = () => {
+        userService.getAll().then((response) => {
+            if (response) {
+                setUsers(response);
+            }
+        });
+    };
 	
 	const handleEditClick = (row) => {
 		setSelectedData(row);
@@ -25,11 +42,11 @@ export default function Invite() {
 		setSelectedData(null);
 	};
 	const handleUpdate = (updatedRow) => {
-		setInviteData((prevData) =>
+		setUsers((prevData) =>
 			prevData.map((row) => (row.id === updatedRow.id ? updatedRow : row))
 		);
 		console.log('updatedRow' + updatedRow);
-		console.log('inviteData' + inviteData);
+		console.log('users' + users);
 		handleCloseDialog();
 	};
 
@@ -49,10 +66,10 @@ export default function Invite() {
 	};
 	// function for Delete
 	const handleDeleteClick = () => {
-		console.log(inviteData);
-		var data = [...inviteData];
+		console.log(users);
+		var data = [...users];
 		data.splice(selectedIndex, 1);
-		setInviteData(data);
+		setUsers(data);
 		handleConfirmDeleteModal(false);
 	};
 
@@ -76,15 +93,15 @@ export default function Invite() {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{inviteData.map((row, index) => (
+							{users.map((row, index) => (
 								<TableRow
 									key={row.name}
 									sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 								>
-									<TableCell component="th" scope="row">{row.name}<br />{row.email} </TableCell>
+									<TableCell component="th" scope="row">{row.name}<br />{row.email_id} </TableCell>
 									<TableCell component="th" align="center" scope="row" sx={{ fontSize: '16px' }}><div className='color-green'>{row.role}</div></TableCell>
 									<TableCell component="th" align="center" scope="row">{row.company}</TableCell>
-									<TableCell component="th" align="center" scope="row">{row.companyType}</TableCell>
+									<TableCell component="th" align="center" scope="row">{row.company_type}</TableCell>
 									<TableCell align="center" className='' >
 										<button type='transparent' className='btn-white'>
 											<EditIcon className='color-gray' onClick={() => handleEditClick(row, index)} />
@@ -106,7 +123,7 @@ export default function Invite() {
 			<EditInvite selectedData={selectedData} handleEditClick={handleEditClick} handleCloseDialog={handleCloseDialog} handleUpdate={handleUpdate} />}
 
 			{openInviteNew && 
-			<InviteNew openInviteNew={openInviteNew} setOpenInviteNew={setOpenInviteNew} handleOpenInviteNew={handleOpenInviteNew} handleCloseInviteNew={handleCloseInviteNew} inviteData={inviteData} setInviteData={setInviteData} />}
+			<InviteNew openInviteNew={openInviteNew} setOpenInviteNew={setOpenInviteNew} handleOpenInviteNew={handleOpenInviteNew} handleCloseInviteNew={handleCloseInviteNew} users={users} setUsers={setUsers} />}
 
 			{showConfirmDeleteModal && 
 			<ConfirmDelete showConfirmDeleteModal={showConfirmDeleteModal} 
