@@ -7,3 +7,5 @@ const APIS = {
         UPDATE_LOGGED_USER: "/users/update/my/details/"
     }
 }
+
+export { APIS };

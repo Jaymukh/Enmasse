@@ -114,10 +114,7 @@ export default function Login() {
     };
 
     const handleLogin = (flag) => {
-        userService.login(email, password)
-        .catch(error => {
-            console.log(error);
-        });
+        userService.login(email, password);
     }
 
     const validationSchema = Yup.object().shape({
