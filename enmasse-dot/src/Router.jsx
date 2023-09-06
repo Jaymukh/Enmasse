@@ -1,5 +1,5 @@
 import React, { Suspense, useState, useMemo } from "react";
-import { Routes, Route, Navigate, useNavigate, Outlet } from 'react-router-dom';
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { RouteConstants } from "./utils/constants/routeConstants";
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';

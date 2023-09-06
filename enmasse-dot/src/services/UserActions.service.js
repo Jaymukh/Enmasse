@@ -11,15 +11,13 @@ const useUserService = () => {
     const getUserDetailsURL = '/users/me';
     const fetchWrapper = useFetchWrapper();
     const setAuth = useSetRecoilState(authState);
-    const setUsers = useSetRecoilState(usersState);
-    const setLoggedUser = useSetRecoilState(loggedUserState);
     const navigate = useNavigate();
     const location = useLocation();
 
     const login = (email_id, password) => {
         return fetchWrapper.post(loginURL, { email_id, password })
-
             .then(user => {
+                console.log("User data from API:", user);
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
                 setAuth(user);
@@ -27,22 +25,23 @@ const useUserService = () => {
                 // get return url from location state or default to home page
                 const from = (!location.pathname || location.pathname === '/login') ? RouteConstants.root : location.pathname;
                 navigate(from);
-            });
+            })
+            .catch(error => console.log(error))
     }
 
-    const logout  = () => {
+    const logout = () => {
         // remove user from local storage, set auth state to null and redirect to login page
         localStorage.removeItem('user');
         setAuth({});
         navigate(RouteConstants.login);
-    }  
+    }
 
     function getAll() {
-        return fetchWrapper.get(getAllURL).then(setUsers);
-    } 
+        return fetchWrapper.get(getAllURL);
+    }
 
     function getUserDetails() {
-        return fetchWrapper.get(getUserDetailsURL).then(setLoggedUser);
+        return fetchWrapper.get(getUserDetailsURL);
     }
 
     return {

@@ -21,6 +21,7 @@ const HomeContainer = ({ handleVisiblePanel, handleOverlay, handleInfographic, o
             }
         });
     };
+    
     return (
         <>
             <div className='w-100 primary-bg'>
