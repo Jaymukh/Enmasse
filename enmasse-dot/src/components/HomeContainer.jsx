@@ -19,7 +19,8 @@ const HomeContainer = ({ handleVisiblePanel, handleOverlay, handleInfographic, o
             if (response) {
                 setLoggedUser(response);
             }
-        });
+        })
+        .catch(error => console.log(error));;
     };
     
     return (

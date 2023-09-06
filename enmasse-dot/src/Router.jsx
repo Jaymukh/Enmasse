@@ -87,7 +87,7 @@ const customTheme = (outerTheme) =>
 const ProtectedRoute = ({ auth, redirectPath = RouteConstants.login, children }) => {
     if (!Object.keys(auth).length) {
         return <Navigate to={redirectPath} />;
-      }
+    }
     return <Outlet />;
 }
 
@@ -96,7 +96,7 @@ const Router = () => {
     const auth = useRecoilValue(authState);
     const [visiblePanel, setVisiblePanel] = useState(0);
     const [overlay, setOverlay] = useState(true);
-    const [showInfographic, setShowInfographic] =useState(0);
+    const [showInfographic, setShowInfographic] = useState(0);
 
     const Login = useMemo(() => React.lazy(() => import("./components/login/Login")), []);
     const HomeContainer = useMemo(() => React.lazy(() => import("./components/HomeContainer")), []);
@@ -107,16 +107,16 @@ const Router = () => {
     const handleVisiblePanel = (index) => {
         setVisiblePanel(index);
     };
-    
+
     const handleOverlay = (overlay) => {
         setOverlay(overlay);
     };
 
     const handleInfographic = (showInfographic) => {
-		setShowInfographic(showInfographic);
-	};
+        setShowInfographic(showInfographic);
+    };
 
-    return (    
+    return (
         <ThemeProvider theme={customTheme(outerTheme)}>
             <Suspense fallback={<div className=""></div>}>
                 <Routes>
