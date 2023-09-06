@@ -84,12 +84,11 @@ const customTheme = (outerTheme) =>
         },
     });
 
-const ProtectedRoute = ({ auth, redirectPath = RouteConstants.root, children }) => {
+const ProtectedRoute = ({ auth, redirectPath = RouteConstants.login, children }) => {
     if (!Object.keys(auth).length) {
         return <Navigate to={redirectPath} />;
       }
-    // return <Outlet />;
-    return children ? children : <Outlet />;
+    return <Outlet />;
 }
 
 const Router = () => {
