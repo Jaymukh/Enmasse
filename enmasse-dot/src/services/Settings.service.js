@@ -4,6 +4,8 @@ import { useFetchWrapper } from '../helpers';
 import { authState, usersState, loggedUserState } from '../states';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-const useUserService = () => {}
+const useSettingsService = () => {
+    const fetchWrapper = useFetchWrapper();
+}
 
-export { useUserService };
+export { useSettingsService };

@@ -59,9 +59,11 @@ const useUserService = () => {
     function setNewPassword() {
         return fetchWrapper.post(APIS.USERS.SET_NEW_PASSWORD);
     }
+
     const inviteNew = (newUser) => {
         return fetchWrapper.post(APIS.USERS.INVITE_NEW, newUser)
     }
+    
     const editInvite = (updatedUser) => {
         return fetchWrapper.post(APIS.USERS.REINVITE, updatedUser)
     }
