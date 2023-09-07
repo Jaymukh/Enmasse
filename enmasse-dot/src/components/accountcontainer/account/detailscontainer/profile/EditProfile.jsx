@@ -5,10 +5,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import '../../../../../App.css';
+import * as Constants from '../../../../../../src/utils/constants/Constants';
 
 export default function Editprofile({
     selectedData,
-    setProfileData,
     handleUpdate,
     handleCloseDialog
 }) {
@@ -46,42 +46,43 @@ export default function Editprofile({
                     <input type="text" placeholder="Enter your name" name='name' value={updatedData.name}
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black inputBoxHeight' />
                     <h6 className='my-2'>Email</h6>
-                    <input type="email" placeholder="Enter your Email ID" name='email' value={updatedData.email}
+                    <input type="email" placeholder="Enter your Email ID" name='email_id' value={updatedData.email_id}
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black inputBoxHeight' />
                     <h6 className='my-2'>Phone Number</h6>
-                    <input type="tel" maxlength="10" placeholder="Enter your phone number" name='phone' value={updatedData.phone}
-                        onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black inputBoxHeight' />
-                    <h6 className='my-2'>Country</h6>
-                    <Select
-                        name='country'
-                        value={updatedData.country}
-                        displayEmpty
-                        inputProps={{ 'aria-label': 'Without label' }}
-                        className='btn-outline-black inputBoxHeight p-0'
-                        onChange={(e) => handleChangeData(e)}
-                    >
-                        <MenuItem value='India'>India</MenuItem>
-                        <MenuItem value='China'>China</MenuItem>
-                        <MenuItem value='England'>England</MenuItem>
-                    </Select>
-                    <h6 className='my-2'>Company</h6>
-                    <input type="text" placeholder="Business Name" name='company' value={updatedData.company}
-                        onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black inputBoxHeight' />
-                    <h6 className='my-2'>Designation</h6>
-                    <input type="text" placeholder="Email ID" name='designation' value={updatedData.designation}
+                    <input type="tel" maxLength="10" placeholder="Enter your Phone number" name='phone_number' value={updatedData.phone_number}
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black inputBoxHeight' />
                     <h6 className='my-2'>Role</h6>
+                    <input type="text" placeholder="Enter your role" name='role' value={updatedData.role}
+                        onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black inputBoxHeight' />
+                    <h6 className='my-2'>Designation</h6>
+                    <input type="text" placeholder="Enter your designation" name='designation' value={updatedData.designation}
+                        onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black inputBoxHeight' />
+                    <h6 className='my-2'>Company</h6>
+                    <Select
+                        name='company'
+                        value={updatedData.company}
+                        displayEmpty
+                        inputProps={{ 'aria-label': 'Without label' }}
+                        className='btn-outline-black inputBoxHeight p-0'
+                        onChange={(e) => handleChangeData(e)}
+                    >
+                        {Constants.company.map((company) => (
+                            <MenuItem value={company.key}>{company.value}</MenuItem>
+                        ))}
+                    </Select>
+                    <h6 className='my-2'>Company Type</h6>
                     <Select
                         sx={{ minWidth: 200 }}
-                        name='role'
-                        value={updatedData.role}
+                        name='company_type'
+                        value={updatedData.company_type}
                         onChange={(e) => handleChangeData(e)}
                         displayEmpty
                         inputProps={{ 'aria-label': 'Without label' }}
                         className='btn-outline-black inputBoxHeight p-0'
                     >
-                        <MenuItem value='Admin'>Admin</MenuItem>
-                        <MenuItem value='User'>User</MenuItem>
+                        {Constants.company_type.map((company_type) => (
+                            <MenuItem value={company_type.key}>{company_type.value}</MenuItem>
+                        ))}
                     </Select>
                     <button className='btn-black inputBoxHeight my-5' onClick={handleUpdateClick}>Update Profile</button>
                 </Box>

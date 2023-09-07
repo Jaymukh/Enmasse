@@ -89,58 +89,58 @@ export const inviteData = [
     {
         id: '0',
         name: 'JAY',
-        email: 'jay@gmail.com',
+        email_id: 'jay@gmail.com',
         role: 'Admin',
         company: 'Enmasse',
-        companyType: 'Enmasse'
+        company_type: 'Enmasse'
     },
     {
         id: '1',
         name: 'SUDHA',
-        email: 'sudha@gmail.com',
+        email_id: 'sudha@gmail.com',
         role: 'Admin',
         company: 'Tarento',
-        companyType: 'Enmasse'
+        company_type: 'Enmasse'
     },
     {
         id: '2',
         name: 'DAYANA',
-        email: 'dayana@gmail.com',
+        email_id: 'dayana@gmail.com',
         role: 'Admin',
         company: 'Enmasse',
-        companyType: 'Enmasse'
+        company_type: 'Enmasse'
     },
     {
         id: '3',
         name: 'ILMA',
-        email: 'ilma@gmail.com',
+        email_id: 'ilma@gmail.com',
         role: 'Admin',
         company: 'Enmasse',
-        companyType: 'Business'
+        company_type: 'Business'
     },
     {
         id: '4',
         name: 'Hashini',
-        email: 'hashini@gmail.com',
+        email_id: 'hashini@gmail.com',
         role: 'Admin',
         company: 'Enmasse',
-        companyType: 'Enmasse'
+        company_type: 'Enmasse'
     },
     {
         id: '5',
         name: 'Aditya',
-        email: 'aditya@gmail.com',
+        email_id: 'aditya@gmail.com',
         role: 'Admin',
         company: 'Tarento',
-        companyType: 'Enmasse'
+        company_type: 'Enmasse'
     },
     {
         id: '6',
         name: 'Shakshi',
-        email: 'shakshi@gmail.com',
+        email_id: 'shakshi@gmail.com',
         role: 'Admin',
         company: 'Enmasse',
-        companyType: 'Enmasse'
+        company_type: 'Enmasse'
     },
 ];
 
@@ -229,8 +229,8 @@ export const coreSolutionCircleLayerProps = {
 
 export const company = [
     {
-        key: 'Enmasse',
-        value: 'Enmasse'
+        key: 'enmasse',
+        value: 'enmasse'
     },
     {
         key: 'Sarvagram',
@@ -246,7 +246,7 @@ export const company = [
     }
 ];
 
-export const companyType = [
+export const company_type = [
     {
         key: 'Enmasse',
         value: 'Enmasse'
@@ -263,12 +263,13 @@ export const companyType = [
 
 export const profileData = {
     name: 'Kartik Parija',
-    email: 'kartik@enmasse.world',
-    phone: 76564545,
+    email_id: 'kartik@enmasse.world',
+    company: 'enmasse',
+    company_type: 'Enmasse',
+    role: 'Admin',
+    phone_number: 6526256278,
     designation: 'Manager',
-    company: 'Enmasse',
-    country: 'India',
-    role: 'Admin'
+    country: 'India'
 };
 
 export const headers = ['State', 'Entrepreneurial Households', 'Median Annual EH Spend on Core Solutions', 'Median Annual EH Income', 'EM Rank']

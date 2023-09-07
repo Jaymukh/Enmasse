@@ -6,14 +6,21 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import * as Constants from '../../../../../utils/constants/Constants';
 import '../../../../../App.css';
+import { useUserService } from '../../../../../services';
+import { useRecoilValue } from "recoil";
+import { loggedUserState} from "../../../../../states";
 
 export default function InviteNew({
     openInviteNew,
     handleCloseInviteNew,
-    inviteData,
-    setInviteData
+    users,
+    setUsers,
+    getUsers
 }) {
     const [newData, setNewData] = useState({});
+    const userService = useUserService();
+    const loggedUser= useRecoilValue(loggedUserState);
+
 
     const handleChangeData = (e) => {
         e.preventDefault();
@@ -21,8 +28,16 @@ export default function InviteNew({
         var value = e.target.value;
         setNewData({ ...newData, [name]: value });
     }
-    const handleSubmitInviteNew = () => {
-        setInviteData([...inviteData, newData]);
+    const handleSubmitInviteNew = () => {        
+        console.log(newData);
+        var payload = {...newData, user_id: loggedUser.user_id, designation: 'Manager', country: 'India', phone_number: 5436525362, status: 'Invited' };
+        userService.inviteNew(payload).then((response) => {
+            if (response) {
+                console.log(response);
+                getUsers();
+            }
+        })
+        .catch(error => console.log(error));
         handleCloseInviteNew();
     };
 
@@ -47,7 +62,7 @@ export default function InviteNew({
                     <input type="text" placeholder="Enter your name" value={newData.name} name='name'
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black drawer-input-box-height' />
                     <h6 className='my-1 font-87-5'>Email</h6>
-                    <input type="email" placeholder="Enter your Email ID" value={newData.email} name='email'
+                    <input type="email" placeholder="Enter your Email ID" value={newData.email_id} name='email_id'
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black drawer-input-box-height' />
                     <h6 className='my-1 font-87-5'>Role</h6>
                     <input type="tel" maxlength="10" placeholder="Enter your role" value={newData.role} name='role'
@@ -65,17 +80,17 @@ export default function InviteNew({
                             <MenuItem value={company.key}>{company.value}</MenuItem>
                         ))}
                     </Select>
-                    <h6 className='my-1 font-87-5 font-87-5'>Company type</h6>
+                    <h6 className='my-1 font-87-5 font-87-5'>Company Type</h6>
                     <Select
-                        value={newData.companyType}
-                        name='companyType'
+                        value={newData.company_type}
+                        name='company_type'
                         displayEmpty
                         inputProps={{ 'aria-label': 'Without label' }}
                         className='btn-outline-black drawer-input-box-height p-0'
                         onChange={(e) => handleChangeData(e)}
                     >
-                        {Constants.companyType.map((companyType) => (
-                            <MenuItem value={companyType.key}>{companyType.value}</MenuItem>
+                        {Constants.company_type.map((company_type) => (
+                            <MenuItem value={company_type.key}>{company_type.value}</MenuItem>
                         ))}
                     </Select>
                     <text className='my-3 Note  d-flex justify-content-center align-items-center'>Note: Admins will be able to invite users to the platform</text>

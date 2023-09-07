@@ -9,6 +9,8 @@ const useUserService = () => {
     const loginURL = '/users/login/';
     const getAllURL = '/users/all/';
     const getUserDetailsURL = '/users/me';
+    const inviteNewURL = '/users/invite/';
+    const editInviteURL = '/users/reinvite/';
     const fetchWrapper = useFetchWrapper();
     const setAuth = useSetRecoilState(authState);
     const navigate = useNavigate();
@@ -43,12 +45,20 @@ const useUserService = () => {
     function getUserDetails() {
         return fetchWrapper.get(getUserDetailsURL);
     }
+    const inviteNew = (newUser) => {
+        return fetchWrapper.post(inviteNewURL, newUser)
+    }
+    const editInvite = (updatedUser) => {
+        return fetchWrapper.post(editInviteURL, updatedUser)
+    }
 
     return {
         login,
         logout,
         getAll,
-        getUserDetails
+        getUserDetails,
+        inviteNew,
+        editInvite
     }
 }
 

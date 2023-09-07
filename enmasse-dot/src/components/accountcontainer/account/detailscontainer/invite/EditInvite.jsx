@@ -29,8 +29,8 @@ export default function EditInvite({
         <div className=''>
             <Drawer
                 anchor='right'
-                open={selectedData}
-                onClose={() => handleCloseDialog}
+                open={selectedData !== null}
+                onClose={() => handleCloseDialog()}
                 className='edit-profile-drawer-width edit-profile-drawer-padding'
             >
                 <Box className='d-flex flex-wrap justify-content-between mb-2'>
@@ -38,7 +38,7 @@ export default function EditInvite({
                         Edit
                     </h5>
                     <button className='bg-white border-0'>
-                        <CloseIcon onClick={() => handleCloseDialog} />
+                        <CloseIcon onClick={() => handleCloseDialog()} />
                     </button>
                 </Box>
                 <Box className='d-flex justify-content-center flex-column'>
@@ -46,7 +46,7 @@ export default function EditInvite({
                     <input type="text" placeholder="Enter your name" value={updatedData.name} name='name'
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black drawer-input-box-height' />
                     <h6 className='my-1 font-87-5'>Email</h6>
-                    <input type="email" placeholder="Enter your Email ID" value={updatedData.email} name='email'
+                    <input type="email" placeholder="Enter your Email ID" value={updatedData.email_id} name='email'
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black drawer-input-box-height' />
                     <h6 className='my-1 font-87-5'>Role</h6>
                     <input type="tel" maxlength="10" placeholder="Enter your phone number" value={updatedData.role} name='role'
@@ -66,15 +66,15 @@ export default function EditInvite({
                     </Select>
                     <h6 className='my-1 font-87-5'>CompanyType</h6>
                     <Select
-                        value={updatedData.companyType}
+                        value={updatedData.company_type}
                         name='companyType'
                         displayEmpty
                         inputProps={{ 'aria-label': 'Without label' }}
                         className='btn-outline-black drawer-input-box-height p-0'
                         onChange={(e) => handleChangeData(e)}
                     >
-                        {Constants.companyType.map((companyType) => (
-                            <MenuItem value={companyType.key}>{companyType.value}</MenuItem>
+                        {Constants.company_type.map((company_type) => (
+                            <MenuItem value={company_type.key}>{company_type.value}</MenuItem>
                         ))}
                     </Select>
                     <button className='btn-black drawer-input-box-height mt-2 mb-3' onClick={handleUpdateClick}>Update</button>

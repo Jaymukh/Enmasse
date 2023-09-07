@@ -8,9 +8,10 @@ import AddIcon from '@mui/icons-material/Add';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
-import { usersState} from "../../../../../states";
-import { useRecoilState } from "recoil";
+import { usersState, loggedUserState} from "../../../../../states";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { useUserService } from '../../../../../services';
+
 
 
 export default function Invite() {
@@ -22,6 +23,8 @@ export default function Invite() {
 	// all user's data
 	const [users, setUsers] = useRecoilState(usersState);
 	const userService = useUserService();
+    const loggedUser= useRecoilValue(loggedUserState);
+
 	//function to get all the users
 	useEffect(() => {
         getUsers();
@@ -31,6 +34,7 @@ export default function Invite() {
         userService.getAll().then((response) => {
             if (response) {
                 setUsers(response);
+				console.log(response);
             }
         });
     };
@@ -42,13 +46,21 @@ export default function Invite() {
 		setSelectedData(null);
 	};
 	const handleUpdate = (updatedRow) => {
-		setUsers((prevData) =>
-			prevData.map((row) => (row.id === updatedRow.id ? updatedRow : row))
-		);
-		console.log('updatedRow' + updatedRow);
-		console.log('users' + users);
-		handleCloseDialog();
+		// setUsers((prevData) =>
+		// 	prevData.map((row) => (row.id === updatedRow.id ? updatedRow : row))
+		// );
+		// handleCloseDialog();
+		var payload = {...updatedRow, user_id: 'dbf1d5e0-d4ad-4664-9f86-d89555e79cef', designation: 'Manager', country: 'India', phone_number: null, status: 'Invited' };
+		console.log(payload);
+        userService.editInvite(payload).then((response) => {
+            if (response) {
+                console.log(response);
+                // getUsers();
+            }
+        })
+        .catch(error => console.log(error));
 	};
+	
 
 	// invite new drawer
 	const handleOpenInviteNew = () => {
@@ -106,9 +118,6 @@ export default function Invite() {
 										<button type='transparent' className='btn-white'>
 											<EditIcon className='color-gray' onClick={() => handleEditClick(row, index)} />
 										</button>
-										{/* <button type='transparent' className='btn-white'>
-											<DeleteSweepIcon className='color-orange fs-5 ms-2' onClick={() => handleDeleteClick(index)} />
-										</button> */}
 										<button type='transparent' className='btn-white'>
 											<DeleteSweepIcon className='color-orange fs-5 ms-2' onClick={() => handleConfirmDeleteModal(true, index)} />
 										</button>
@@ -120,10 +129,10 @@ export default function Invite() {
 				</TableContainer>
 			</div>
 			{selectedData && 
-			<EditInvite selectedData={selectedData} handleEditClick={handleEditClick} handleCloseDialog={handleCloseDialog} handleUpdate={handleUpdate} />}
+			<EditInvite selectedData={selectedData} handleCloseDialog={handleCloseDialog} handleUpdate={handleUpdate} />}
 
 			{openInviteNew && 
-			<InviteNew openInviteNew={openInviteNew} setOpenInviteNew={setOpenInviteNew} handleOpenInviteNew={handleOpenInviteNew} handleCloseInviteNew={handleCloseInviteNew} users={users} setUsers={setUsers} />}
+			<InviteNew openInviteNew={openInviteNew} setOpenInviteNew={setOpenInviteNew} handleOpenInviteNew={handleOpenInviteNew} handleCloseInviteNew={handleCloseInviteNew} users={users} setUsers={setUsers} getUsers={getUsers} />}
 
 			{showConfirmDeleteModal && 
 			<ConfirmDelete showConfirmDeleteModal={showConfirmDeleteModal} 
