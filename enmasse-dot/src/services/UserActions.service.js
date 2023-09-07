@@ -41,12 +41,20 @@ const useUserService = () => {
     function getUserDetails() {
         return fetchWrapper.get(APIS.USERS.GET_LOGGED_USER)
     }
+    const inviteNew = (newUser) => {
+        return fetchWrapper.post(APIS.USERS.INVITE_NEW, newUser)
+    }
+    const editInvite = (updatedUser) => {
+        return fetchWrapper.post(APIS.USERS.REINVITE, updatedUser)
+    }
 
     return {
         login,
         logout,
         getAll,
-        getUserDetails
+        getUserDetails,
+        inviteNew,
+        editInvite
     }
 }
 

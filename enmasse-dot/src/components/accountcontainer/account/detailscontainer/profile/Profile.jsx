@@ -43,12 +43,12 @@ export default function Profile() {
                             <p className="color-black">{profileData.name}</p>
                         </li>
                         <li >
-                            <p className="text-muted fs-6  mb-0">Phone:</p>
-                            <p className="color-black">{profileData.phone}</p>
-                        </li>
-                        <li >
                             <p className="text-muted fs-6  mb-0">Company Name:</p>
                             <p className="color-black">{profileData.company}</p>
+                        </li>
+                        <li >
+                            <p className="text-muted fs-6  mb-0">Phone Number:</p>
+                            <p className="color-black">{profileData.phone_number}</p>
                         </li>
                         <li >
                             <p className="text-muted fs-6  mb-0">Role:</p>
@@ -60,7 +60,7 @@ export default function Profile() {
                     <ul className='edit-profile-list'>
                         <li >
                             <p className="text-muted fs-6  mb-0">Email Id:</p>
-                            <p className="color-black">{profileData.email}</p>
+                            <p className="color-black">{profileData.email_id}</p>
                         </li>
                         <li >
                             <p className="text-muted fs-6  mb-0">Designation:</p>
@@ -73,7 +73,12 @@ export default function Profile() {
                     </ul>
                 </div>
             </div>
-            {selectedData && (<EditProfile selectedData={selectedData} handleCloseDialog={handleCloseDialog} profileData={profileData} setProfileData={setProfileData} handleUpdate={handleUpdate} />)}
+            {selectedData && 
+                (<EditProfile selectedData={selectedData} 
+                handleCloseDialog={handleCloseDialog} 
+                profileData={profileData} 
+                handleUpdate={handleUpdate} />)
+            }
         </div>
     )
 }

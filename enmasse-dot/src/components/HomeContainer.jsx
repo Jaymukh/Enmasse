@@ -9,7 +9,7 @@ import { useUserService } from '../services';
 const HomeContainer = ({ handleVisiblePanel, handleOverlay, handleInfographic, overlay, showInfographic }) => {
     const [loggedUser, setLoggedUser] = useRecoilState(loggedUserState);
     const userService = useUserService();
-
+    
     useEffect(() => {
         getUserDetails();
     }, []);
