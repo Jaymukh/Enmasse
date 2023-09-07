@@ -8,7 +8,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
-import { usersState, loggedUserState} from "../../../../../states";
+import { usersState, loggedUserState } from "../../../../../states";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useUserService } from '../../../../../services';
 
@@ -23,22 +23,22 @@ export default function Invite() {
 	// all user's data
 	const [users, setUsers] = useRecoilState(usersState);
 	const userService = useUserService();
-    const loggedUser= useRecoilValue(loggedUserState);
+	const loggedUser = useRecoilValue(loggedUserState);
 
 	//function to get all the users
 	useEffect(() => {
-        getUsers();
-    }, []);
+		getUsers();
+	}, []);
 
-    const getUsers = () => {
-        userService.getAll().then((response) => {
-            if (response) {
-                setUsers(response);
-				console.log(response);
-            }
-        });
-    };
-	
+	const getUsers = () => {
+		userService.getAll().then((response) => {
+			if (response) {
+				setUsers(response);
+				console.log('users' + response);
+			}
+		});
+	};
+
 	const handleEditClick = (row) => {
 		setSelectedData(row);
 	};
@@ -46,21 +46,19 @@ export default function Invite() {
 		setSelectedData(null);
 	};
 	const handleUpdate = (updatedRow) => {
-		// setUsers((prevData) =>
-		// 	prevData.map((row) => (row.id === updatedRow.id ? updatedRow : row))
-		// );
-		// handleCloseDialog();
-		var payload = {...updatedRow, user_id: 'dbf1d5e0-d4ad-4664-9f86-d89555e79cef', designation: 'Manager', country: 'India', phone_number: null, status: 'Invited' };
-		console.log(payload);
-        userService.editInvite(payload).then((response) => {
-            if (response) {
-                console.log(response);
-                // getUsers();
-            }
-        })
-        .catch(error => console.log(error));
+		userService.editInvite(updatedRow).then((response) => {
+			if (response) {
+				console.log('response' + response);
+				setUsers((prevData) =>
+					prevData.map((row) => (row.user_id === updatedRow.user_id ? updatedRow : row))
+				);
+				// getUsers();
+			}
+		})
+			.catch(error => console.log('error while updating the data'+ error));
+			handleCloseDialog();
 	};
-	
+
 
 	// invite new drawer
 	const handleOpenInviteNew = () => {
@@ -68,8 +66,8 @@ export default function Invite() {
 	};
 	const handleCloseInviteNew = () => {
 		setOpenInviteNew(false);
-	}; 
-	
+	};
+
 	// Confirm Delete Model
 	const handleConfirmDeleteModal = (showConfirmDeleteModal, index) => {
 		setShowConfirmDeleteModal(showConfirmDeleteModal);
@@ -128,15 +126,15 @@ export default function Invite() {
 					</Table>
 				</TableContainer>
 			</div>
-			{selectedData && 
-			<EditInvite selectedData={selectedData} handleCloseDialog={handleCloseDialog} handleUpdate={handleUpdate} />}
+			{selectedData &&
+				<EditInvite selectedData={selectedData} handleCloseDialog={handleCloseDialog} handleUpdate={handleUpdate} />}
 
-			{openInviteNew && 
-			<InviteNew openInviteNew={openInviteNew} setOpenInviteNew={setOpenInviteNew} handleOpenInviteNew={handleOpenInviteNew} handleCloseInviteNew={handleCloseInviteNew} users={users} setUsers={setUsers} getUsers={getUsers} />}
+			{openInviteNew &&
+				<InviteNew openInviteNew={openInviteNew} setOpenInviteNew={setOpenInviteNew} handleOpenInviteNew={handleOpenInviteNew} handleCloseInviteNew={handleCloseInviteNew} users={users} setUsers={setUsers} getUsers={getUsers} />}
 
-			{showConfirmDeleteModal && 
-			<ConfirmDelete showConfirmDeleteModal={showConfirmDeleteModal} 
-			handleConfirmDeleteModal={handleConfirmDeleteModal} selectedIndex={selectedIndex} handleDeleteClick={handleDeleteClick} />}
+			{showConfirmDeleteModal &&
+				<ConfirmDelete showConfirmDeleteModal={showConfirmDeleteModal}
+					handleConfirmDeleteModal={handleConfirmDeleteModal} selectedIndex={selectedIndex} handleDeleteClick={handleDeleteClick} />}
 		</div>
 
 
