@@ -4,18 +4,6 @@ import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import Avatar from '@mui/material/Avatar';
 import Navale from '../images/family-sample.png';
 
-export const TOKEN =
-    'pk.eyJ1IjoiZGF5YW5hZWR3aW4iLCJhIjoiY2xqbnpmcW91MDl0dDNkcGp3eDJ4cGE5cSJ9.q2SWsgW4OxyhoosSjKsANQ';
-export const transparentMapStyle =
-    'mapbox://styles/dayanaedwin/cljoaqv3800kl01pj2o567vfj';
-export const localMapStyle = 'mapbox://styles/dayanaedwin/cljwfg4zh022b01pq8n4kgcxw';
-
-export const transparentMapStyleV2 = 'mapbox://styles/dayanaedwin/clk9irdd300pf01pd0l8q9uxx';
-
-export const mapStyle = 'mapbox://styles/dayanaedwin/cljoaqv3800kl01pj2o567vfj';
-
-export const revgeocodeURL = 'https://revgeocode.search.hereapi.com/v1/revgeocode?at=';
-
 export const options = [
     { key: 0, label: 'All', type: 'radius_all' },
     { key: 1, label: 'Healthcare', type: 'radius_edu' },

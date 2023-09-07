@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Header from './headercontainer/Header';
 import MapContainer from './mapcontainer/MapContainer';
 import OverlayContainer from '../components/overlaycontainer/OverlayContainer';
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { loggedUserState} from "../states";
 import { useUserService } from '../services';
 

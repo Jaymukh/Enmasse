@@ -1,1 +1,2 @@
-export { useFetchWrapper } from './fetchWrapper';
+export * from './fetchWrapper';
+export * from './initialGenerator';
