@@ -46,7 +46,7 @@ export default function EditInvite({
                     <input type="text" placeholder="Enter your name" value={updatedData.name} name='name'
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black drawer-input-box-height' />
                     <h6 className='my-1 font-87-5'>Email</h6>
-                    <input type="email" placeholder="Enter your Email ID" value={updatedData.email_id} name='email'
+                    <input type="email" placeholder="Enter your Email ID" value={updatedData.email_id} name='email_id'
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black drawer-input-box-height' />
                     <h6 className='my-1 font-87-5'>Role</h6>
                     <input type="tel" maxlength="10" placeholder="Enter your phone number" value={updatedData.role} name='role'
