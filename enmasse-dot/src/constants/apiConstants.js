@@ -1,6 +1,7 @@
 const APIS = {
     USERS: {
         LOGIN: "/users/login/",
+        LOGOUT: '/users/logout/',
         GET_LOGGED_USER: "/users/me/",
         GET_ALL_USERS: "/users/all/",
         GET_REFRESH_TOKEN: "/users/token-refresh/",

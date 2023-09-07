@@ -1,4 +1,4 @@
-import { useSetRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 import { useFetchWrapper } from '../helpers';
 import { authState, loggedUserState } from '../states';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { APIS, RouteConstants } from '../constants';
 const useUserService = () => {
     // const baseUrl = `${process.env.REACT_APP_BASE_API_URL}`;
     const fetchWrapper = useFetchWrapper();
-    const setAuth = useSetRecoilState(authState);
+    const [auth, setAuth] = useRecoilState(authState);
     const setLoggedUser = useSetRecoilState(loggedUserState);
     const navigate = useNavigate();
     const location = useLocation();
@@ -21,25 +21,31 @@ const useUserService = () => {
                 getUserDetails().then(data => {
                     setLoggedUser(data);
                 })
-                .catch(error => {
-                    console.log(error);
-                });
+                    .catch(error => {
+                        console.log(error);
+                    });
                 // get return url from location state or default to home page
                 const from = (!location.pathname || location.pathname === '/login') ? RouteConstants.root : location.pathname;
-                if(!user.is_first_login) {
+                if (!user.is_first_login) {
                     navigate(RouteConstants.update_password);
                 } else {
                     navigate(from);
-                }                
+                }
             })
             .catch(error => console.log(error))
     }
 
     const logout = () => {
-        // remove user from local storage, set auth state to null and redirect to login page
-        localStorage.removeItem('user');
-        setAuth({});
-        navigate(RouteConstants.login);
+        const refresh = auth?.tokens?.refresh;
+        return fetchWrapper.post(APIS.USERS.LOGIN, { refresh })
+            .then(response => {
+                // remove user from local storage, set auth state to null and redirect to login page
+                localStorage.removeItem('user');
+                setAuth({});
+                navigate(RouteConstants.login);
+            })
+            .catch(error => console.log(error));
+
     }
 
     function getAll() {
@@ -49,7 +55,7 @@ const useUserService = () => {
     function getUserDetails() {
         return fetchWrapper.get(APIS.USERS.GET_LOGGED_USER);
     }
-    
+
     function setNewPassword() {
         return fetchWrapper.post(APIS.USERS.SET_NEW_PASSWORD);
     }
