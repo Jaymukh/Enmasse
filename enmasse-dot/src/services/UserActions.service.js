@@ -26,7 +26,7 @@ const useUserService = () => {
                     });
                 // get return url from location state or default to home page
                 const from = (!location.pathname || location.pathname === '/login') ? RouteConstants.root : location.pathname;
-                if (!user.is_first_login) {
+                if (user.is_first_login) {
                     navigate(RouteConstants.update_password);
                 } else {
                     navigate(from);
