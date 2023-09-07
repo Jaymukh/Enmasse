@@ -6,7 +6,8 @@ const APIS = {
         GET_REFRESH_TOKEN: "/users/token-refresh/",
         UPDATE_LOGGED_USER: "/users/update/my/details/",
         INVITE_NEW: '/users/invite/',
-        REINVITE: '/users/reinvite/'
+        REINVITE: '/users/reinvite/',
+        SET_NEW_PASSWORD: '/users/set-new-passowrd/'
     }
 }
 

@@ -1,9 +1,8 @@
 import { useSetRecoilState } from 'recoil';
-import { RouteConstants } from '../utils/constants/routeConstants';
 import { useFetchWrapper } from '../helpers';
 import { authState, loggedUserState } from '../states';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { APIS } from '../constants';
+import { APIS, RouteConstants } from '../constants';
 
 const useUserService = () => {
     // const baseUrl = `${process.env.REACT_APP_BASE_API_URL}`;
@@ -19,10 +18,19 @@ const useUserService = () => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
                 setAuth(user);
-                
+                getUserDetails().then(data => {
+                    setLoggedUser(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
                 // get return url from location state or default to home page
                 const from = (!location.pathname || location.pathname === '/login') ? RouteConstants.root : location.pathname;
-                navigate(from);
+                if(!user.is_first_login) {
+                    navigate(RouteConstants.update_password);
+                } else {
+                    navigate(from);
+                }                
             })
             .catch(error => console.log(error))
     }
@@ -39,7 +47,11 @@ const useUserService = () => {
     }
 
     function getUserDetails() {
-        return fetchWrapper.get(APIS.USERS.GET_LOGGED_USER)
+        return fetchWrapper.get(APIS.USERS.GET_LOGGED_USER);
+    }
+    
+    function setNewPassword() {
+        return fetchWrapper.post(APIS.USERS.SET_NEW_PASSWORD);
     }
     const inviteNew = (newUser) => {
         return fetchWrapper.post(APIS.USERS.INVITE_NEW, newUser)
@@ -54,7 +66,8 @@ const useUserService = () => {
         getAll,
         getUserDetails,
         inviteNew,
-        editInvite
+        editInvite,
+        setNewPassword
     }
 }
 
