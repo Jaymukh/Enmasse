@@ -1,6 +1,6 @@
 import React, { Suspense, useState, useMemo } from "react";
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import { RouteConstants } from "./utils/constants/routeConstants";
+import { RouteConstants } from "./constants";
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import { useRecoilValue } from "recoil";
@@ -87,7 +87,7 @@ const customTheme = (outerTheme) =>
 const ProtectedRoute = ({ auth, redirectPath = RouteConstants.login, children }) => {
     if (!Object.keys(auth).length) {
         return <Navigate to={redirectPath} />;
-      }
+    }
     return <Outlet />;
 }
 
@@ -96,9 +96,10 @@ const Router = () => {
     const auth = useRecoilValue(authState);
     const [visiblePanel, setVisiblePanel] = useState(0);
     const [overlay, setOverlay] = useState(true);
-    const [showInfographic, setShowInfographic] =useState(0);
+    const [showInfographic, setShowInfographic] = useState(0);
 
     const Login = useMemo(() => React.lazy(() => import("./components/login/Login")), []);
+    const UpdatePassword = useMemo(() => React.lazy(() => import("./components/login/UpdatePassword")), []);
     const HomeContainer = useMemo(() => React.lazy(() => import("./components/HomeContainer")), []);
     const DashboardContainer = useMemo(() => React.lazy(() => import("./components/DashboardContainer")), []);
     const StoryContainer = useMemo(() => React.lazy(() => import("./components/StoryContainer")), []);
@@ -107,21 +108,22 @@ const Router = () => {
     const handleVisiblePanel = (index) => {
         setVisiblePanel(index);
     };
-    
+
     const handleOverlay = (overlay) => {
         setOverlay(overlay);
     };
 
     const handleInfographic = (showInfographic) => {
-		setShowInfographic(showInfographic);
-	};
+        setShowInfographic(showInfographic);
+    };
 
-    return (    
+    return (
         <ThemeProvider theme={customTheme(outerTheme)}>
             <Suspense fallback={<div className=""></div>}>
                 <Routes>
                     <Route path={RouteConstants.login} element={<Login />} />
                     <Route element={<ProtectedRoute auth={auth} />}>
+                        <Route path={RouteConstants.update_password} element={<UpdatePassword />} />
                         <Route path={RouteConstants.root} element={<HomeContainer handleVisiblePanel={handleVisiblePanel} handleOverlay={handleOverlay} handleInfographic={handleInfographic} overlay={overlay} showInfographic={showInfographic} />} />
                         <Route path={RouteConstants.dashboards} element={<DashboardContainer handleVisiblePanel={handleVisiblePanel} handleOverlay={handleOverlay} handleInfographic={handleInfographic} />} />
                         <Route path={RouteConstants.stories} element={<StoryContainer handleVisiblePanel={handleVisiblePanel} handleOverlay={handleOverlay} handleInfographic={handleInfographic} />} />

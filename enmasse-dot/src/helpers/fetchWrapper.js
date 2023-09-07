@@ -1,5 +1,6 @@
 import { useRecoilState } from 'recoil';
 import { authState } from '../states';
+import { APIS } from '../constants';
 import axios from 'axios';
 
 function useFetchWrapper() {
@@ -20,9 +21,29 @@ function useFetchWrapper() {
             const token = auth?.tokens?.access;
             const isLoggedIn = !!token;
             const isTokenExpired = checkTokenExpired(token);
-
             if (isLoggedIn && !isTokenExpired) {
                 config.headers['Authorization'] = `Bearer ${token}`;
+            } if (isLoggedIn && isTokenExpired) {
+                try {
+                    getRefreshToken().then(data => {
+                        const newAccessToken = data.access;
+                        const updatedAuth = {
+                            ...auth,
+                            tokens: {
+                                ...auth.tokens,
+                                access: newAccessToken
+                            }
+                        };
+                        setAuth(updatedAuth);
+                        localStorage.setItem('user', JSON.stringify(updatedAuth));
+                        return { Authorization: `Bearer ${newAccessToken}` };
+                    });
+
+                } catch (error) {
+                    console.error('Error refreshing access token:', error);
+                    // You can choose to log the user out or handle this error differently
+                    return {};
+                }
             }
 
             return config;
@@ -40,8 +61,6 @@ function useFetchWrapper() {
     };
 
     function handleResponse(response) {
-        console.log(response.data);
-
         if (response.statusText !== 'OK') {
             if ([401, 403].includes(response.status) && auth?.token) {
                 // auto logout if 401 Unauthorized or 403 Forbidden response returned from api
@@ -55,37 +74,6 @@ function useFetchWrapper() {
 
         return response.data;
     };
-
-    async function authHeader(url) {
-        // return auth header with jwt if user is logged in and request is to the api url
-        const token = auth?.tokens?.access;
-        const isLoggedIn = !!token;
-        const isTokenExpired = checkTokenExpired(token);
-        if (isLoggedIn && !isTokenExpired) {
-            return { Authorization: `Bearer ${token}` };
-        }
-        else if (isLoggedIn && isTokenExpired) {
-            try {
-                const newAccessToken = await getRefreshToken();
-                const updatedAuth = {
-                    ...auth,
-                    tokens: {
-                        ...auth.tokens,
-                        access: newAccessToken
-                    }
-                };
-                setAuth(updatedAuth);
-                return { Authorization: `Bearer ${newAccessToken}` };
-            } catch (error) {
-                console.error('Error refreshing access token:', error);
-                // You can choose to log the user out or handle this error differently
-                return {};
-            }
-        }
-        else {
-            return {};
-        }
-    }
 
     function checkTokenExpired(accessToken) {
         if (!accessToken) {
@@ -107,12 +95,10 @@ function useFetchWrapper() {
     async function getRefreshToken() {
         const refresh = auth?.tokens?.refresh;
         const requestOptions = {
-            method: 'POST',
             'Content-Type': 'application/json',
             refresh
         };
-        const url = '/users/token-refresh/';
-        const response = await fetch(url, requestOptions);
+        const response = await axios.post(APIS.USERS.GET_REFRESH_TOKEN, requestOptions);
         return handleResponse(response);
     }
 }
