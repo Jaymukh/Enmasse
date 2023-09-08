@@ -9,6 +9,9 @@ import { styled } from '@mui/material/styles';
 import * as Constants from '../../../../../utils/constants/Constants';
 import ChangePassword from './ChangePassword';
 import EditSetting from './EditSetting';
+import UpdateSuccessModal from './UpdateSuccessModel';
+import { RouteConstants } from '../../../../../constants';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Settings() {
@@ -55,9 +58,10 @@ export default function Settings() {
     }));
 
     // handle edit
+    const navigate = useNavigate();
     const [editMode, setEditMode] = useState(false);
-
-    var [open, setOpen] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [open, setOpen] = useState(false);
 
     const handleUpdateClick = () => {
         handleDrawer(false);
@@ -70,6 +74,13 @@ export default function Settings() {
     const handleEditClick = (editMode) => {
         setEditMode(editMode);
     };
+
+    const handleShowModal = (flag, navigateFlag) => {
+        setShowModal(flag);
+        if (navigateFlag) {
+            navigate(RouteConstants.login);
+        }
+    }
 
     return (
         <div className='container bg-white w-90 h-100 mt-4 detail-container me-5'>
@@ -113,8 +124,9 @@ export default function Settings() {
                     </Stack>
                 </div>
             </div>
-            {open && (<ChangePassword open={open} handleUpdateClick={handleUpdateClick} handleDrawer={handleDrawer} />)}
+            {open && (<ChangePassword open={open} handleUpdateClick={handleUpdateClick} handleDrawer={handleDrawer} handleShowModal={handleShowModal} />)}
             {editMode && (<EditSetting editMode={editMode} handleEditClick={handleEditClick} />)}
+            {showModal && <UpdateSuccessModal showModal={showModal} handleShowModal={handleShowModal} />}
         </div>
     )
 }

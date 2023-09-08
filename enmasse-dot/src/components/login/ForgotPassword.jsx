@@ -35,6 +35,7 @@ export default function ForgotPassword(
                     </div>
                 </div>
             </div>
+            {showForgotPasswordModal && <div className="modal-backdrop fade show"></div>}
         </div>
     )
 }
