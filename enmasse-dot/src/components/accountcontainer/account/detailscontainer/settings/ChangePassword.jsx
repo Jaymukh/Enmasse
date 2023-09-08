@@ -1,81 +1,75 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../../../../App.css';
-import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import CloseIcon from '@mui/icons-material/Close';
+import { AiOutlineClose } from 'react-icons/ai';
+import { GiPlainCircle } from 'react-icons/gi';
+import { GoCheckCircleFill } from 'react-icons/go';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
+import { useUserService } from '../../../../../services';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { RouteConstants } from '../../../../../constants';
+import { authState } from '../../../../../states';
 
-export default function ChangePassword({ open, handleUpdateClick, handleDrawer }) {
-    // password validation code
-    const [oldPassword, setOldPassword] = useState('');
-    const [newPassword, setNewPassword] = useState('');
-    const [disabled, setDisabled] = useState(true);
-    const [confirmNewPassword, setConfirmNewPassword] = useState('');
-    const [confirmNewPasswordError, setConfirmNewPasswordError] = useState('');
-    const [checkedCharacters, setCheckedCharacters] = useState(false);
-    const [checkedSpecial, setCheckedSpecial] = useState(false);
-    const [checkedUppercase, setCheckedUppercase] = useState(false);
-    const [checkedNumbers, setCheckedNumbers] = useState(false);
+const ChangePassword = ({ open, handleUpdateClick, handleDrawer }) => {
+    const navigate = useNavigate();
+    const userService = useUserService();
+    const auth = useRecoilValue(authState);
+    const [filledInputCount, setFilledInputCount] = useState(0);
+    const validationSchema = Yup.object().shape({
+        current_password: Yup.string()
+            .required('Current password is required'),
+        new_password: Yup.string()
+            .required('Password is required')
+            .min(8, 'Password must be at least 8 characters')
+            .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
+            .matches(/[!@#$%^&*(),.?":{}|<>]/, 'Password must contain at least one special character')
+            .matches(/[0-9]/, 'Password must contain at least one number'),
+        confirm_new_password: Yup.string()
+            .oneOf([Yup.ref('new_password'), null], 'Passwords must match')
+            .required('Confirm password is required'),
+    });
 
-    const handleOldPasswordChange = (event) => {
-        const oldPassword = event.target.value;
-        setOldPassword(event.target.value);
-    };
-    // Function to handle password validation on form submission
-    const handleNewPasswordChange = (event) => {
-        const newPassword = event.target.value;
-        setDisabled(true);
-        setNewPassword(newPassword);
-        setCheckedCharacters(false);
-        setCheckedSpecial(false);
-        setCheckedUppercase(false);
-        setCheckedNumbers(false);
+    const { handleSubmit, register, errors, watch } = useForm({
+        resolver: yupResolver(validationSchema),
+    });
 
-        if (newPassword.length >= 8) {
-            setCheckedCharacters(true);
-        }
-        if (newPassword.match(/[0-9]/)) {
-            setCheckedNumbers(true);
-        }
-        if (newPassword.match(/[A-Z]/)) {
-            setCheckedUppercase(true);
-        }
-        if (newPassword.match(/[!@#$%^&*(),.?":{}|<>]/)) {
-            setCheckedSpecial(true);
-        }
-    };
-    // Function to handle password input change
-    const handleConfirmNewPasswordChange = (event) => {
-        const confirmNewPassword = event.target.value;
-        setConfirmNewPassword(confirmNewPassword);
-        setConfirmNewPasswordError('');
-        setDisabled(true);
-        if (confirmNewPassword.length >= 8) {
-            if (confirmNewPassword === newPassword) {
-                setConfirmNewPasswordError('');
-                if ((newPassword.length >= 8) && (newPassword.match(/[0-9]/)) && (newPassword.match(/[A-Z]/)) && (newPassword.match(/[!@#$%^&*(),.?":{}|<>]/)) && oldPassword.length >= 8) {
-                    setDisabled(false);
-                    setConfirmNewPasswordError('');
-                }
-                else {
-                    setDisabled(true);
-                    setConfirmNewPasswordError('');
-                }
-            }
-            else {
-                setConfirmNewPasswordError('Password does not match!');
-                setDisabled(true);
-            }
-        }
-        else{
-            setConfirmNewPasswordError('');
-        }
+    const [conditions, setConditions] = useState({
+        length: false,
+        uppercase: false,
+        specialChar: false,
+        number: false,
+    });
+
+    const updateObject = watch();
+
+    const handlePasswordChange = (e) => {
+        const newPassword = e.target.value;
+        setConditions({
+            lengthCheck: newPassword.length >= 8,
+            uppercase: /[A-Z]/.test(newPassword),
+            specialChar: /[!@#$%^&*(),.?":{}|<>]/.test(newPassword),
+            number: /\d/.test(newPassword),
+        });
     };
 
-    const handleFormSubmit = () => {
-        // setVisible(true);
-        // Reset the password field and error message
-        setNewPassword('');
+    const onSubmit = (values) => {
+        console.log(values);
+        userService.changePassword({ ...values, refresh: auth?.tokens?.refresh })
+            .then(response => {
+                console.log(response);
+                navigate(RouteConstants.login);
+            })
+            .catch(error => console.log(error));
     };
+
+    useEffect(() => {
+        const values = watch(); // Get all form values
+        const count = Object.values(values).filter(Boolean).length;  //`Boolean` is called as a function and it converts its argument into a boolean value. 
+        setFilledInputCount(count);
+    }, [updateObject, watch]);
 
     return (
         <div className=''>
@@ -83,62 +77,76 @@ export default function ChangePassword({ open, handleUpdateClick, handleDrawer }
                 anchor='right'
                 open={open}
                 onClose={() => handleDrawer(false)}
-                className='edit-profile-drawer-width edit-profile-drawer-padding'
+                className='edit-profile-drawer-width edit-profile-drawer-padding font-poppins'
             >
-                <Box className='d-flex flex-wrap justify-content-between mb-2'>
-                    <h5 className=''>
+                <div className='d-flex flex-wrap justify-content-between mb-2'>
+                    <h5 className='fs-21 m-0'>
                         Change Password
                     </h5>
-                    <button className='bg-white border-0'>
-                        <CloseIcon onClick={() => handleDrawer(false)} />
+                    <button className='bg-white border-0' onClick={() => handleDrawer(false)}>
+                        <AiOutlineClose />
                     </button>
-                </Box>                
-                <p className='text-muted'>You will be required to re-login after updating the password.</p>
-                <Box className='d-flex justify-content-center flex-column'>
-                    <h5>Old Password</h5>
-                    <input type="password" value={oldPassword} onInput={handleOldPasswordChange} className='mediumMarginTopBottom inputBoxHeight my-2' placeholder='Enter your current password' />
-                    <h5>New Password</h5>
-                    <input type="password" value={newPassword} onInput={handleNewPasswordChange} className='mediumMarginTopBottom inputBoxHeight my-2' placeholder='Enter your new password' />
+                </div>
+                <p className='text-muted fs-14'>You will be required to re-login after updating the password.</p>
+                <form className='d-flex justify-content-center flex-column' onSubmit={handleSubmit(onSubmit)}>
+                    <h5 className='fs-14 m-0' required>Old Password</h5>
+                    <input
+                        type="password"
+                        name='current_password'
+                        {...register("current_password")}
+                        className='mediumMarginTopBottom inputBoxHeight my-1 px-3'
+                        placeholder='Password'
+                    />
+                    <h5 className='fs-14 mx-0 mt-2 mb-0' required>New Password</h5>
+                    <input
+                        type="password"
+                        name='new_password'
+                        {...register("new_password", {
+                            onChange: (e) => {
+                                handlePasswordChange(e)
+                            }
+                        })}
+                        className='mediumMarginTopBottom inputBoxHeight my-1 px-3'
+                        placeholder='Password'
+                    />
 
-                    <div className="row align-items-start my-2" >
-                        <div className='col'>
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" onChange={handleNewPasswordChange} checked={checkedCharacters} />
-                                <label className="form-check-label text-muted" for="flexCheckDefault">
-                                    8 Characters
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" id="flexCheckChecked" onChange={handleNewPasswordChange} checked={checkedSpecial} />
-                                <label className="form-check-label text-muted" for="flexCheckChecked">
-                                    Contains special character
-                                </label>
-                            </div>
+                    <div className="row my-2">
+                        <div className="d-flex pe-0 mb-1">
+                            {conditions.lengthCheck ? <GoCheckCircleFill color='#108041' /> : <GiPlainCircle color='#CECECE' />}
+                            <p className='fs-12 ms-2 mb-1'>8 Characters</p>
                         </div>
-                        <div className='col'>
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onChange={handleNewPasswordChange} checked={checkedUppercase} />
-                                <label className="form-check-label text-muted" for="flexCheckDefault">
-                                    Contains Uppercase
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" onChange={handleNewPasswordChange} checked={checkedNumbers} />
-                                <label className="form-check-label text-muted" for="flexCheckChecked">
-                                    Contains Numbers
-                                </label>
-                            </div>
+                        <div className="d-flex pe-0 mb-1">
+                            {conditions.uppercase ? <GoCheckCircleFill color='#108041' /> : <GiPlainCircle color='#CECECE' />}
+                            <p className='fs-12 ms-2 mb-1'>Contains Uppercase</p>
+                        </div>
+                        <div className="d-flex pe-0 mb-1">
+                            {conditions.specialChar ? <GoCheckCircleFill color='#108041' /> : <GiPlainCircle color='#CECECE' />}
+                            <p className='fs-12 ms-2 mb-1'>Contains Special character</p>
+                        </div>
+                        <div className="d-flex pe-0 mb-1">
+                            {conditions.number ? <GoCheckCircleFill color='#108041' /> : <GiPlainCircle color='#CECECE' />}
+                            <p className='fs-12 ms-2 mb-1'>Contains Number</p>
                         </div>
                     </div>
-                    <h5>Confirm Password</h5>
-                    <input type="password" value={confirmNewPassword} onChange={handleConfirmNewPasswordChange} className='my-2 inputBoxHeight' placeholder='Re-enter your password here' />
-                    {confirmNewPasswordError && <p className='text-danger'>{confirmNewPasswordError}</p>}
-                    <input type="submit" className={disabled ? 'mediumMarginTopBottom inputBoxHeight bg-secondary text-white my-2' : 'mediumMarginTopBottom inputBoxHeight bg-dark text-white my-2'} onClick={handleUpdateClick} value="Update Password" disabled={disabled} />
-
-                    {/* <button className='btn-black inputBoxHeight my-5' onClick={handleUpdateClick}>Update</button> */}
-                </Box>
+                    <h5 className='fs-14 m-0' required>Re enter new password</h5>
+                    <input
+                        type="password"
+                        name='confirm_new_password'
+                        {...register("confirm_new_password")}
+                        className='my-2 inputBoxHeight px-3'
+                        placeholder='Password'
+                    />
+                    {/* {confirmNewPasswordError && <p className='text-danger'>{confirmNewPasswordError}</p>} */}
+                    <button
+                        type="submit"
+                        className={`mediumMarginTopBottom inputBoxHeight text-white my-2 border-0 ${(filledInputCount < 3) ? 'bg-secondary' : 'bg-dark'}`}
+                        disabled={filledInputCount < 3} >
+                        Update
+                    </button>
+                </form>
             </Drawer>
         </div>
     );
 }
 
+export default ChangePassword;

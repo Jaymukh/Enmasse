@@ -48,16 +48,20 @@ const useUserService = () => {
 
     }
 
-    function getAll() {
+    const getAll = () => {
         return fetchWrapper.get(APIS.USERS.GET_ALL_USERS);
     }
 
-    function getUserDetails() {
+    const getUserDetails = () => {
         return fetchWrapper.get(APIS.USERS.GET_LOGGED_USER);
     }
 
-    function setNewPassword() {
+    const setNewPassword = () => {
         return fetchWrapper.post(APIS.USERS.SET_NEW_PASSWORD);
+    }
+
+    const changePassword = (data) => {
+        return fetchWrapper.put(APIS.USERS.CHANGE_PASSWORD, data);
     }
 
     const inviteNew = (newUser) => {
@@ -73,9 +77,10 @@ const useUserService = () => {
         logout,
         getAll,
         getUserDetails,
+        changePassword,
+        setNewPassword,
         inviteNew,
-        editInvite,
-        setNewPassword
+        editInvite,        
     }
 }
 

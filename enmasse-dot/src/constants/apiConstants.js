@@ -8,11 +8,13 @@ const APIS = {
         UPDATE_LOGGED_USER: "/users/update/my/details/",
         INVITE_NEW: '/users/invite/',
         REINVITE: '/users/reinvite/',
-        SET_NEW_PASSWORD: '/users/set-new-passowrd/'
+        SET_NEW_PASSWORD: '/users/set-new-passowrd/',
+        CHANGE_PASSWORD: '/users/change-password/',
     },
     SETTINGS: {
         GET_ALL_SETTINGS : '/users/settings/details/',
-        GET_USER_SETTINGS: '/users/settings/'
+        GET_USER_SETTINGS: '/users/settings/',
+        
     }
 }
 
