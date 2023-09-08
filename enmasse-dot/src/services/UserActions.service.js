@@ -37,7 +37,7 @@ const useUserService = () => {
 
     const logout = () => {
         const refresh = auth?.tokens?.refresh;
-        return fetchWrapper.post(APIS.USERS.LOGIN, { refresh })
+        return fetchWrapper.post(APIS.USERS.LOGOUT, { refresh })
             .then(response => {
                 // remove user from local storage, set auth state to null and redirect to login page
                 localStorage.removeItem('user');
@@ -48,16 +48,20 @@ const useUserService = () => {
 
     }
 
-    function getAll() {
-        return fetchWrapper.get(APIS.USERS.APIS.GET_ALL_USERS);
+    const getAll = () => {
+        return fetchWrapper.get(APIS.USERS.GET_ALL_USERS);
     }
 
-    function getUserDetails() {
+    const getUserDetails = () => {
         return fetchWrapper.get(APIS.USERS.GET_LOGGED_USER);
     }
 
-    function setNewPassword() {
+    const setNewPassword = () => {
         return fetchWrapper.post(APIS.USERS.SET_NEW_PASSWORD);
+    }
+
+    const changePassword = (data) => {
+        return fetchWrapper.post(APIS.USERS.CHANGE_PASSWORD, data);
     }
 
     const inviteNew = (newUser) => {
@@ -73,9 +77,10 @@ const useUserService = () => {
         logout,
         getAll,
         getUserDetails,
+        changePassword,
+        setNewPassword,
         inviteNew,
-        editInvite,
-        setNewPassword
+        editInvite,        
     }
 }
 

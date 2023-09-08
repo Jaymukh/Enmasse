@@ -920,6 +920,10 @@ th {
 	font-family: 'Lato', sans-serif;	
 }
 
+.font-poppins {
+	font-family: 'Poppins', sans-serif !important;	
+}
+
 .right-border {
 	border-right: 1.75px solid #DDDFE3;
 }
