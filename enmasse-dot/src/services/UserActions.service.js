@@ -61,7 +61,7 @@ const useUserService = () => {
     }
 
     const changePassword = (data) => {
-        return fetchWrapper.post(APIS.USERS.CHANGE_PASSWORD, data);
+        return fetchWrapper.put(APIS.USERS.CHANGE_PASSWORD, data);
     }
 
     const inviteNew = (newUser) => {

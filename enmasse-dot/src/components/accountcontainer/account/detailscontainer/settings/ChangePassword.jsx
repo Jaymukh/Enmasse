@@ -9,24 +9,26 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useUserService } from '../../../../../services';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { RouteConstants } from '../../../../../constants';
 import { authState } from '../../../../../states';
 
 const ChangePassword = ({ open, handleUpdateClick, handleDrawer }) => {
     const navigate = useNavigate();
     const userService = useUserService();
-    const [auth, setAuth] = useRecoilState(authState);
+    const auth = useRecoilValue(authState);
     const [filledInputCount, setFilledInputCount] = useState(0);
     const validationSchema = Yup.object().shape({
-        password: Yup.string()
+        current_password: Yup.string()
+            .required('Current password is required'),
+        new_password: Yup.string()
             .required('Password is required')
             .min(8, 'Password must be at least 8 characters')
             .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
             .matches(/[!@#$%^&*(),.?":{}|<>]/, 'Password must contain at least one special character')
             .matches(/[0-9]/, 'Password must contain at least one number'),
-        confirm_password: Yup.string()
-            .oneOf([Yup.ref('password'), null], 'Passwords must match')
+        confirm_new_password: Yup.string()
+            .oneOf([Yup.ref('new_password'), null], 'Passwords must match')
             .required('Confirm password is required'),
     });
 
@@ -41,7 +43,6 @@ const ChangePassword = ({ open, handleUpdateClick, handleDrawer }) => {
         number: false,
     });
 
-    const password = watch('password');
     const updateObject = watch();
 
     const handlePasswordChange = (e) => {
@@ -55,13 +56,13 @@ const ChangePassword = ({ open, handleUpdateClick, handleDrawer }) => {
     };
 
     const onSubmit = (values) => {
+        console.log(values);
         userService.changePassword({ ...values, refresh: auth?.tokens?.refresh })
-            .then(
-                response => console.log(response)
-            )
-            .catch(
-                error => console.log(error)
-            );
+            .then(response => {
+                console.log(response);
+                navigate(RouteConstants.login);
+            })
+            .catch(error => console.log(error));
     };
 
     useEffect(() => {
