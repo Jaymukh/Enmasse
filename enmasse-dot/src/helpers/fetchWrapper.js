@@ -36,7 +36,7 @@ function useFetchWrapper() {
                         };
                         setAuth(updatedAuth);
                         localStorage.setItem('user', JSON.stringify(updatedAuth));
-                        return { Authorization: `Bearer ${newAccessToken}` };
+                        config.headers['Authorization'] =`Bearer ${newAccessToken}`;
                     });
 
                 } catch (error) {
