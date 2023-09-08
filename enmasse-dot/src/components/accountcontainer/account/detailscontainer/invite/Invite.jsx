@@ -50,13 +50,16 @@ export default function Invite() {
 			if (response) {
 				console.log('response' + response);
 				setUsers((prevData) =>
-					prevData.map((row) => (row.user_id === updatedRow.user_id ? updatedRow : row))
+					prevData.map((row) => (
+						row.user_id === updatedRow.user_id ? updatedRow : row
+					))
 				);
 				// getUsers();
+				handleCloseDialog();
 			}
 		})
-			.catch(error => console.log('error while updating the data'+ error));
-			handleCloseDialog();
+			.catch(error => console.log('error while updating the data' + error));
+
 	};
 
 

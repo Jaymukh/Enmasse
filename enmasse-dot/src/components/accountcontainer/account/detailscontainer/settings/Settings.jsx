@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../../../../App.css';
 import LockIcon from '@mui/icons-material/Lock';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
@@ -9,7 +9,9 @@ import { styled } from '@mui/material/styles';
 import * as Constants from '../../../../../utils/constants/Constants';
 import ChangePassword from './ChangePassword';
 import EditSetting from './EditSetting';
-
+import { AllSettingsState, UserSettingsState } from "../../../../../states";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { useSettingsService } from '../../../../../services';
 
 export default function Settings() {
     const AntSwitch = styled(Switch)(({ theme }) => ({
@@ -58,6 +60,10 @@ export default function Settings() {
     const [editMode, setEditMode] = useState(false);
 
     var [open, setOpen] = useState(false);
+    // all settings's data
+	const [settings, setSettings] = useRecoilState(AllSettingsState);
+    const [usersettings, setUserSettings] = useRecoilState(UserSettingsState);
+	const settingsService = useSettingsService();
 
     const handleUpdateClick = () => {
         handleDrawer(false);
@@ -70,6 +76,28 @@ export default function Settings() {
     const handleEditClick = (editMode) => {
         setEditMode(editMode);
     };
+    //function to get all the users
+	useEffect(() => {
+		getSettings();
+        getLoggedUserSettings();
+	}, []);
+
+	const getSettings = () => {
+		settingsService.getAllSettings().then((response) => {
+			if (response) {
+				setSettings(response);
+				console.log('allSettings' + settings);
+			}
+		});
+	};
+    const getLoggedUserSettings = () => {
+		settingsService.getUserSettings().then((response) => {
+			if (response) {
+				setUserSettings(response);
+				console.log('userSettings' + response);
+			}
+		});
+	};
 
     return (
         <div className='container bg-white w-90 h-100 mt-4 detail-container me-5'>
@@ -90,21 +118,22 @@ export default function Settings() {
             <div className="row w-100 h-90">
                 <div className='col-5 d-flex justify-content-start flex-column text-justify m-4'>
                     <h6 className='mt-2 text-start'>Language</h6>
-                    <select className='mb-2 btn-outline-black inputBoxHeight text-left disabled'>
-                        {Constants.languages.map((data) => (
-                            <option>{data.value}</option>
+                    <select className='mb-2 btn-outline-black inputBoxHeight text-left disabled' selected={usersettings.language}>
+                        {settings?.languages?.map((data) => (
+                            <option key={data.code} value={data.name}>{data.name}</option>
                         ))}
                     </select>
                     <h6 className='mt-2 text-start'>Currency</h6>
-                    <select className='mb-2 btn-outline-black inputBoxHeight text-left disabled'>
-                        {Constants.currency.map((data) => (
-                            <option>{data.value}</option>
+                    <select className='mb-2 btn-outline-black inputBoxHeight text-left disabled' selected={usersettings.currency}>
+                        {settings?.currencies?.map((data) => (
+                            <option key={data.code} value={data.name}>{data.name}</option>
                         ))}
                     </select>
                     <h6 className='mt-2 text-start'>Location</h6>
-                    <select className='mb-2 btn-outline-black inputBoxHeight text-left disabled'>
-                        {Constants.location.map((data) => (
-                            <option>{data.value}</option>
+                    {/* selected={data.name === usersettings.location} key={data.code} value={data.name}*/}
+                    <select className='mb-2 btn-outline-black inputBoxHeight text-left disabled'  selected={usersettings.location}>
+                        {settings?.locations?.map((data) => (
+                            <option key={data.code} value={data.name}>{data.name}</option>
                         ))}
                     </select>
                     <Stack direction="row" alignItems="center" className='btn-outline-black d-flex justify-content-between mt-4 inputBoxHeight'>

@@ -9,6 +9,10 @@ const APIS = {
         INVITE_NEW: '/users/invite/',
         REINVITE: '/users/reinvite/',
         SET_NEW_PASSWORD: '/users/set-new-passowrd/'
+    },
+    SETTINGS: {
+        GET_ALL_SETTINGS : '/users/settings/details/',
+        GET_USER_SETTINGS: '/users/settings/'
     }
 }
 
