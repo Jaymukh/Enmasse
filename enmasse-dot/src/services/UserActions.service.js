@@ -67,8 +67,13 @@ const useUserService = () => {
     const inviteNew = (newUser) => {
         return fetchWrapper.post(APIS.USERS.INVITE_NEW, newUser)
     }
+<<<<<<< HEAD
     
     const editInvite = (updatedUser) => {        
+=======
+
+    const editInvite = (updatedUser) => {
+>>>>>>> 5d93778daf3e3ce735f1bd853def6cbc6ae42477
         return fetchWrapper.post(APIS.USERS.REINVITE, updatedUser)
     }
 
