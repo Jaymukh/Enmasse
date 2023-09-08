@@ -8,16 +8,17 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useUserService } from '../../../../../services';
-import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { RouteConstants } from '../../../../../constants';
-import { authState } from '../../../../../states';
 
-const ChangePassword = ({ open, handleUpdateClick, handleDrawer }) => {
-    const navigate = useNavigate();
+import { authState } from '../../../../../states';
+import UpdateSuccessModal from './UpdateSuccessModel';
+
+const ChangePassword = ({ open, handleUpdateClick, handleDrawer, handleShowModal }) => {
     const userService = useUserService();
     const auth = useRecoilValue(authState);
+
     const [filledInputCount, setFilledInputCount] = useState(0);
+
     const validationSchema = Yup.object().shape({
         current_password: Yup.string()
             .required('Current password is required'),
@@ -56,14 +57,14 @@ const ChangePassword = ({ open, handleUpdateClick, handleDrawer }) => {
     };
 
     const onSubmit = (values) => {
-        console.log(values);
         userService.changePassword({ ...values, refresh: auth?.tokens?.refresh })
             .then(response => {
-                console.log(response);
-                navigate(RouteConstants.login);
+                handleDrawer(false);
+                handleShowModal(true);
             })
             .catch(error => console.log(error));
     };
+
 
     useEffect(() => {
         const values = watch(); // Get all form values
