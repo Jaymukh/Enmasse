@@ -21,13 +21,17 @@ export default function Login() {
     })
 
     const validationSchema = Yup.object().shape({
-        email_id: Yup.string().required('Username is required').email("Username is not a valid email"),
+        email_id: Yup.string().required('Email is required').email("Email is not valid"),
         password: Yup.string().required('Password is required')
     });
 
-    const { handleSubmit, register, errors, watch } = useForm({
+    const { handleSubmit, register, watch, formState } = useForm({
         resolver: yupResolver(validationSchema),
     });
+    const { errors, isSubmitting } = formState;
+    console.log(useForm({
+        resolver: yupResolver(validationSchema),
+    }));
 
     const updateObject = watch();
 
@@ -47,8 +51,9 @@ export default function Login() {
         setEmail('');
         handleModal({ passwordModal: false });
     }
-
+    
     useEffect(() => {
+        console.log(errors);
         const values = watch(); // Get all form values
         const count = Object.values(values).filter(Boolean).length;  //`Boolean` is called as a function and it converts its argument into a boolean value. 
         setFilledInputCount(count);
@@ -81,7 +86,7 @@ export default function Login() {
                                 {...register("email_id")}
                                 className='my-1 px-2 inputBoxHeight'
                                 placeholder='Enter your email id here' />
-                            {/* {errorMessageEmail && <p className='text-danger'>{errorMessageEmail}</p>} */}
+                            {errors?.email_id && <div class="invalid-feedback">{errors?.email_id?.message}</div>}
                             <div className='d-flex flex-row justify-content-between mt-3'>
                                 <h5 className='fs-6'>Password</h5>
                                 <button className='bg-transparent underline-text border-0' onClick={() => handleModal({ passwordModal: true })}>Forgot password?</button>
@@ -92,13 +97,13 @@ export default function Login() {
                                 {...register("password")}
                                 className='my-1 px-2 inputBoxHeight'
                                 placeholder='Enter your password here' />
-                            {/* {errorMessagePassword && <p className='text-danger'>{errorMessagePassword}</p>} */}
+                            {errors?.password && <div class="invalid-feedback">{errors?.password?.message}</div>}
                             <button
                                 type='submit'
                                 className={`mb-2 mt-4 inputBoxHeight login-btn text-white fs-6 bg-secondary ${(filledInputCount < 2) ? 'bg-secondary' : 'bg-dark'}`}
                                 disabled={filledInputCount < 2}
                             >
-                                Continue
+                                {isSubmitting && <span className="spinner-border spinner-border-sm me-3"></span>}Continue
                             </button>
                         </form>
                         {/* <p className='text-muted mb-0 mt-2 login-p'>By clicking on continue you are agreeing to the Enmasse <a href='/' className='black login-p'>Terms & conditions</a> and <a href='/' className='black' >Privacy policies</a></p> */}

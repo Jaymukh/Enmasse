@@ -9,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useUserService } from '../../../../../services';
 import { useRecoilValue } from 'recoil';
+import { toast } from "react-toastify";
 
 import { authState } from '../../../../../states';
 import UpdateSuccessModal from './UpdateSuccessModel';
@@ -62,7 +63,7 @@ const ChangePassword = ({ open, handleUpdateClick, handleDrawer, handleShowModal
                 handleDrawer(false);
                 handleShowModal(true);
             })
-            .catch(error => console.log(error));
+            .catch(error => toast.error(error));
     };
 
 

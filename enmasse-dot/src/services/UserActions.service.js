@@ -3,6 +3,7 @@ import { useFetchWrapper } from '../helpers';
 import { authState, loggedUserState } from '../states';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { APIS, RouteConstants } from '../constants';
+import { toast } from "react-toastify";
 
 const useUserService = () => {
     // const baseUrl = `${process.env.REACT_APP_BASE_API_URL}`;
@@ -29,7 +30,7 @@ const useUserService = () => {
                     navigate(from);
                 }
             })
-            .catch(error => console.log(error))
+            .catch(error => toast.error(error));
     }
 
     const logout = () => {
@@ -41,7 +42,7 @@ const useUserService = () => {
                 setAuth({});
                 navigate(RouteConstants.login);
             })
-            .catch(error => console.log(error));
+            .catch(error => toast.error(error));
 
     }
 

@@ -9,6 +9,7 @@ import * as Yup from 'yup';
 import { useUserService } from '../../services';
 import { useNavigate } from 'react-router-dom';
 import { RouteConstants } from '../../constants';
+import { toast } from "react-toastify";
 
 const UpdatePassword = () => {
     const navigate = useNavigate();
@@ -51,7 +52,7 @@ const UpdatePassword = () => {
     const onSubmit = (values) => {
         userService.setNewPassword({ ...values, token: "c2276236f0824f5dbd9b054e741954c3" })
             .then(response => console.log(response))
-            .catch(error => console.log(error));
+            .catch(error => toast.error(error));
     };
 
     const handleSkip = () => {
@@ -70,7 +71,7 @@ const UpdatePassword = () => {
                         <IoMdArrowBack />Back
                     </button>
                     <div className='loginCardAlign my-5'>
-                        <img variant="top" src={globe}/>
+                        <img variant="top" src={globe} />
                         <div>
                             <h3>enmasse</h3>
                             <p className='text-muted login-p'>

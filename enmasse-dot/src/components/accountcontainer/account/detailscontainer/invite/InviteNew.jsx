@@ -8,7 +8,8 @@ import * as Constants from '../../../../../utils/constants/Constants';
 import '../../../../../App.css';
 import { useUserService } from '../../../../../services';
 import { useRecoilValue } from "recoil";
-import { loggedUserState} from "../../../../../states";
+import { loggedUserState } from "../../../../../states";
+import { toast } from "react-toastify";
 
 export default function InviteNew({
     openInviteNew,
@@ -19,7 +20,7 @@ export default function InviteNew({
 }) {
     const [newData, setNewData] = useState({});
     const userService = useUserService();
-    const loggedUser= useRecoilValue(loggedUserState);
+    const loggedUser = useRecoilValue(loggedUserState);
 
 
     const handleChangeData = (e) => {
@@ -28,16 +29,14 @@ export default function InviteNew({
         var value = e.target.value;
         setNewData({ ...newData, [name]: value });
     }
-    const handleSubmitInviteNew = () => {        
-        console.log(newData);
-        var payload = {...newData, user_id: loggedUser.user_id, designation: 'Manager', country: 'India', phone_number: 5436525362, status: 'Invited' };
+    const handleSubmitInviteNew = () => {
+        var payload = { ...newData, user_id: loggedUser.user_id, designation: 'Manager', country: 'India', phone_number: 5436525362, status: 'Invited' };
         userService.inviteNew(payload).then((response) => {
             if (response) {
-                console.log(response);
                 getUsers();
             }
         })
-        .catch(error => console.log(error));
+            .catch(error => toast.error(error));
         handleCloseInviteNew();
     };
 
