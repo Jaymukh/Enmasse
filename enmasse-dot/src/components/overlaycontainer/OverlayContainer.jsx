@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../../styles/OverlayContainer.css';
 import LandingPage from './LandingPage';
 import EHInfographic from './EHInfographic';

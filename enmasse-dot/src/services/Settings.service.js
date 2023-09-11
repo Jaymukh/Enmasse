@@ -1,14 +1,21 @@
-import { useSetRecoilState } from 'recoil';
 import { useFetchWrapper } from '../helpers';
-import { authState, usersState, loggedUserState } from '../states';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { APIS, RouteConstants } from '../constants';
+import { APIS } from '../constants';
+import { AllSettingsState } from "../states";
+import {useSetRecoilState} from 'recoil';
 
 const useSettingsService = () => {
+    // all settings's data
+    const setSettings = useSetRecoilState(AllSettingsState);
     const fetchWrapper = useFetchWrapper();
 
     function getAllSettings() {
-        return fetchWrapper.get(APIS.SETTINGS.GET_ALL_SETTINGS);
+        return fetchWrapper.get(APIS.SETTINGS.GET_ALL_SETTINGS)
+        .then((response) => {
+            if (response) {
+                setSettings(response);
+                console.log('allSettings', response);
+            }
+        });
     }
     function getUserSettings() {
         return fetchWrapper.get(APIS.SETTINGS.GET_USER_SETTINGS);
@@ -17,7 +24,7 @@ const useSettingsService = () => {
     return {
         getAllSettings,
         getUserSettings
-        
+
     }
 }
 

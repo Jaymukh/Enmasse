@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../App.css';
-import img6 from '../../utils/images/img6.png';
 
 export default function TAMInfographic({handleInfographic, handleOverlay}) {
   

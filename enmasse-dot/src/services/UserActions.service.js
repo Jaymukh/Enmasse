@@ -18,12 +18,7 @@ const useUserService = () => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
                 setAuth(user);
-                getUserDetails().then(data => {
-                    setLoggedUser(data);
-                })
-                    .catch(error => {
-                        console.log(error);
-                    });
+                getUserDetails();
                 // get return url from location state or default to home page
                 const from = (!location.pathname || location.pathname === '/login') ? RouteConstants.root : location.pathname;
                 if (user.is_first_login) {
@@ -50,10 +45,18 @@ const useUserService = () => {
 
     const getAll = () => {
         return fetchWrapper.get(APIS.USERS.GET_ALL_USERS);
-    }
+    };
 
     const getUserDetails = () => {
-        return fetchWrapper.get(APIS.USERS.GET_LOGGED_USER);
+        return fetchWrapper.get(APIS.USERS.GET_LOGGED_USER).then(data => {
+            setLoggedUser(data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    };
+    const updateUserDetails = (updatedData) => {
+        return fetchWrapper.put(APIS.USERS.UPDATE_LOGGED_USER, updatedData);
     }
 
     const setNewPassword = () => {
@@ -72,15 +75,22 @@ const useUserService = () => {
         return fetchWrapper.post(APIS.USERS.REINVITE, updatedUser)
     }
 
+    const deleteInvite = (user_id) => {
+        const URL = APIS.USERS.DELETE_INVITE + user_id + '/delete/';
+        return fetchWrapper.delete(URL);
+    }
+
     return {
         login,
         logout,
         getAll,
         getUserDetails,
+        updateUserDetails,
         changePassword,
         setNewPassword,
         inviteNew,
-        editInvite,        
+        editInvite,
+        deleteInvite
     }
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
@@ -6,12 +6,24 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import '../../../../../App.css';
 import * as Constants from '../../../../../../src/utils/constants/Constants';
+import { useRecoilValue } from "recoil";
+import { useSettingsService } from '../../../../../services';
+import { AllSettingsState } from "../../../../../states";
 
 export default function Editprofile({
     selectedData,
     handleUpdate,
     handleCloseDialog
 }) {
+    // all settings's data
+    const settingsService = useSettingsService();
+    const settings = useRecoilValue(AllSettingsState);
+
+    //function to get all the settings details
+    useEffect(() => {
+        settingsService.getAllSettings();
+    }, []);
+
     const [updatedData, setUpdatedData] = useState(selectedData);
 
     const handleChangeData = (e) => {
@@ -52,8 +64,20 @@ export default function Editprofile({
                     <input type="tel" maxLength="10" placeholder="Enter your Phone number" name='phone_number' value={updatedData.phone_number}
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black inputBoxHeight' />
                     <h6 className='my-2'>Role</h6>
-                    <input type="text" placeholder="Enter your role" name='role' value={updatedData.role}
-                        onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black inputBoxHeight' />
+                    <Select
+                        name='role'
+                        value={updatedData.role}
+                        displayEmpty
+                        inputProps={{ 'aria-label': 'Without label' }}
+                        className='btn-outline-black inputBoxHeight p-0'
+                        onChange={(e) => handleChangeData(e)}
+                    >
+                        {settings?.roles?.map((role) => (
+                            <MenuItem value={role.id}>{role.name}</MenuItem>
+                        ))}
+                    </Select>
+                    {/* <input type="text" placeholder="Enter your role" name='role' value={updatedData.role}
+                        onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black inputBoxHeight' /> */}
                     <h6 className='my-2'>Designation</h6>
                     <input type="text" placeholder="Enter your designation" name='designation' value={updatedData.designation}
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black inputBoxHeight' />
@@ -80,8 +104,8 @@ export default function Editprofile({
                         inputProps={{ 'aria-label': 'Without label' }}
                         className='btn-outline-black inputBoxHeight p-0'
                     >
-                        {Constants.company_type.map((company_type) => (
-                            <MenuItem value={company_type.key}>{company_type.value}</MenuItem>
+                        {settings?.company_types?.map((company_type) => (
+                            <MenuItem value={company_type.id}>{company_type.name}</MenuItem>
                         ))}
                     </Select>
                     <button className='btn-black inputBoxHeight my-5' onClick={handleUpdateClick}>Update Profile</button>

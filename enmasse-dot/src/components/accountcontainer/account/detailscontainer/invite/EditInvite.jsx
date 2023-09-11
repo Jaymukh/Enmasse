@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
@@ -6,12 +6,25 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import * as Constants from '../../../../../utils/constants/Constants';
 import '../../../../../App.css';
+import { useRecoilValue } from "recoil";
+import { useSettingsService } from '../../../../../services';
+import { AllSettingsState } from "../../../../../states";
 
 export default function EditInvite({
     selectedData,
     handleCloseDialog,
     handleUpdate,
+    showToast
 }) {
+    // all settings's data
+    const settingsService = useSettingsService();
+    const settings = useRecoilValue(AllSettingsState);
+
+    //function to get all the settings details
+    useEffect(() => {
+        settingsService.getAllSettings();
+    }, []);
+
     // State variables for managing the input 
     const [updatedData, setUpdatedData] = useState(selectedData);
 
@@ -49,8 +62,20 @@ export default function EditInvite({
                     <input type="email" placeholder="Enter your Email ID" value={updatedData.email_id} name='email_id'
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black drawer-input-box-height' />
                     <h6 className='my-1 font-87-5'>Role</h6>
-                    <input type="tel" maxlength="10" placeholder="Enter your phone number" value={updatedData.role} name='role'
-                        onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black drawer-input-box-height' />
+                    <Select
+                        value={updatedData.role}
+                        name='role'
+                        displayEmpty
+                        inputProps={{ 'aria-label': 'Without label' }}
+                        className='btn-outline-black drawer-input-box-height p-0'
+                        onChange={(e) => handleChangeData(e)}
+                    >
+                        {settings?.roles?.map((company_type) => (
+                            <MenuItem value={company_type.id}>{company_type.name}</MenuItem>
+                        ))}
+                    </Select>
+                    {/* <input type="tel" maxlength="10" placeholder="Enter your phone number" value={updatedData.role} name='role'
+                        onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black drawer-input-box-height' /> */}
                     <h6 className='my-1 font-87-5'>Company</h6>
                     <Select
                         value={updatedData.company}
@@ -73,8 +98,8 @@ export default function EditInvite({
                         className='btn-outline-black drawer-input-box-height p-0'
                         onChange={(e) => handleChangeData(e)}
                     >
-                        {Constants.company_type.map((company_type) => (
-                            <MenuItem value={company_type.key}>{company_type.value}</MenuItem>
+                        {settings?.company_types?.map((company_type) => (
+                            <MenuItem value={company_type.id}>{company_type.name}</MenuItem>
                         ))}
                     </Select>
                     <button className='btn-black drawer-input-box-height mt-2 mb-3' onClick={handleUpdateClick}>Update</button>

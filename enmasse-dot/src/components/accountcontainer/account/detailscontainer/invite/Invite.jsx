@@ -11,15 +11,15 @@ import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import { usersState, loggedUserState } from "../../../../../states";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useUserService } from '../../../../../services';
-
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Invite() {
 	const [inviteData, setInviteData] = useState(Constants.inviteData);
 	const [selectedData, setSelectedData] = useState(null);
 	const [openInviteNew, setOpenInviteNew] = useState(false);
 	const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false); // Confirm Delete Model
-	const [selectedIndex, setSelectedIndex] = useState(null);
+	const [selectedUserId, setSelectedUserId] = useState(null);
 	// all user's data
 	const [users, setUsers] = useRecoilState(usersState);
 	const userService = useUserService();
@@ -31,12 +31,17 @@ export default function Invite() {
 	}, []);
 
 	const getUsers = () => {
-		userService.getAll().then((response) => {
-			if (response) {
-				setUsers(response);
-				console.log('users' + response);
-			}
-		});
+		userService.getAll()
+			.then((response) => {
+				if (response) {
+					setUsers(response);
+					console.log('All invited users:', response);
+				}
+			})
+			.catch(error => {
+				showToast(error);
+			});
+
 	};
 
 	const handleEditClick = (row) => {
@@ -46,20 +51,23 @@ export default function Invite() {
 		setSelectedData(null);
 	};
 	const handleUpdate = (updatedRow) => {
-		userService.editInvite(updatedRow).then((response) => {
-			if (response) {
-				console.log('response' + response);
-				setUsers((prevData) =>
-					prevData.map((row) => (
-						row.user_id === updatedRow.user_id ? updatedRow : row
-					))
-				);
-				// getUsers();
-				handleCloseDialog();
-			}
-		})
-			.catch(error => console.log('error while updating the data' + error));
-
+		userService.editInvite(updatedRow)
+			.then((response) => {
+				if (response) {
+					console.log('response', response);
+					setUsers((prevData) =>
+						prevData.map((row) => (
+							row.user_id === updatedRow.user_id ? updatedRow : row
+						))
+					);
+					getUsers();
+					handleCloseDialog();
+					showToast('Successfully Updated.');
+				}
+			})
+			.catch(error => {
+				showToast(error);
+			});
 	};
 
 
@@ -72,18 +80,30 @@ export default function Invite() {
 	};
 
 	// Confirm Delete Model
-	const handleConfirmDeleteModal = (showConfirmDeleteModal, index) => {
+	const handleConfirmDeleteModal = (showConfirmDeleteModal, user_id) => {
 		setShowConfirmDeleteModal(showConfirmDeleteModal);
-		setSelectedIndex(index);
-		// handleDeleteClick(index);
+		setSelectedUserId(user_id);
 	};
 	// function for Delete
 	const handleDeleteClick = () => {
-		console.log(users);
-		var data = [...users];
-		data.splice(selectedIndex, 1);
-		setUsers(data);
-		handleConfirmDeleteModal(false);
+		userService.deleteInvite(selectedUserId)
+			.then((response) => {
+				if (response) {
+					getUsers();
+					handleConfirmDeleteModal(false);
+					showToast('The user has been deleted.');
+				}
+			})
+			.catch(error => {
+				showToast(error);
+			});
+
+	};
+	// function for toast message
+	const showToast = (toastMessage) => {
+		toast.success(toastMessage, {
+			autoClose: 3000, // Set the timeout to 3 seconds (3000 milliseconds)
+		});
 	};
 
 	return (
@@ -120,7 +140,7 @@ export default function Invite() {
 											<EditIcon className='color-gray' onClick={() => handleEditClick(row, index)} />
 										</button>
 										<button type='transparent' className='btn-white'>
-											<DeleteSweepIcon className='color-orange fs-5 ms-2' onClick={() => handleConfirmDeleteModal(true, index)} />
+											<DeleteSweepIcon className='color-orange fs-5 ms-2' onClick={() => handleConfirmDeleteModal(true, row.user_id)} />
 										</button>
 									</TableCell>
 								</TableRow>
@@ -130,14 +150,16 @@ export default function Invite() {
 				</TableContainer>
 			</div>
 			{selectedData &&
-				<EditInvite selectedData={selectedData} handleCloseDialog={handleCloseDialog} handleUpdate={handleUpdate} />}
+				<EditInvite selectedData={selectedData} handleCloseDialog={handleCloseDialog} handleUpdate={handleUpdate} showToast={showToast} />}
 
 			{openInviteNew &&
-				<InviteNew openInviteNew={openInviteNew} setOpenInviteNew={setOpenInviteNew} handleOpenInviteNew={handleOpenInviteNew} handleCloseInviteNew={handleCloseInviteNew} users={users} setUsers={setUsers} getUsers={getUsers} />}
+				<InviteNew openInviteNew={openInviteNew} setOpenInviteNew={setOpenInviteNew} handleOpenInviteNew={handleOpenInviteNew} handleCloseInviteNew={handleCloseInviteNew} getUsers={getUsers} showToast={showToast} />}
 
 			{showConfirmDeleteModal &&
 				<ConfirmDelete showConfirmDeleteModal={showConfirmDeleteModal}
-					handleConfirmDeleteModal={handleConfirmDeleteModal} selectedIndex={selectedIndex} handleDeleteClick={handleDeleteClick} />}
+					handleConfirmDeleteModal={handleConfirmDeleteModal} handleDeleteClick={handleDeleteClick} />}
+
+			<ToastContainer />
 		</div>
 
 

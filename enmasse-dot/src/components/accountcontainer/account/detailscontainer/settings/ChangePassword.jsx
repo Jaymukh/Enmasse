@@ -13,7 +13,7 @@ import { useRecoilValue } from 'recoil';
 import { RouteConstants } from '../../../../../constants';
 import { authState } from '../../../../../states';
 
-const ChangePassword = ({ open, handleUpdateClick, handleDrawer }) => {
+const ChangePassword = ({ open, handleDrawer }) => {
     const navigate = useNavigate();
     const userService = useUserService();
     const auth = useRecoilValue(authState);

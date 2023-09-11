@@ -18,6 +18,9 @@ function AccountOptions({ handleVisiblePanel }) {
 	const open = Boolean(anchorEl);
 	const navigate = useNavigate();
 	const userService = useUserService();
+	useEffect(() => {
+		userService.getUserDetails();
+	}, []);
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);

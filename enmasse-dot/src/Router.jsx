@@ -4,7 +4,7 @@ import { RouteConstants } from "./constants";
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import { useRecoilValue } from "recoil";
-import { authState } from "./states";
+import { authState,  } from './states';
 
 const customTheme = (outerTheme) =>
     createTheme({
@@ -83,7 +83,6 @@ const customTheme = (outerTheme) =>
             },
         },
     });
-
 const ProtectedRoute = ({ auth, redirectPath = RouteConstants.login, children }) => {
     if (!Object.keys(auth).length) {
         return <Navigate to={redirectPath} />;
