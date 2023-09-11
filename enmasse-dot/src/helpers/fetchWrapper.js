@@ -18,7 +18,8 @@ function useFetchWrapper() {
     axiosInstance.interceptors.request.use(
         (config) => {
             // Add Bearer token if user is logged in and token is not expired
-            const token = auth?.tokens?.access;
+            //const token = auth?.tokens?.access;
+            const token = JSON.parse(localStorage.getItem('user'))?.tokens?.access;
             const isLoggedIn = !!token;
             const isTokenExpired = checkTokenExpired(token);
             if (isLoggedIn && !isTokenExpired) {

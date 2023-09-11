@@ -12,21 +12,18 @@ const useUserService = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const login = (email_id, password) => {
-        return fetchWrapper.post(APIS.USERS.LOGIN, { email_id, password })
+    const login = (data) => {
+        return fetchWrapper.post(APIS.USERS.LOGIN, data)
             .then(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
                 setAuth(user);
-                getUserDetails().then(data => {
-                    setLoggedUser(data);
-                })
-                    .catch(error => {
-                        console.log(error);
-                    });
+                getUserDetails();
+
                 // get return url from location state or default to home page
                 const from = (!location.pathname || location.pathname === '/login') ? RouteConstants.root : location.pathname;
                 if (user.is_first_login) {
+                    acceptAgreement();
                     navigate(RouteConstants.update_password);
                 } else {
                     navigate(from);
@@ -72,6 +69,10 @@ const useUserService = () => {
         return fetchWrapper.post(APIS.USERS.REINVITE, updatedUser)
     }
 
+    const acceptAgreement = () => {
+        return fetchWrapper.get(APIS.USERS.ACCEPT_AGREEMENT);
+    }
+
     return {
         login,
         logout,
@@ -80,7 +81,8 @@ const useUserService = () => {
         changePassword,
         setNewPassword,
         inviteNew,
-        editInvite,        
+        editInvite,
+        acceptAgreement
     }
 }
 
