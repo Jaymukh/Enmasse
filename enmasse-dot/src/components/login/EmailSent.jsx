@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function EmailSent({
     showModal,
-    handleModal
-    // forgotPasswordEmail,
+    handleModal,
+    email
 }) {
     return (
         <div>
@@ -17,7 +17,7 @@ export default function EmailSent({
                             <div className=" d-flex flex-column justify-content-center my-2">
                                 <h5 className='text-start'>Email sent</h5>
                                 <p className=' Dialog-p '>Email sent to
-                                    {/* {forgotPasswordEmail}   */}
+                                    {email}
                                     with further instructions.</p>
                                 <button className='mb-2 mt-4 inputBoxHeight login-btn bg-dark text-white fs-6' onClick={() => handleModal({ sendMailModal: false })}>Back to Login</button>
                             </div>

@@ -43,6 +43,7 @@ export default function TermsAndConditions({
           </div>
         </div>
       </div>
+      {showModal && <div className="modal-backdrop fade show"></div>}
     </div>
   )
 }

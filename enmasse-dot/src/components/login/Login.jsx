@@ -21,21 +21,25 @@ export default function Login() {
     })
 
     const validationSchema = Yup.object().shape({
-        email_id: Yup.string().required('Email is required').email("Email is not valid"),
-        password: Yup.string().required('Password is required')
+        email_id: Yup.string()
+            .required('Email is required')
+            .email("Email is not valid")
+            .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, 'Email is not valid'),
+        password: Yup.string()
+            .required('Password is required')
     });
 
     const { handleSubmit, register, watch, formState } = useForm({
         resolver: yupResolver(validationSchema),
     });
     const { errors, isSubmitting } = formState;
-    console.log(useForm({
-        resolver: yupResolver(validationSchema),
-    }));
 
     const updateObject = watch();
 
     const onSubmit = (values) => {
+        if (Object.values(errors).length > 0) {
+            return;
+        }
         userService.login(values);
     }
 
@@ -51,9 +55,8 @@ export default function Login() {
         setEmail('');
         handleModal({ passwordModal: false });
     }
-    
+
     useEffect(() => {
-        console.log(errors);
         const values = watch(); // Get all form values
         const count = Object.values(values).filter(Boolean).length;  //`Boolean` is called as a function and it converts its argument into a boolean value. 
         setFilledInputCount(count);
@@ -81,12 +84,12 @@ export default function Login() {
                         <form className='loginCardAlign w-100' onSubmit={handleSubmit(onSubmit)}>
                             <h5 className='fs-6'>Email</h5>
                             <input
-                                type="email"
+                                // type="email"
                                 name='email_id'
                                 {...register("email_id")}
                                 className='my-1 px-2 inputBoxHeight'
                                 placeholder='Enter your email id here' />
-                            {errors?.email_id && <div class="invalid-feedback">{errors?.email_id?.message}</div>}
+                            {errors?.email_id?.message && <p className='text-danger m-0 p-0'>{errors?.email_id?.message}</p>}
                             <div className='d-flex flex-row justify-content-between mt-3'>
                                 <h5 className='fs-6'>Password</h5>
                                 <button className='bg-transparent underline-text border-0' onClick={() => handleModal({ passwordModal: true })}>Forgot password?</button>
@@ -97,17 +100,16 @@ export default function Login() {
                                 {...register("password")}
                                 className='my-1 px-2 inputBoxHeight'
                                 placeholder='Enter your password here' />
-                            {errors?.password && <div class="invalid-feedback">{errors?.password?.message}</div>}
+                            {errors?.password?.message && <p className='text-danger m-0 p-0'>{errors?.password?.message}</p>}
                             <button
                                 type='submit'
-                                className={`mb-2 mt-4 inputBoxHeight login-btn text-white fs-6 bg-secondary ${(filledInputCount < 2) ? 'bg-secondary' : 'bg-dark'}`}
-                                disabled={filledInputCount < 2}
+                                className='mb-2 mt-4 inputBoxHeight login-btn text-white fs-6 bg-dark'
+                            //className={`mb-2 mt-4 inputBoxHeight login-btn text-white fs-6 bg-secondary ${(filledInputCount < 2) ? 'bg-secondary' : 'bg-dark'}`}
+                            //disabled={filledInputCount < 2}
                             >
                                 {isSubmitting && <span className="spinner-border spinner-border-sm me-3"></span>}Continue
                             </button>
                         </form>
-                        {/* <p className='text-muted mb-0 mt-2 login-p'>By clicking on continue you are agreeing to the Enmasse <a href='/' className='black login-p'>Terms & conditions</a> and <a href='/' className='black' >Privacy policies</a></p> */}
-
                         <p className='text-muted mb-0 mt-2 login-p'>By clicking on continue you are agreeing to the Enmasse
                             <button className='bg-transparent black underline-text border-0' onClick={() => handleModal({ tncModal: true })} >Terms & conditions</button>
                             and <button className='bg-transparent black underline-text border-0' onClick={() => handleModal({ tncModal: true })} >Privacy policies</button>
@@ -129,10 +131,11 @@ export default function Login() {
                     <EmailSent
                         showModal={showModal?.sendMailModal}
                         handleModal={handleModal}
+                        email={email}
                     />
                 )}
 
-                {showModal.tncModal && (
+                {showModal?.tncModal && (
                     <TermsAndConditions
                         showModal={showModal?.tncModal}
                         handleModal={handleModal}

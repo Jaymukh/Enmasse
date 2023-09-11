@@ -2,6 +2,7 @@ import { useRecoilState } from 'recoil';
 import { authState } from '../states';
 import { APIS } from '../constants';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function useFetchWrapper() {
     const [auth, setAuth] = useRecoilState(authState);
@@ -41,6 +42,7 @@ function useFetchWrapper() {
                     });
 
                 } catch (error) {
+                    toast.error(error);
                     console.error('Error refreshing access token:', error);
                     // You can choose to log the user out or handle this error differently
                     return {};

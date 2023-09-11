@@ -34,9 +34,10 @@ const ChangePassword = ({ open, handleUpdateClick, handleDrawer, handleShowModal
             .required('Confirm password is required'),
     });
 
-    const { handleSubmit, register, errors, watch } = useForm({
+    const { handleSubmit, register, watch, formState } = useForm({
         resolver: yupResolver(validationSchema),
     });
+    const { errors, isSubmitting } = formState;
 
     const [conditions, setConditions] = useState({
         length: false,
@@ -58,6 +59,9 @@ const ChangePassword = ({ open, handleUpdateClick, handleDrawer, handleShowModal
     };
 
     const onSubmit = (values) => {
+        if (Object.values(errors).length > 0) {
+            return;
+        }
         userService.changePassword({ ...values, refresh: auth?.tokens?.refresh })
             .then(response => {
                 handleDrawer(false);
@@ -99,6 +103,7 @@ const ChangePassword = ({ open, handleUpdateClick, handleDrawer, handleShowModal
                         className='mediumMarginTopBottom inputBoxHeight my-1 px-3'
                         placeholder='Password'
                     />
+                    {errors?.current_password?.message && <p className='text-danger m-0 p-0'>{errors?.current_password?.message}</p>}
                     <h5 className='fs-14 mx-0 mt-2 mb-0' required>New Password</h5>
                     <input
                         type="password"
@@ -111,7 +116,7 @@ const ChangePassword = ({ open, handleUpdateClick, handleDrawer, handleShowModal
                         className='mediumMarginTopBottom inputBoxHeight my-1 px-3'
                         placeholder='Password'
                     />
-
+                    {errors?.new_password?.message && <p className='text-danger m-0 p-0'>{errors?.new_password?.message}</p>}
                     <div className="row my-2">
                         <div className="d-flex pe-0 mb-1">
                             {conditions.lengthCheck ? <GoCheckCircleFill color='#108041' /> : <GiPlainCircle color='#CECECE' />}
@@ -138,11 +143,14 @@ const ChangePassword = ({ open, handleUpdateClick, handleDrawer, handleShowModal
                         className='my-2 inputBoxHeight px-3'
                         placeholder='Password'
                     />
-                    {/* {confirmNewPasswordError && <p className='text-danger'>{confirmNewPasswordError}</p>} */}
+                    {errors?.confirm_new_password?.message && <p className='text-danger m-0 p-0'>{errors?.confirm_new_password?.message}</p>}
                     <button
                         type="submit"
-                        className={`mediumMarginTopBottom inputBoxHeight text-white my-2 border-0 ${(filledInputCount < 3) ? 'bg-secondary' : 'bg-dark'}`}
-                        disabled={filledInputCount < 3} >
+                        className='mediumMarginTopBottom inputBoxHeight text-white my-2 border-0 bg-dark'
+                    // className={`mediumMarginTopBottom inputBoxHeight text-white my-2 border-0 ${(filledInputCount < 3) ? 'bg-secondary' : 'bg-dark'}`}
+                    // disabled={filledInputCount < 3} 
+                    >
+                        {isSubmitting && <span className="spinner-border spinner-border-sm me-3"></span>}
                         Update
                     </button>
                 </form>
