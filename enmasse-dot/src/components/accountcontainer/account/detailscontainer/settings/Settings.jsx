@@ -67,7 +67,7 @@ export default function Settings() {
     const [open, setOpen] = useState(false);
     const [isDisabled, setIsDisabled] = useState(true);
     // all settings's data
-    const [settings, setSettings] = useRecoilState(AllSettingsState);
+    const settings = useRecoilValue(AllSettingsState);
     const [usersettings, setUserSettings] = useRecoilState(UserSettingsState);
     const settingsService = useSettingsService();
 
@@ -85,23 +85,23 @@ export default function Settings() {
     };
     //function to get all the users
     useEffect(() => {
-        getSettings();
+        settingsService.getAllSettings();
         getLoggedUserSettings();
     }, []);
 
-    const getSettings = () => {
-        settingsService.getAllSettings().then((response) => {
-            if (response) {
-                setSettings(response);
-                console.log('allSettings' + settings);
-            }
-        });
-    };
+    // const getSettings = () => {
+    //     settingsService.getAllSettings().then((response) => {
+    //         if (response) {
+    //             setSettings(response);
+    //             console.log('allSettings' , response);
+    //         }
+    //     });
+    // };
     const getLoggedUserSettings = () => {
         settingsService.getUserSettings().then((response) => {
             if (response) {
                 setUserSettings(response);
-                console.log('userSettings' + response);
+                //console.log('userSettings' + response);
             }
         });
     };

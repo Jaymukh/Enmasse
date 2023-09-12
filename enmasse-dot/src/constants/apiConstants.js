@@ -3,14 +3,19 @@ const APIS = {
         LOGIN: "/users/login/",
         LOGOUT: '/users/logout/',
         GET_LOGGED_USER: "/users/me/",
+        UPDATE_LOGGED_USER: '/users/update/my/details/',
         GET_ALL_USERS: "/users/all/",
         GET_REFRESH_TOKEN: "/users/token-refresh/",
-        UPDATE_LOGGED_USER: "/users/update/my/details/",
         INVITE_NEW: '/users/invite/',
         REINVITE: '/users/reinvite/',
+        DELETE_INVITE: '/users/',
         SET_NEW_PASSWORD: '/users/set-new-passowrd/',
+<<<<<<< HEAD
         CHANGE_PASSWORD: '/users/change-password/',
         ACCEPT_AGREEMENT: '/users/accept-agreement/',
+=======
+        CHANGE_PASSWORD: '/users/change-password/'
+>>>>>>> 0a81d1fe1eb056828b35a8d599c559141b3dba57
     },
     SETTINGS: {
         GET_ALL_SETTINGS : '/users/settings/details/',

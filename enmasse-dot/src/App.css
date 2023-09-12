@@ -223,6 +223,9 @@
 .fontSizeXS {
 	font-size: 10px;
 }
+.fontSizeXL {
+	font-size: 60px;
+}
 
 .infoIcon {
 	background-color: black;
@@ -598,6 +601,9 @@
 
 .color-orange {
 	color: #D55038;
+}
+.bg-orange{
+	background-color: #D55038;
 }
 
 /* MapPopup */
