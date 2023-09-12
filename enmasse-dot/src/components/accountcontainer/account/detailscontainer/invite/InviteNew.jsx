@@ -7,9 +7,9 @@ import MenuItem from '@mui/material/MenuItem';
 import * as Constants from '../../../../../utils/constants/Constants';
 import '../../../../../App.css';
 import { useRecoilValue } from "recoil";
+import { toast } from "react-toastify";
 import { useUserService, useSettingsService } from '../../../../../services';
 import { loggedUserState, AllSettingsState } from "../../../../../states";
-import { toast } from "react-toastify";
 
 export default function InviteNew({
     openInviteNew,
@@ -20,7 +20,7 @@ export default function InviteNew({
     const [newData, setNewData] = useState({});
     const userService = useUserService();
     const loggedUser = useRecoilValue(loggedUserState);
-
+    
     // all settings's data
     const settingsService = useSettingsService();
     const settings = useRecoilValue(AllSettingsState);
