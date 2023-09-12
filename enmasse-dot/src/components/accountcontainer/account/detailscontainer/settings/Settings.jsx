@@ -172,7 +172,6 @@ export default function Settings() {
             </div>
             {open && (<ChangePassword open={open} handleUpdateClick={handleUpdateClick} handleDrawer={handleDrawer} />)}
             {editMode && (<EditSetting editMode={editMode} handleEditClick={handleEditClick} />)}
-
             {showModal && <UpdateSuccessModal showModal={showModal} handleShowModal={handleShowModal} />}
         </div>
     )

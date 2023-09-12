@@ -20,10 +20,6 @@ const useUserService = () => {
                 localStorage.setItem('user', JSON.stringify(user));
                 setAuth(user);
                 getUserDetails();
-<<<<<<< HEAD
-=======
-
->>>>>>> 622df74dc6d6be8c54d5a69af246bbef1eeffa8f
                 // get return url from location state or default to home page
                 const from = (!location.pathname || location.pathname === '/login') ? RouteConstants.root : location.pathname;
                 if (user.is_first_login) {
@@ -81,12 +77,13 @@ const useUserService = () => {
         return fetchWrapper.post(APIS.USERS.REINVITE, updatedUser)
     }
 
+    const acceptAgreement = () => {
+        return fetchWrapper.get(APIS.USERS.ACCEPT_AGREEMENT);
+    }
+    
     const deleteInvite = (user_id) => {
         const URL = APIS.USERS.DELETE_INVITE + user_id + '/delete/';
         return fetchWrapper.delete(URL);
-    }
-    const acceptAgreement = () => {
-        return fetchWrapper.get(APIS.USERS.ACCEPT_AGREEMENT);
     }
 
     return {
@@ -99,8 +96,8 @@ const useUserService = () => {
         setNewPassword,
         inviteNew,
         editInvite,
-        deleteInvite,
-        acceptAgreement
+        acceptAgreement,
+        deleteInvite
     }
 }
 

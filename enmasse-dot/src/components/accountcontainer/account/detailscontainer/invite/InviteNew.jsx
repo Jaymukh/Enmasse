@@ -11,6 +11,10 @@ import { useUserService, useSettingsService } from '../../../../../services';
 import { loggedUserState, AllSettingsState } from "../../../../../states";
 import { loggedUserState } from "../../../../../states";
 import { toast } from "react-toastify";
+import { loggedUserState } from "../../../../../states";
+import { toast } from "react-toastify";
+import { useUserService, useSettingsService } from '../../../../../services';
+import { loggedUserState, AllSettingsState } from "../../../../../states";
 
 export default function InviteNew({
     openInviteNew,
@@ -40,6 +44,13 @@ export default function InviteNew({
         setNewData({ ...newData, [name]: value });
     }
     const handleSubmitInviteNew = () => {
+        var payload = { ...newData, user_id: loggedUser.user_id, designation: 'Manager', country: 'India', phone_number: 5436525362, status: 'Invited' };
+        userService.inviteNew(payload).then((response) => {
+            if (response) {
+                getUsers();
+            }
+        })
+            .catch(error => toast.error(error));
         console.log(newData);
         var payload = { ...newData, user_id: loggedUser.user_id, designation: 'Manager', country: 'India', phone_number: 5436525362, status: 'Invited' };
         userService.inviteNew(payload)
