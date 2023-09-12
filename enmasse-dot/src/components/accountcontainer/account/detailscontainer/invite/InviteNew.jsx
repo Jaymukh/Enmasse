@@ -7,13 +7,9 @@ import MenuItem from '@mui/material/MenuItem';
 import * as Constants from '../../../../../utils/constants/Constants';
 import '../../../../../App.css';
 import { useRecoilValue } from "recoil";
-<<<<<<< HEAD
-import { loggedUserState } from "../../../../../states";
 import { toast } from "react-toastify";
-=======
 import { useUserService, useSettingsService } from '../../../../../services';
 import { loggedUserState, AllSettingsState } from "../../../../../states";
->>>>>>> 0a81d1fe1eb056828b35a8d599c559141b3dba57
 
 export default function InviteNew({
     openInviteNew,
@@ -24,8 +20,6 @@ export default function InviteNew({
     const [newData, setNewData] = useState({});
     const userService = useUserService();
     const loggedUser = useRecoilValue(loggedUserState);
-<<<<<<< HEAD
-=======
     
     // all settings's data
     const settingsService = useSettingsService();
@@ -36,7 +30,6 @@ export default function InviteNew({
         settingsService.getAllSettings();
         console.log('settings', settings);
     }, []);
->>>>>>> 0a81d1fe1eb056828b35a8d599c559141b3dba57
 
 
     const handleChangeData = (e) => {
@@ -46,15 +39,6 @@ export default function InviteNew({
         setNewData({ ...newData, [name]: value });
     }
     const handleSubmitInviteNew = () => {
-<<<<<<< HEAD
-        var payload = { ...newData, user_id: loggedUser.user_id, designation: 'Manager', country: 'India', phone_number: 5436525362, status: 'Invited' };
-        userService.inviteNew(payload).then((response) => {
-            if (response) {
-                getUsers();
-            }
-        })
-            .catch(error => toast.error(error));
-=======
         console.log(newData);
         var payload = { ...newData, user_id: loggedUser.user_id, designation: 'Manager', country: 'India', phone_number: 5436525362, status: 'Invited' };
         userService.inviteNew(payload)
@@ -65,7 +49,6 @@ export default function InviteNew({
                 }
             })
             .catch(error => showToast(error));
->>>>>>> 0a81d1fe1eb056828b35a8d599c559141b3dba57
         handleCloseInviteNew();
     };
 

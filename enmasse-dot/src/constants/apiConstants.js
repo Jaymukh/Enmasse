@@ -10,12 +10,8 @@ const APIS = {
         REINVITE: '/users/reinvite/',
         DELETE_INVITE: '/users/',
         SET_NEW_PASSWORD: '/users/set-new-passowrd/',
-<<<<<<< HEAD
         CHANGE_PASSWORD: '/users/change-password/',
         ACCEPT_AGREEMENT: '/users/accept-agreement/',
-=======
-        CHANGE_PASSWORD: '/users/change-password/'
->>>>>>> 0a81d1fe1eb056828b35a8d599c559141b3dba57
     },
     SETTINGS: {
         GET_ALL_SETTINGS : '/users/settings/details/',
