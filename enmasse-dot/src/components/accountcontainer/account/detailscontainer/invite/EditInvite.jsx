@@ -62,46 +62,23 @@ export default function EditInvite({
                     <input type="email" placeholder="Enter your Email ID" value={updatedData.email_id} name='email_id'
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black drawer-input-box-height' />
                     <h6 className='my-1 font-87-5'>Role</h6>
-                    <Select
-                        value={updatedData.role}
-                        name='role'
-                        displayEmpty
-                        inputProps={{ 'aria-label': 'Without label' }}
-                        className='btn-outline-black drawer-input-box-height p-0'
-                        onChange={(e) => handleChangeData(e)}
-                    >
-                        {settings?.roles?.map((company_type) => (
-                            <MenuItem value={company_type.id}>{company_type.name}</MenuItem>
+                    <select name='role' className='my-2 btn-outline-black drawer-input-box-height text-left ' selected={updatedData.role} onChange={(e) => handleChangeData(e)} >
+                        {settings?.roles?.map((role) => (
+                            <option key={role.id} value={role.name}>{role.name}</option>
                         ))}
-                    </Select>
-                    {/* <input type="tel" maxlength="10" placeholder="Enter your phone number" value={updatedData.role} name='role'
-                        onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black drawer-input-box-height' /> */}
+                    </select>
                     <h6 className='my-1 font-87-5'>Company</h6>
-                    <Select
-                        value={updatedData.company}
-                        name='company'
-                        displayEmpty
-                        inputProps={{ 'aria-label': 'Without label' }}
-                        className='btn-outline-black drawer-input-box-height p-0'
-                        onChange={(e) => handleChangeData(e)}
-                    >
+                    <select name='company' className='my-2 btn-outline-black drawer-input-box-height text-left ' selected={updatedData.company} onChange={(e) => handleChangeData(e)} >
                         {Constants.company.map((company) => (
-                            <MenuItem value={company.key}>{company.value}</MenuItem>
+                            <option key={company.key} value={company.value}>{company.value}</option>
                         ))}
-                    </Select>
+                    </select>
                     <h6 className='my-1 font-87-5'>CompanyType</h6>
-                    <Select
-                        value={updatedData.company_type}
-                        name='companyType'
-                        displayEmpty
-                        inputProps={{ 'aria-label': 'Without label' }}
-                        className='btn-outline-black drawer-input-box-height p-0'
-                        onChange={(e) => handleChangeData(e)}
-                    >
+                    <select name='company_type' className='my-2 btn-outline-black drawer-input-box-height text-left' selected={updatedData.company_type} onChange={(e) => handleChangeData(e)} >
                         {settings?.company_types?.map((company_type) => (
-                            <MenuItem value={company_type.id}>{company_type.name}</MenuItem>
+                            <option key={company_type.id} value={company_type.name}>{company_type.name}</option>
                         ))}
-                    </Select>
+                    </select>
                     <button className='btn-black drawer-input-box-height mt-2 mb-3' onClick={handleUpdateClick}>Update</button>
                 </Box>
             </Drawer>

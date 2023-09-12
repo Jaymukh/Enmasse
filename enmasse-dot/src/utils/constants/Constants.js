@@ -150,7 +150,7 @@ export const accountMenuItems = [
     {
         key: 2,
         text: "Invite",
-        icon: <GroupAddIcon fontSize='small'/>
+        icon: <GroupAddIcon fontSize='small' />
     },
 ];
 
@@ -442,21 +442,22 @@ export const families = {
                 coordinates: [-61.21582, -15.971891]
             }
         }
-    ]}
+    ]
+}
 
 export const explorePlaces = [
     {
-        state:'Andhra Pradesh',
-        districts:['Anantapur', 'Chittoor', 'East Godavari', 'Guntur','Krishna']
+        state: 'Andhra Pradesh',
+        districts: ['Anantapur', 'Chittoor', 'East Godavari', 'Guntur', 'Krishna']
     },
     {
-        state:'Gujarat',
-        districts:['Ahmedabad', 'Amreli', 'Anand', 'Kutch'] 
+        state: 'Gujarat',
+        districts: ['Ahmedabad', 'Amreli', 'Anand', 'Kutch']
 
     },
     {
-        state:'Kerala',
-        districts:['Thiruvananthapuram', 'Thrissur']
+        state: 'Kerala',
+        districts: ['Thiruvananthapuram', 'Thrissur']
     }
 ]
 

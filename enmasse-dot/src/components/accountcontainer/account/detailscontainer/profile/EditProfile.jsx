@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
 import '../../../../../App.css';
 import * as Constants from '../../../../../../src/utils/constants/Constants';
 import { useRecoilValue } from "recoil";
@@ -64,50 +62,26 @@ export default function Editprofile({
                     <input type="tel" maxLength="10" placeholder="Enter your Phone number" name='phone_number' value={updatedData.phone_number}
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black inputBoxHeight' />
                     <h6 className='my-2'>Role</h6>
-                    <Select
-                        name='role'
-                        value={updatedData.role}
-                        displayEmpty
-                        inputProps={{ 'aria-label': 'Without label' }}
-                        className='btn-outline-black inputBoxHeight p-0'
-                        onChange={(e) => handleChangeData(e)}
-                    >
+                    <select name='role' className='mb-2 btn-outline-black inputBoxHeight text-left ' selected={updatedData.role} onChange={(e) => handleChangeData(e)} >
                         {settings?.roles?.map((role) => (
-                            <MenuItem value={role.id}>{role.name}</MenuItem>
+                            <option key={role.id} value={role.name}>{role.name}</option>
                         ))}
-                    </Select>
-                    {/* <input type="text" placeholder="Enter your role" name='role' value={updatedData.role}
-                        onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black inputBoxHeight' /> */}
+                    </select>
                     <h6 className='my-2'>Designation</h6>
                     <input type="text" placeholder="Enter your designation" name='designation' value={updatedData.designation}
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black inputBoxHeight' />
                     <h6 className='my-2'>Company</h6>
-                    <Select
-                        name='company'
-                        value={updatedData.company}
-                        displayEmpty
-                        inputProps={{ 'aria-label': 'Without label' }}
-                        className='btn-outline-black inputBoxHeight p-0'
-                        onChange={(e) => handleChangeData(e)}
-                    >
-                        {Constants.company.map((company) => (
-                            <MenuItem value={company.key}>{company.value}</MenuItem>
+                    <select name='company' className='mb-2 btn-outline-black inputBoxHeight text-left ' selected={updatedData.company} onChange={(e) => handleChangeData(e)} >
+                    {Constants.company.map((company) => (
+                            <option key={company.key} value={company.value}>{company.value}</option>
                         ))}
-                    </Select>
+                    </select>
                     <h6 className='my-2'>Company Type</h6>
-                    <Select
-                        sx={{ minWidth: 200 }}
-                        name='company_type'
-                        value={updatedData.company_type}
-                        onChange={(e) => handleChangeData(e)}
-                        displayEmpty
-                        inputProps={{ 'aria-label': 'Without label' }}
-                        className='btn-outline-black inputBoxHeight p-0'
-                    >
+                    <select name='company_type' className='mb-2 btn-outline-black inputBoxHeight text-left ' selected={updatedData.company_type} onChange={(e) => handleChangeData(e)} >
                         {settings?.company_types?.map((company_type) => (
-                            <MenuItem value={company_type.id}>{company_type.name}</MenuItem>
+                            <option key={company_type.id} value={company_type.name}>{company_type.name}</option>
                         ))}
-                    </Select>
+                    </select>
                     <button className='btn-black inputBoxHeight my-5' onClick={handleUpdateClick}>Update Profile</button>
                 </Box>
             </Drawer>

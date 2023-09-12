@@ -131,7 +131,7 @@ export default function Settings() {
                 <h5 className='mt-2 col-2'>Settings</h5>
                 <div className='mt-2 col-10 d-flex justify-content-end'>
                     <button className='btn btn-outline-secondary width-fit-content-button me-2' onClick={() => handleEditClick(!editMode)}>
-                        <ModeEditIcon className='mx-1 mb-1 color-black' /> 'Edit Setting'
+                        <ModeEditIcon className='mx-1 mb-1 color-black' /> Edit Setting
                         {/* { editMode ? 
                             ('Save Setting') : 
                             ( <><ModeEditIcon className='mx-1 mb-1 color-black' /> 'Edit Setting'</> )

@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import AccountHeader from './AccountHeader';
 import Account from './account/Account';
-import { useUserService } from '../../services';
 
 function AccountContainer({ handleVisiblePanel, visiblePanel }) {
 	const userService = useUserService();
