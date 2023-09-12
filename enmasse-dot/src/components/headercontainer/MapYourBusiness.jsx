@@ -1,15 +1,14 @@
 import '../../styles/headercontainer/MapYourBusiness.css';
 import React, { useState } from 'react';
 import { MdOutlineShareLocation } from 'react-icons/md';
-import { MdClose } from 'react-icons/md';
-import Drawer from '@mui/material/Drawer';
 import WorkInProgressImage from '../../utils/images/work_in_progress.svg';
+import Drawer from '../ui/Drawer';
 
 function MapYourBusiness() {
 	const [open, setOpen] = useState(false);
 
-	const toggleDrawer = (open) => {
-		setOpen(open);
+	const toggleDrawer = () => {
+		setOpen(!open);
 	};
 
 	return (
@@ -22,24 +21,12 @@ function MapYourBusiness() {
 				Map Your Business
 			</button>
 			<Drawer
-				className='drawer'
-				anchor='right'
-				style={{ width: '25vw' }}
-				open={open}
-				onClose={() => toggleDrawer(false)}
+				id='map-bussiness'
+				title='Map Your Business'
+				isOpen={open}
+				toggleFunction={toggleDrawer}
 			>
-				<div className='d-flex flex-wrap justify-content-between mx-3 my-4'>
-					<h5 className='fs-21'>
-						Map Your Business
-					</h5>
-					<button
-						className='close-btn'
-						onClick={() => toggleDrawer(false)}
-					>
-						<MdClose fontSize={27} />
-					</button>
-				</div>
-				<div className='mx-5 my-1 dialog-div'>
+				<div className='mx-3 my-1 dialog-div'>
 					<h6 className='contact-para fs-14'>
 						Why do we need this?
 					</h6>
@@ -50,7 +37,6 @@ function MapYourBusiness() {
 						<p className="text-center fs-12 grey-para">Our team is actively developing these features for the upcoming updates. Keep an eye out for more information.</p>
 					</div>
 				</div>
-
 			</Drawer>
 		</div>
 	);

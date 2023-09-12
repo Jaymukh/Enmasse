@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CloseIcon from '@mui/icons-material/Close';
+import Drawer from '../../../../ui/Drawer';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import * as Constants from '../../../../../utils/constants/Constants';
 import '../../../../../App.css';
 import { useRecoilValue } from "recoil";
-import { toast } from "react-toastify";
 import { useUserService, useSettingsService } from '../../../../../services';
 import { loggedUserState, AllSettingsState } from "../../../../../states";
 
@@ -20,7 +18,7 @@ export default function InviteNew({
     const [newData, setNewData] = useState({});
     const userService = useUserService();
     const loggedUser = useRecoilValue(loggedUserState);
-    
+
     // all settings's data
     const settingsService = useSettingsService();
     const settings = useRecoilValue(AllSettingsState);
@@ -54,7 +52,7 @@ export default function InviteNew({
 
     return (
         <div className=''>
-            <Drawer
+            {/* <Drawer
                 anchor='right'
                 open={openInviteNew}
                 onClose={handleCloseInviteNew}
@@ -67,15 +65,21 @@ export default function InviteNew({
                     <button className='bg-white border-0'>
                         <CloseIcon onClick={handleCloseInviteNew} />
                     </button>
-                </Box>
-                <Box className='d-flex justify-content-center flex-column'>
-                    <h6 className='my-1 font-87-5'>Name</h6>
+                </Box> */}
+            <Drawer
+                id='invite'
+                title='Invite'
+                isOpen={openInviteNew}
+                toggleFunction={handleCloseInviteNew}
+            >
+                <div className='d-flex justify-content-center flex-column px-3'>
+                    <h6 className='mt-1 font-87-5 text-start'>Name</h6>
                     <input type="text" placeholder="Enter your name" value={newData.name} name='name'
-                        onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black drawer-input-box-height' />
-                    <h6 className='my-1 font-87-5'>Email</h6>
+                        onChange={(e) => handleChangeData(e)} className='mb-2 p-2 btn-outline-black drawer-input-box-height' />
+                    <h6 className='mt-1 font-87-5 text-start'>Email</h6>
                     <input type="email" placeholder="Enter your Email ID" value={newData.email_id} name='email_id'
-                        onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black drawer-input-box-height' />
-                    <h6 className='my-1 font-87-5'>Role</h6>
+                        onChange={(e) => handleChangeData(e)} className='mb-2 p-2 btn-outline-black drawer-input-box-height' />
+                    <h6 className='mt-1 font-87-5 text-start'>Role</h6>
                     <Select
                         value={newData.role}
                         name='role'
@@ -90,7 +94,7 @@ export default function InviteNew({
                     </Select>
                     {/* <input type="tel" maxlength="10" placeholder="Enter your role" value={newData.role} name='role'
                         onChange={(e) => handleChangeData(e)} className='my-2  p-2 btn-outline-black drawer-input-box-height' /> */}
-                    <h6 className='my-1 font-87-5'>Company</h6>
+                    <h6 className='mt-1 font-87-5 text-start'>Company</h6>
                     <Select
                         value={newData.company}
                         name='company'
@@ -103,7 +107,7 @@ export default function InviteNew({
                             <MenuItem value={company.key}>{company.value}</MenuItem>
                         ))}
                     </Select>
-                    <h6 className='my-1 font-87-5 font-87-5'>Company Type</h6>
+                    <h6 className='mt-1 font-87-5 text-start'>Company Type</h6>
                     <Select
                         value={newData.company_type}
                         name='company_type'
@@ -118,9 +122,9 @@ export default function InviteNew({
                     </Select>
                     <p className='my-3 Note  d-flex justify-content-center align-items-center'>Note: Admins will be able to invite users to the platform</p>
                     <button className='btn-black drawer-input-box-height mt-2 mb-3' onClick={handleSubmitInviteNew}>Invite</button>
-                </Box>
+                </div>
             </Drawer>
-        </div>
+        </div >
     );
 }
 
