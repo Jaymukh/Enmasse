@@ -9,6 +9,8 @@ import '../../../../../App.css';
 import { useRecoilValue } from "recoil";
 import { useUserService, useSettingsService } from '../../../../../services';
 import { loggedUserState, AllSettingsState } from "../../../../../states";
+import { loggedUserState } from "../../../../../states";
+import { toast } from "react-toastify";
 
 export default function InviteNew({
     openInviteNew,

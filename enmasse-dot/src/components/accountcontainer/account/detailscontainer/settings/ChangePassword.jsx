@@ -8,16 +8,18 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useUserService } from '../../../../../services';
-import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { RouteConstants } from '../../../../../constants';
-import { authState } from '../../../../../states';
+import { toast } from "react-toastify";
 
-const ChangePassword = ({ open, handleDrawer }) => {
-    const navigate = useNavigate();
+import { authState } from '../../../../../states';
+import UpdateSuccessModal from './UpdateSuccessModel';
+
+const ChangePassword = ({ open, handleUpdateClick, handleDrawer, handleShowModal }) => {
     const userService = useUserService();
     const auth = useRecoilValue(authState);
+
     const [filledInputCount, setFilledInputCount] = useState(0);
+
     const validationSchema = Yup.object().shape({
         current_password: Yup.string()
             .required('Current password is required'),
@@ -32,9 +34,10 @@ const ChangePassword = ({ open, handleDrawer }) => {
             .required('Confirm password is required'),
     });
 
-    const { handleSubmit, register, errors, watch } = useForm({
+    const { handleSubmit, register, watch, formState } = useForm({
         resolver: yupResolver(validationSchema),
     });
+    const { errors, isSubmitting } = formState;
 
     const [conditions, setConditions] = useState({
         length: false,
@@ -56,14 +59,17 @@ const ChangePassword = ({ open, handleDrawer }) => {
     };
 
     const onSubmit = (values) => {
-        console.log(values);
+        if (Object.values(errors).length > 0) {
+            return;
+        }
         userService.changePassword({ ...values, refresh: auth?.tokens?.refresh })
             .then(response => {
-                console.log(response);
-                navigate(RouteConstants.login);
+                handleDrawer(false);
+                handleShowModal(true);
             })
-            .catch(error => console.log(error));
+            .catch(error => toast.error(error));
     };
+
 
     useEffect(() => {
         const values = watch(); // Get all form values
@@ -97,6 +103,7 @@ const ChangePassword = ({ open, handleDrawer }) => {
                         className='mediumMarginTopBottom inputBoxHeight my-1 px-3'
                         placeholder='Password'
                     />
+                    {errors?.current_password?.message && <p className='text-danger m-0 p-0'>{errors?.current_password?.message}</p>}
                     <h5 className='fs-14 mx-0 mt-2 mb-0' required>New Password</h5>
                     <input
                         type="password"
@@ -109,7 +116,7 @@ const ChangePassword = ({ open, handleDrawer }) => {
                         className='mediumMarginTopBottom inputBoxHeight my-1 px-3'
                         placeholder='Password'
                     />
-
+                    {errors?.new_password?.message && <p className='text-danger m-0 p-0'>{errors?.new_password?.message}</p>}
                     <div className="row my-2">
                         <div className="d-flex pe-0 mb-1">
                             {conditions.lengthCheck ? <GoCheckCircleFill color='#108041' /> : <GiPlainCircle color='#CECECE' />}
@@ -136,11 +143,14 @@ const ChangePassword = ({ open, handleDrawer }) => {
                         className='my-2 inputBoxHeight px-3'
                         placeholder='Password'
                     />
-                    {/* {confirmNewPasswordError && <p className='text-danger'>{confirmNewPasswordError}</p>} */}
+                    {errors?.confirm_new_password?.message && <p className='text-danger m-0 p-0'>{errors?.confirm_new_password?.message}</p>}
                     <button
                         type="submit"
-                        className={`mediumMarginTopBottom inputBoxHeight text-white my-2 border-0 ${(filledInputCount < 3) ? 'bg-secondary' : 'bg-dark'}`}
-                        disabled={filledInputCount < 3} >
+                        className='mediumMarginTopBottom inputBoxHeight text-white my-2 border-0 bg-dark'
+                    // className={`mediumMarginTopBottom inputBoxHeight text-white my-2 border-0 ${(filledInputCount < 3) ? 'bg-secondary' : 'bg-dark'}`}
+                    // disabled={filledInputCount < 3} 
+                    >
+                        {isSubmitting && <span className="spinner-border spinner-border-sm me-3"></span>}
                         Update
                     </button>
                 </form>

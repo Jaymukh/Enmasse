@@ -2,21 +2,21 @@ import React from 'react';
 import '../../App.css'
 
 export default function TermsAndConditions({
-  showTermsAndConditionsModal,
-  closeTermsAndConditionsModal
+  showModal,
+  handleModal
 }) {
   return (
     <div>
-      <div className={`modal ${showTermsAndConditionsModal ? 'show' : ''}`} tabIndex="-1" role="dialog" style={{ display: showTermsAndConditionsModal ? 'block' : 'none' }}>
+      <div className={`modal ${showModal ? 'show' : ''}`} tabIndex="-1" role="dialog" style={{ display: showModal ? 'block' : 'none' }}>
         <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered dialog-width">
           <div className="modal-content p-6">
-          <div className=' modal-header d-flex flex-row justify-content-between w-100'>
-                <div className="d-flex flex-row">
-                  <h5 >Terms and Conditions</h5>
-                  <p className=' mx-2 Dialog-p'>Last updated: DD/MM/YYYY</p>
-                </div>
-                <button type="button" className="btn-close" onClick={closeTermsAndConditionsModal}></button>
+            <div className=' modal-header d-flex flex-row justify-content-between w-100'>
+              <div className="d-flex flex-row">
+                <h5 >Terms and Conditions</h5>
+                <p className=' mx-2 Dialog-p'>Last updated: DD/MM/YYYY</p>
               </div>
+              <button type="button" className="btn-close" onClick={() => handleModal({ tncModal: false })}></button>
+            </div>
             <div className="modal-body d-flex flex-column justify-content-center align-items-center m-auto p-6 modal-padding">
               {/* <div className='d-flex flex-row justify-content-between w-100 modal-header-padding'>
                 <div className="d-flex flex-row">
@@ -38,11 +38,12 @@ export default function TermsAndConditions({
                 <p className='Dialog-p'>3.1 By using our services, you agree to provide accurate and current information and to ensure the security of your account credentials.</p>
                 {/* <button className='bg-transparent underline-text border-0' onClick={closeTermsAndConditionsModal}>Agree</button> */}
               </div>
-              <button className='inputBoxHeight login-btn bg-dark text-white width-fit-content-button px-4' onClick={closeTermsAndConditionsModal}>Agree</button>
+              <button className='inputBoxHeight login-btn bg-dark text-white width-fit-content-button px-4' onClick={() => handleModal({ tncModal: false })}>Agree</button>
             </div>
           </div>
         </div>
       </div>
+      {showModal && <div className="modal-backdrop fade show"></div>}
     </div>
   )
 }

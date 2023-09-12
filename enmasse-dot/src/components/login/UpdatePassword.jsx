@@ -9,6 +9,7 @@ import * as Yup from 'yup';
 import { useUserService } from '../../services';
 import { useNavigate } from 'react-router-dom';
 import { RouteConstants } from '../../constants';
+import { toast } from "react-toastify";
 
 const UpdatePassword = () => {
     const navigate = useNavigate();
@@ -25,9 +26,10 @@ const UpdatePassword = () => {
             .required('Confirm password is required'),
     });
 
-    const { handleSubmit, register, errors, watch } = useForm({
+    const { handleSubmit, register, watch, formState } = useForm({
         resolver: yupResolver(validationSchema),
     });
+    const { errors, isSubmitting } = formState;
 
     const [conditions, setConditions] = useState({
         length: false,
@@ -49,9 +51,12 @@ const UpdatePassword = () => {
     };
 
     const onSubmit = (values) => {
+        if (Object.values(errors).length > 0) {
+            return;
+        }
         userService.setNewPassword({ ...values, token: "c2276236f0824f5dbd9b054e741954c3" })
             .then(response => console.log(response))
-            .catch(error => console.log(error));
+            .catch(error => toast.error(error));
     };
 
     const handleSkip = () => {
@@ -70,7 +75,7 @@ const UpdatePassword = () => {
                         <IoMdArrowBack />Back
                     </button>
                     <div className='loginCardAlign my-5'>
-                        <img variant="top" src={globe}/>
+                        <img variant="top" src={globe} />
                         <div>
                             <h3>enmasse</h3>
                             <p className='text-muted login-p'>
@@ -95,6 +100,7 @@ const UpdatePassword = () => {
                         })}
                         className='my-1 px-2 inputBoxHeight'
                         placeholder='Enter your password here' />
+                    {errors?.password?.message && <p className='text-danger m-0 p-0'>{errors?.password?.message}</p>}
                     <div className="row my-2">
                         <div className="col-7 d-flex pe-0">
                             {conditions.lengthCheck ? <GoCheckCircleFill color='#108041' /> : <GiPlainCircle color='#CECECE' />}
@@ -124,7 +130,11 @@ const UpdatePassword = () => {
                         })}
                         className='my-1 px-2 inputBoxHeight'
                         placeholder='Re enter your password here' />
-                    <button type="submit" className='mb-2 mt-4 inputBoxHeight login-btn bg-dark text-white fs-6' >Update Password</button>
+                    {errors?.confirm_password?.message && <p className='text-danger m-0 p-0'>{errors?.confirm_password?.message}</p>}
+                    <button type="submit" className='mb-2 mt-4 inputBoxHeight login-btn bg-dark text-white fs-6' >
+                        {isSubmitting && <span className="spinner-border spinner-border-sm me-3"></span>}
+                        Update Password
+                    </button>
                     <button className='bg-transparent black underline-text border-0 mt-3' onChange={() => handleSkip()}>Skip</button>
                 </form>
             </div>

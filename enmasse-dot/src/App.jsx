@@ -1,26 +1,16 @@
 import './App.css';
 import Router from './Router';
 import { BrowserRouter } from 'react-router-dom';
+import { ToastContainer, } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 function App() {
 
 	return (
 		<div className='App'>
-			{/* <ThemeProvider theme={customTheme(outerTheme)}>
-				<div className='bottom-div'>
-					<Header handleMapDisplay={handleMapDisplay} />
-					{ mapDisplay ? <MapContainer /> : <AccountContainer handleMapDisplay={handleMapDisplay}/>}
-				</div>
-				{overlay ? (
-					<div className='overlay d-flex flex-wrap justify-content-center align-items-center'>
-						<OverlayContainer handleOverlay={handleOverlay} />
-					</div>
-				) : (
-					''
-				)}
-			</ThemeProvider> */}
 			<BrowserRouter>
+				<ToastContainer />
 				<Router />
 			</BrowserRouter>
 		</div>

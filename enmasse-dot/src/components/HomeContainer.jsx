@@ -3,13 +3,14 @@ import Header from './headercontainer/Header';
 import MapContainer from './mapcontainer/MapContainer';
 import OverlayContainer from '../components/overlaycontainer/OverlayContainer';
 import { useRecoilState } from "recoil";
-import { loggedUserState} from "../states";
+import { loggedUserState } from "../states";
 import { useUserService } from '../services';
+import { toast } from "react-toastify";
 
 const HomeContainer = ({ handleVisiblePanel, handleOverlay, handleInfographic, overlay, showInfographic }) => {
     const [loggedUser, setLoggedUser] = useRecoilState(loggedUserState);
     const userService = useUserService();
-    
+
     useEffect(() => {
         getUserDetails();
     }, []);
@@ -20,9 +21,9 @@ const HomeContainer = ({ handleVisiblePanel, handleOverlay, handleInfographic, o
                 setLoggedUser(response);
             }
         })
-        .catch(error => console.log(error));;
+            .catch(error => toast.error(error));;
     };
-    
+
     return (
         <>
             <div className='w-100 primary-bg'>

@@ -3,6 +3,7 @@ import { useFetchWrapper } from '../helpers';
 import { authState, loggedUserState } from '../states';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { APIS, RouteConstants } from '../constants';
+import { toast } from "react-toastify";
 
 const useUserService = () => {
     // const baseUrl = `${process.env.REACT_APP_BASE_API_URL}`;
@@ -12,22 +13,27 @@ const useUserService = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const login = (email_id, password) => {
-        return fetchWrapper.post(APIS.USERS.LOGIN, { email_id, password })
+    const login = (data) => {
+        return fetchWrapper.post(APIS.USERS.LOGIN, data)
             .then(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
                 setAuth(user);
                 getUserDetails();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 622df74dc6d6be8c54d5a69af246bbef1eeffa8f
                 // get return url from location state or default to home page
                 const from = (!location.pathname || location.pathname === '/login') ? RouteConstants.root : location.pathname;
                 if (user.is_first_login) {
+                    acceptAgreement();
                     navigate(RouteConstants.update_password);
                 } else {
                     navigate(from);
                 }
             })
-            .catch(error => console.log(error))
+            .catch(error => toast.error(error));
     }
 
     const logout = () => {
@@ -39,7 +45,7 @@ const useUserService = () => {
                 setAuth({});
                 navigate(RouteConstants.login);
             })
-            .catch(error => console.log(error));
+            .catch(error => toast.error(error));
 
     }
 
@@ -79,6 +85,9 @@ const useUserService = () => {
         const URL = APIS.USERS.DELETE_INVITE + user_id + '/delete/';
         return fetchWrapper.delete(URL);
     }
+    const acceptAgreement = () => {
+        return fetchWrapper.get(APIS.USERS.ACCEPT_AGREEMENT);
+    }
 
     return {
         login,
@@ -90,7 +99,8 @@ const useUserService = () => {
         setNewPassword,
         inviteNew,
         editInvite,
-        deleteInvite
+        deleteInvite,
+        acceptAgreement
     }
 }
 

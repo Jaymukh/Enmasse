@@ -9,6 +9,10 @@ import { styled } from '@mui/material/styles';
 import * as Constants from '../../../../../utils/constants/Constants';
 import ChangePassword from './ChangePassword';
 import EditSetting from './EditSetting';
+import UpdateSuccessModal from './UpdateSuccessModel';
+import { RouteConstants } from '../../../../../constants';
+import { useNavigate } from 'react-router-dom';
+
 import { AllSettingsState, UserSettingsState } from "../../../../../states";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useSettingsService } from '../../../../../services';
@@ -57,10 +61,11 @@ export default function Settings() {
     }));
 
     // handle edit
+    const navigate = useNavigate();
     const [editMode, setEditMode] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [open, setOpen] = useState(false);
     const [isDisabled, setIsDisabled] = useState(true);
-
-    var [open, setOpen] = useState(false);
     // all settings's data
     const settings = useRecoilValue(AllSettingsState);
     const [usersettings, setUserSettings] = useRecoilState(UserSettingsState);
@@ -100,18 +105,25 @@ export default function Settings() {
             }
         });
     };
-//     const handleChange = (event) => {
-//         const { name, value, type, checked } = event.target;
-// 
-//         // Update the corresponding setting based on the name attribute
-//         if (type === 'checkbox') {
-//             // For checkbox (email_notification)
-//             setUserSettings({ ...usersettings, [name]: checked });
-//         } else {
-//             // For selects (language, currency, location)
-//             setUserSettings({ ...usersettings, [name]: value });
-//         }
-//     };
+    //     const handleChange = (event) => {
+    //         const { name, value, type, checked } = event.target;
+    // 
+    //         // Update the corresponding setting based on the name attribute
+    //         if (type === 'checkbox') {
+    //             // For checkbox (email_notification)
+    //             setUserSettings({ ...usersettings, [name]: checked });
+    //         } else {
+    //             // For selects (language, currency, location)
+    //             setUserSettings({ ...usersettings, [name]: value });
+    //         }
+    //     };
+
+    const handleShowModal = (flag, navigateFlag) => {
+        setShowModal(flag);
+        if (navigateFlag) {
+            navigate(RouteConstants.login);
+        }
+    }
 
     return (
         <div className='container bg-white w-90 h-100 mt-4 detail-container me-5'>
@@ -154,12 +166,14 @@ export default function Settings() {
                     </select>
                     <Stack direction="row" alignItems="center" className='btn-outline-black d-flex justify-content-between mt-4 inputBoxHeight'>
                         <Typography className='color-black font-weight-bold fw-bold' noWrap>Receive email notifications</Typography>
-                        <AntSwitch name='email_notification' inputProps={{ 'aria-label': 'ant design' }} checked={usersettings.email_notification}  />
+                        <AntSwitch name='email_notification' inputProps={{ 'aria-label': 'ant design' }} checked={usersettings.email_notification} />
                     </Stack>
                 </div>
             </div>
             {open && (<ChangePassword open={open} handleUpdateClick={handleUpdateClick} handleDrawer={handleDrawer} />)}
             {editMode && (<EditSetting editMode={editMode} handleEditClick={handleEditClick} />)}
+
+            {showModal && <UpdateSuccessModal showModal={showModal} handleShowModal={handleShowModal} />}
         </div>
     )
 }

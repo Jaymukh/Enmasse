@@ -2,6 +2,7 @@ import { useRecoilState } from 'recoil';
 import { authState } from '../states';
 import { APIS } from '../constants';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function useFetchWrapper() {
     const [auth, setAuth] = useRecoilState(authState);
@@ -18,7 +19,8 @@ function useFetchWrapper() {
     axiosInstance.interceptors.request.use(
         (config) => {
             // Add Bearer token if user is logged in and token is not expired
-            const token = auth?.tokens?.access;
+            //const token = auth?.tokens?.access;
+            const token = JSON.parse(localStorage.getItem('user'))?.tokens?.access;
             const isLoggedIn = !!token;
             const isTokenExpired = checkTokenExpired(token);
             if (isLoggedIn && !isTokenExpired) {
@@ -40,6 +42,7 @@ function useFetchWrapper() {
                     });
 
                 } catch (error) {
+                    toast.error(error);
                     console.error('Error refreshing access token:', error);
                     // You can choose to log the user out or handle this error differently
                     return {};
