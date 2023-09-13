@@ -22,8 +22,10 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
     };
 
     const mapOptions = {
-        disableDefaultUI: true,
-        zoomControl: false,
+        // disableDefaultUI: true,
+        // zoomControl: false,
+        mapTypeControl: false,
+        streetViewControl: false,
         styles: MapConstants.NonGlobalMapStyle
     };
 
@@ -124,12 +126,12 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
                         center: center,
                         radius: feature.properties[radius],
                         // options: {
-                            fillColor: '#FFFFFF',
-                            fillOpacity: fillOpacity,
-                            strokeColor: '#FFFFFF',
-                            strokeOpacity: 1,
-                            strokeWeight: 1,
-                            zIndex: 100,
+                        fillColor: '#FFFFFF',
+                        fillOpacity: fillOpacity,
+                        strokeColor: '#FFFFFF',
+                        strokeOpacity: 1,
+                        strokeWeight: 1,
+                        zIndex: 100,
                         // },
                         map: map,
                     });
@@ -148,14 +150,14 @@ const StateMap = ({ features, handleImportFeature, selectedCountry, selectedStat
     return (
         <div className='row'
             style={{ height: '81vh', width: '100vw', zIndex: 999 }}>
-            <div className='col-9 p-0 h-100' style={{position: 'relative'}}>
+            <div className='col-9 p-0 h-100' style={{ position: 'relative' }}>
                 <LoadScript
                     googleMapsApiKey={apiKey}
                 // libraries={["drawing", "visualization", "geometry", "places"]}
                 >
                     <GoogleMap
                         ref={mapRef}
-                        zoom={4}
+                        zoom={6}
                         mapContainerStyle={MapConstants.containerStyle}
                         center={center}
                         onLoad={handleMapLoad}
