@@ -9,8 +9,6 @@ import { useUserService } from '../../../../../services';
 
 export default function Profile() {
 
-    // function for EditInvite dialog
-    const [profileData, setProfileData] = useState(Constants.profileData);
     const [selectedData, setSelectedData] = useState(null);
     const loggedUser = useRecoilValue(loggedUserState);
     const userService = useUserService();
@@ -39,7 +37,6 @@ export default function Profile() {
 			.catch(error => {
 				console.log('Error while updating details',error);
 			});
-        // setProfileData(updatedData);
     };
 
     return (

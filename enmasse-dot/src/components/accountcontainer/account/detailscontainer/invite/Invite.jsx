@@ -15,7 +15,6 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Invite() {
-	const [inviteData, setInviteData] = useState(Constants.inviteData);
 	const [selectedData, setSelectedData] = useState(null);
 	const [openInviteNew, setOpenInviteNew] = useState(false);
 	const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false); // Confirm Delete Model

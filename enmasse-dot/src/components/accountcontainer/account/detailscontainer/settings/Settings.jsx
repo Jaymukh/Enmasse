@@ -6,13 +6,11 @@ import Switch from '@mui/material/Switch';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import * as Constants from '../../../../../utils/constants/Constants';
 import ChangePassword from './ChangePassword';
 import EditSetting from './EditSetting';
 import UpdateSuccessModal from './UpdateSuccessModel';
 import { RouteConstants } from '../../../../../constants';
 import { useNavigate } from 'react-router-dom';
-
 import { AllSettingsState, UserSettingsState } from "../../../../../states";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useSettingsService } from '../../../../../services';
@@ -89,14 +87,6 @@ export default function Settings() {
         getLoggedUserSettings();
     }, []);
 
-    // const getSettings = () => {
-    //     settingsService.getAllSettings().then((response) => {
-    //         if (response) {
-    //             setSettings(response);
-    //             console.log('allSettings' , response);
-    //         }
-    //     });
-    // };
     const getLoggedUserSettings = () => {
         settingsService.getUserSettings().then((response) => {
             if (response) {
@@ -132,10 +122,6 @@ export default function Settings() {
                 <div className='mt-2 col-10 d-flex justify-content-end'>
                     <button className='btn btn-outline-secondary width-fit-content-button me-2' onClick={() => handleEditClick(!editMode)}>
                         <ModeEditIcon className='mx-1 mb-1 color-black' /> Edit Setting
-                        {/* { editMode ? 
-                            ('Save Setting') : 
-                            ( <><ModeEditIcon className='mx-1 mb-1 color-black' /> 'Edit Setting'</> )
-                        } */}
                     </button>
                     <button className='btn btn-outline-secondary width-fit-content-button' onClick={() => handleDrawer(true)}>
                         <LockIcon className='mx-1 mb-1  color-black' />
