@@ -86,14 +86,6 @@ export default function Settings() {
         getLoggedUserSettings();
     }, []);
 
-    // const getSettings = () => {
-    //     settingsService.getAllSettings().then((response) => {
-    //         if (response) {
-    //             setSettings(response);
-    //             console.log('allSettings' , response);
-    //         }
-    //     });
-    // };
     const getLoggedUserSettings = () => {
         settingsService.getUserSettings().then((response) => {
             if (response) {
