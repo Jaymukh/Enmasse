@@ -1,6 +1,6 @@
 import '../../styles/headercontainer/Header.css';
 import '../../App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { MdLiveHelp } from 'react-icons/md';
 import AccountOptions from './AccountOptions';
 import { MdNotifications } from 'react-icons/md';
@@ -9,13 +9,8 @@ import ExploreNow from './ExploreNow.jsx';
 import { useNavigate } from 'react-router-dom';
 import { RouteConstants } from '../../utils/constants/routeConstants';
 import WIPDrawer from '../mapcontainer/mapoptions/WIPDrawer.jsx';
-import { useUserService } from '../../services';
 
 function Header({ handleVisiblePanel, handleOverlay, handleInfographic }) {
-	const userService = useUserService();
-	useEffect(() => {
-		userService.getUserDetails();
-	}, []);
 	const navigate = useNavigate();
 
 	const handleHelp = () => {

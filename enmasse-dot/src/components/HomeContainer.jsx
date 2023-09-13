@@ -2,27 +2,8 @@ import { useEffect } from 'react';
 import Header from './headercontainer/Header';
 import MapContainer from './mapcontainer/MapContainer';
 import OverlayContainer from '../components/overlaycontainer/OverlayContainer';
-import { useRecoilState } from "recoil";
-import { loggedUserState } from "../states";
-import { useUserService } from '../services';
-import { toast } from "react-toastify";
 
 const HomeContainer = ({ handleVisiblePanel, handleOverlay, handleInfographic, overlay, showInfographic }) => {
-    const [loggedUser, setLoggedUser] = useRecoilState(loggedUserState);
-    const userService = useUserService();
-
-    useEffect(() => {
-        getUserDetails();
-    }, []);
-
-    const getUserDetails = () => {
-        userService.getUserDetails().then((response) => {
-            if (response) {
-                setLoggedUser(response);
-            }
-        })
-            .catch(error => toast.error(error));;
-    };
 
     return (
         <>

@@ -75,8 +75,8 @@ export default function Settings() {
         handleDrawer(false);
     };
 
-    const handleDrawer = (open) => {
-        setOpen(open);
+    const handleDrawer = () => {
+        setOpen(!open);
     }
     // handle edit setting
     const handleEditClick = (editMode) => {

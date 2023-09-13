@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../../../../../App.css';
-import * as Constants from '../../../../../utils/constants/Constants'
 import EditInvite from './EditInvite';
 import InviteNew from './InviteNew';
 import ConfirmDelete from './ConfirmDelete';
@@ -11,11 +10,9 @@ import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import { usersState, loggedUserState } from "../../../../../states";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useUserService } from '../../../../../services';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 export default function Invite() {
-	const [inviteData, setInviteData] = useState(Constants.inviteData);
 	const [selectedData, setSelectedData] = useState(null);
 	const [openInviteNew, setOpenInviteNew] = useState(false);
 	const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false); // Confirm Delete Model
@@ -39,7 +36,7 @@ export default function Invite() {
 				}
 			})
 			.catch(error => {
-				showToast(error);
+				toast.error(error);
 			});
 
 	};
@@ -62,11 +59,11 @@ export default function Invite() {
 					);
 					getUsers();
 					handleCloseDialog();
-					showToast('Successfully Updated.');
+					toast.success('Successfully Updated.');
 				}
 			})
 			.catch(error => {
-				showToast(error);
+				toast.error(error);
 			});
 	};
 
@@ -91,19 +88,13 @@ export default function Invite() {
 				if (response) {
 					getUsers();
 					handleConfirmDeleteModal(false);
-					showToast('The user has been deleted.');
+					toast.success('The user has been deleted.');
 				}
 			})
 			.catch(error => {
-				showToast(error);
+				toast.error(error);
 			});
 
-	};
-	// function for toast message
-	const showToast = (toastMessage) => {
-		toast.success(toastMessage, {
-			autoClose: 3000, // Set the timeout to 3 seconds (3000 milliseconds)
-		});
 	};
 
 	return (
@@ -150,16 +141,15 @@ export default function Invite() {
 				</TableContainer>
 			</div>
 			{selectedData &&
-				<EditInvite selectedData={selectedData} handleCloseDialog={handleCloseDialog} handleUpdate={handleUpdate} showToast={showToast} />}
+				<EditInvite selectedData={selectedData} handleCloseDialog={handleCloseDialog} handleUpdate={handleUpdate} />}
 
 			{openInviteNew &&
-				<InviteNew openInviteNew={openInviteNew} setOpenInviteNew={setOpenInviteNew} handleOpenInviteNew={handleOpenInviteNew} handleCloseInviteNew={handleCloseInviteNew} getUsers={getUsers} showToast={showToast} />}
+				<InviteNew openInviteNew={openInviteNew} setOpenInviteNew={setOpenInviteNew} handleOpenInviteNew={handleOpenInviteNew} handleCloseInviteNew={handleCloseInviteNew} getUsers={getUsers} />}
 
 			{showConfirmDeleteModal &&
 				<ConfirmDelete showConfirmDeleteModal={showConfirmDeleteModal}
 					handleConfirmDeleteModal={handleConfirmDeleteModal} handleDeleteClick={handleDeleteClick} />}
 
-			<ToastContainer />
 		</div>
 
 

@@ -2,51 +2,56 @@ import React, { useState, useEffect } from 'react'
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import EditProfile from './EditProfile';
 import '../../../../../App.css';
-import * as Constants from '../../../../../utils/constants/Constants';
 import { useRecoilValue } from "recoil";
 import { loggedUserState } from "../../../../../states";
 import { useUserService } from '../../../../../services';
+import { toast } from 'react-toastify';
 
 export default function Profile() {
 
     // function for EditInvite dialog
-    const [profileData, setProfileData] = useState(Constants.profileData);
     const [selectedData, setSelectedData] = useState(null);
     const loggedUser = useRecoilValue(loggedUserState);
+    const [open, setOpen] = useState(false);
     const userService = useUserService();
-	useEffect(() => {
-		userService.getUserDetails();
-        console.log('loggedUser', loggedUser);
-	}, []);
 
     const handleEditClick = () => {
-        setSelectedData(loggedUser);
+        setSelectedData({ ...loggedUser });
     };
+
+    const handleOpen = (flag) => {
+        if (flag) {
+            setSelectedData(loggedUser);
+            setOpen(flag);
+        } else {
+            setSelectedData(null);
+            setOpen(flag);
+        }
+    }
+
     const handleCloseDialog = () => {
         setSelectedData(null);
     };
 
     const handleUpdate = (updatedData) => {
-        const payload = {...updatedData, country: 'India'};
+        const payload = { ...updatedData, country: 'India' };
         userService.updateUserDetails(payload)
-			.then((response) => {
-				if (response) {
-					handleCloseDialog();
+            .then((response) => {
+                if (response) {
+                    handleCloseDialog();
                     userService.getUserDetails();
-					console.log('Successfully Updated.', response);
-				}
-			})
-			.catch(error => {
-				console.log('Error while updating details',error);
-			});
-        // setProfileData(updatedData);
+                }
+            })
+            .catch(error => {
+                toast.error(error);
+            });
     };
 
     return (
         <div className='container bg-white w-90 h-100 mt-4 detail-container me-5'>
             <div className="row w-100 h-10 d-flex flex-row justify-content-between pt-3 pl-4">
                 <h5 className='mt-2 col-2'>Profile</h5>
-                <button className='btn btn-outline-secondary width-fit-content-button' onClick={() => handleEditClick()}>
+                <button className='btn btn-outline-secondary width-fit-content-button' onClick={() => handleOpen(true)}>
                     <ModeEditIcon className='mx-1 mb-1 color-black' />
                     Edit Profile
                 </button>
@@ -54,7 +59,7 @@ export default function Profile() {
             <hr />
             <div className="row w-100">
                 <div className="col-3 d-flex justify-content-center">
-                    <img src="" alt="Profile Photo" className='profile-image-box'/>
+                    <img src="" alt="Profile Photo" className='profile-image-box' />
                 </div>
                 <div className="col-4">
                     <ul className='edit-profile-list'>
@@ -93,10 +98,13 @@ export default function Profile() {
                     </ul>
                 </div>
             </div>
-            {selectedData && 
-                (<EditProfile selectedData={selectedData} 
-                handleCloseDialog={handleCloseDialog}
-                handleUpdate={handleUpdate} />)
+            {open &&
+                (<EditProfile
+                    selectedData={selectedData}
+                    handleUpdate={handleUpdate}
+                    open={open}
+                    handleOpen={handleOpen}
+                />)
             }
         </div>
     )
