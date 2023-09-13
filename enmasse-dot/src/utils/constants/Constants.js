@@ -1,6 +1,6 @@
-import { IoMdAdd } from 'react-icons/io';
+import { MdGroupAdd } from 'react-icons/md';
 import { BsFillPersonFill } from 'react-icons/bs';
-import { IoSettingsSharp } from 'react-icons/io';
+import { IoSettingsSharp } from 'react-icons/io5';
 import Avatar from '@mui/material/Avatar';
 import Navale from '../images/family-sample.png';
 
@@ -68,7 +68,7 @@ export const sidebarData = [
     },
     {
         index: 2,
-        icon: <IoMdAdd />,
+        icon: <MdGroupAdd />,
         option: 'Invite'
     }
 ];
@@ -150,7 +150,7 @@ export const accountMenuItems = [
     {
         key: 2,
         text: "Invite",
-        icon: <IoMdAdd fontSize='small' />
+        icon: <MdGroupAdd fontSize='small' />
     },
 ];
 
