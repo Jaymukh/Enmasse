@@ -1,27 +1,20 @@
 import React from 'react'
 import '../../../../../App.css';
 import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
+import Drawer from '../../../../ui/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
 import WorkInProgressImage from '../../../../../utils/images/work_in_progress.svg';
 
 export default function EditSetting({ editMode, handleEditClick }) {
     return (
-        <div className=''>
+        <>
+
             <Drawer
-                anchor='right'
-                open={editMode}
-                onClose={() => handleEditClick(false)}
-                className='edit-profile-drawer-width edit-profile-drawer-padding'
+                id='edit-setting'
+                title='Edit Setting'
+                isOpen={editMode}
+                toggleFunction={handleEditClick}
             >
-                <Box className='d-flex flex-wrap justify-content-between mb-2'>
-                    <h5 className=''>
-                        Edit Setting
-                    </h5>
-                    <button className='bg-white border-0'>
-                        <CloseIcon onClick={() => handleEditClick(false)} />
-                    </button>
-                </Box>
                 <Box className='d-flex justify-content-center flex-column'>
                     <div className="d-flex justify-content-center p-5">
                         <div className="" style={{ width: '18rem' }}>
@@ -34,6 +27,6 @@ export default function EditSetting({ editMode, handleEditClick }) {
                     </div>
                 </Box>
             </Drawer>
-        </div>
+        </>
     )
 }

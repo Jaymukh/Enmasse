@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import React, { useState } from 'react'
+import { MdModeEdit } from 'react-icons/md';
 import EditProfile from './EditProfile';
 import '../../../../../App.css';
 import { useRecoilValue } from "recoil";
@@ -51,8 +51,8 @@ export default function Profile() {
         <div className='container bg-white w-90 h-100 mt-4 detail-container me-5'>
             <div className="row w-100 h-10 d-flex flex-row justify-content-between pt-3 pl-4">
                 <h5 className='mt-2 col-2'>Profile</h5>
-                <button className='btn btn-outline-secondary width-fit-content-button' onClick={() => handleOpen(true)}>
-                    <ModeEditIcon className='mx-1 mb-1 color-black' />
+                <button className='btn btn-outline-secondary width-fit-content-button fs-13' onClick={() => handleOpen(true)}>
+                    <MdModeEdit className='me-1 mb-1 color-black' fontSize={20} />
                     Edit Profile
                 </button>
             </div>

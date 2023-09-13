@@ -1,5 +1,5 @@
 import React from 'react';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { BiArrowBack } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 
 function FamilyHeader({ handleBackClick, selectedData }) {
@@ -11,7 +11,8 @@ function FamilyHeader({ handleBackClick, selectedData }) {
 
 	return (
 		<div className="row w-100 bg-white mx-0 ps-6 border-bottom" >
-			<button className='btn btn-white m-0 d-flex justify-content-start align-items-center border-0 story-header-btn' onClick={selectedData ? handleBackClick : onNavigateBack}><ArrowBackIcon className='me-2 mb-1 color-black' />
+			<button className='btn btn-white m-0 d-flex justify-content-start align-items-center border-0 story-header-btn' onClick={selectedData ? handleBackClick : onNavigateBack}>
+				<BiArrowBack className='me-2 mb-1 color-black' fontSize={22} />
                 Back
             </button>
 		</div>

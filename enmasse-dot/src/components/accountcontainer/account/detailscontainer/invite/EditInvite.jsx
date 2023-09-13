@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
 import Drawer from '../../../../ui/Drawer';
 import * as Constants from '../../../../../utils/constants/Constants';
 import '../../../../../App.css';

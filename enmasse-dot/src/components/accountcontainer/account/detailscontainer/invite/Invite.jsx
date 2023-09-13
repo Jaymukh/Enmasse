@@ -3,10 +3,10 @@ import '../../../../../App.css';
 import EditInvite from './EditInvite';
 import InviteNew from './InviteNew';
 import ConfirmDelete from './ConfirmDelete';
-import AddIcon from '@mui/icons-material/Add';
+import { IoMdAdd } from 'react-icons/io';
+import { MdModeEdit } from 'react-icons/md';
+import { MdDeleteSweep } from 'react-icons/md';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import { usersState, loggedUserState } from "../../../../../states";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useUserService } from '../../../../../services';
@@ -101,7 +101,8 @@ export default function Invite() {
 		<div className='container bg-white w-90 h-100 mt-4 detail-container me-5'>
 			<div className="row w-100 h-10 d-flex flex-row justify-content-between pt-3 pl-4">
 				<h5 className='mt-2 col-2'>Invite</h5>
-				<button className='btn btn-outline-secondary width-fit-content-button' onClick={handleOpenInviteNew} ><AddIcon className='mx-1 mb-1 text-dark' />Invite New</button>
+				<button className='btn btn-outline-secondary width-fit-content-button fs-13' onClick={handleOpenInviteNew} >
+					<IoMdAdd className='me-1 text-dark' fontSize={22} />Invite New</button>
 			</div>
 			<hr />
 			<div className="row w-100 d-flex justify-content-center m-auto invite-table-drawer">
@@ -127,11 +128,11 @@ export default function Invite() {
 									<TableCell component="th" align="center" scope="row">{row.company}</TableCell>
 									<TableCell component="th" align="center" scope="row">{row.company_type}</TableCell>
 									<TableCell align="center" className='' >
-										<button type='transparent' className='btn-white'>
-											<EditIcon className='color-gray' onClick={() => handleEditClick(row, index)} />
+										<button type='transparent' className='btn-white' onClick={() => handleEditClick(row, index)}>
+											<MdModeEdit className='color-gray' fontSize={20} />
 										</button>
-										<button type='transparent' className='btn-white'>
-											<DeleteSweepIcon className='color-orange fs-5 ms-2' onClick={() => handleConfirmDeleteModal(true, row.user_id)} />
+										<button type='transparent' className='btn-white' onClick={() => handleConfirmDeleteModal(true, row.user_id)}>
+											<MdDeleteSweep className='color-orange ms-2' fontSize={20} />
 										</button>
 									</TableCell>
 								</TableRow>

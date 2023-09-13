@@ -1,6 +1,6 @@
-import PersonIcon from '@mui/icons-material/Person';
-import SettingsIcon from '@mui/icons-material/Settings';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import { IoMdAdd } from 'react-icons/io';
+import { BsFillPersonFill } from 'react-icons/bs';
+import { IoSettingsSharp } from 'react-icons/io';
 import Avatar from '@mui/material/Avatar';
 import Navale from '../images/family-sample.png';
 
@@ -58,17 +58,17 @@ export const countryData = [
 export const sidebarData = [
     {
         index: 0,
-        icon: <PersonIcon />,
+        icon: <BsFillPersonFill />,
         option: 'Profile'
     },
     {
         index: 1,
-        icon: <SettingsIcon />,
+        icon: <IoSettingsSharp />,
         option: 'Settings'
     },
     {
         index: 2,
-        icon: <GroupAddIcon />,
+        icon: <IoMdAdd />,
         option: 'Invite'
     }
 ];
@@ -145,12 +145,12 @@ export const accountMenuItems = [
     {
         key: 1,
         text: "Settings",
-        icon: <SettingsIcon fontSize='small' />
+        icon: <IoSettingsSharp fontSize='small' />
     },
     {
         key: 2,
         text: "Invite",
-        icon: <GroupAddIcon fontSize='small' />
+        icon: <IoMdAdd fontSize='small' />
     },
 ];
 

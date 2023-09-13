@@ -8,7 +8,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
-import Logout from '@mui/icons-material/Logout';
+import { MdLogout } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { RouteConstants } from '../../utils/constants/routeConstants';
 import { useUserService } from '../../services';
@@ -79,7 +79,7 @@ function AccountOptions({ handleVisiblePanel }) {
 					<Divider className='my-0'/>
 					<MenuItem onClick={handleLogout} className="menu-font-size mb-0" >
 						<ListItemIcon>
-							<Logout fontSize="small" />
+							<MdLogout fontSize={22}/>
 						</ListItemIcon>
 						Logout
 					</MenuItem>

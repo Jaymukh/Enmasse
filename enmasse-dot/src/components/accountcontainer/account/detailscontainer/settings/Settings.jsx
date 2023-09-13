@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import '../../../../../App.css';
-import LockIcon from '@mui/icons-material/Lock';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import { MdModeEdit } from 'react-icons/md';
+import { MdLock } from 'react-icons/md';
 import Switch from '@mui/material/Switch';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import * as Constants from '../../../../../utils/constants/Constants';
 import ChangePassword from './ChangePassword';
-import EditSetting from './EditSetting';
 import UpdateSuccessModal from './UpdateSuccessModel';
 import { RouteConstants } from '../../../../../constants';
 import { useNavigate } from 'react-router-dom';
-
+import WIPDrawer from '../../../../mapcontainer/mapoptions/WIPDrawer';
 import { AllSettingsState, UserSettingsState } from "../../../../../states";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useSettingsService } from '../../../../../services';
@@ -130,15 +127,15 @@ export default function Settings() {
             <div className="row w-100 h-10 d-flex flex-row justify-content-between pt-3 pl-4">
                 <h5 className='mt-2 col-2'>Settings</h5>
                 <div className='mt-2 col-10 d-flex justify-content-end'>
-                    <button className='btn btn-outline-secondary width-fit-content-button me-2' onClick={() => handleEditClick(!editMode)}>
-                        <ModeEditIcon className='mx-1 mb-1 color-black' /> Edit Setting
+                    <button className='btn btn-outline-secondary width-fit-content-button me-2 fs-13' onClick={() => handleEditClick(!editMode)}>
+                        <MdModeEdit className='me-1 mb-1 color-black' fontSize={20} /> Edit Setting
                         {/* { editMode ? 
                             ('Save Setting') : 
                             ( <><ModeEditIcon className='mx-1 mb-1 color-black' /> 'Edit Setting'</> )
                         } */}
                     </button>
-                    <button className='btn btn-outline-secondary width-fit-content-button' onClick={() => handleDrawer(true)}>
-                        <LockIcon className='mx-1 mb-1  color-black' />
+                    <button className='btn btn-outline-secondary width-fit-content-button fs-13' onClick={() => handleDrawer(true)}>
+                        <MdLock className='me-1 mb-1 color-black' fontSize={20} />
                         Change Password
                     </button>
                 </div>
@@ -165,13 +162,13 @@ export default function Settings() {
                         ))}
                     </select>
                     <Stack direction="row" alignItems="center" className='btn-outline-black d-flex justify-content-between mt-4 inputBoxHeight'>
-                        <Typography className='color-black font-weight-bold fw-bold' noWrap>Receive email notifications</Typography>
+                        <h6 className='color-black' noWrap>Receive email notifications</h6>
                         <AntSwitch name='email_notification' inputProps={{ 'aria-label': 'ant design' }} checked={usersettings.email_notification} />
                     </Stack>
                 </div>
             </div>
             {open && (<ChangePassword open={open} handleUpdateClick={handleUpdateClick} handleDrawer={handleDrawer} />)}
-            {editMode && (<EditSetting editMode={editMode} handleEditClick={handleEditClick} />)}
+            {editMode && (<WIPDrawer open={editMode} title='Edit Settings' closeWIPDrawer={handleEditClick} />)}
             {showModal && <UpdateSuccessModal showModal={showModal} handleShowModal={handleShowModal} />}
         </div>
     )
