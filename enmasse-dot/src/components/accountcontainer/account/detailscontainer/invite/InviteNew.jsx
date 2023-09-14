@@ -25,7 +25,6 @@ export default function InviteNew({
     }
     const handleSubmitInviteNew = () => {
         var payload = { ...newData, user_id: loggedUser.user_id, designation: 'Manager', country: 'India', phone_number: 5436525362, status: 'Invited' };
-        console.log(newData, payload);
         userService.inviteNew(payload)
             .then((response) => {
                 if (response) {
