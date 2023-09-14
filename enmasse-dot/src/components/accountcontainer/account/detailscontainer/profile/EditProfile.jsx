@@ -37,8 +37,8 @@ export default function Editprofile({
     return (
         <div className=''>
             <Drawer
-                id='invite'
-                title='Invite'
+                id='edit-profile'
+                title='Edit Profile'
                 isOpen={open}
                 toggleFunction={handleOpen}
             >
