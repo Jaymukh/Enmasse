@@ -33,7 +33,10 @@ export default function InviteNew({
                     getUsers();
                 }
             })
-            .catch(error => toast.error(error));
+            .catch(error => {
+                const errorMsg = error?.response?.data?.message ? error?.response?.data?.message : "Something went wrong. Please try again."
+                toast.error(errorMsg);
+            });
         handleCloseInviteNew();
     };
 

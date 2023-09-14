@@ -15,7 +15,7 @@ const options = [
     }
 ]
 
-function DistrictSidebar({ selectedData }) {
+function DistrictSidebar() {
     const [currency, setCurrency] = useState("US Dollar");
 
     const handleChangeCurrency = (event) => {

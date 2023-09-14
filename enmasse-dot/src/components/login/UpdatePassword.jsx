@@ -56,7 +56,10 @@ const UpdatePassword = () => {
         }
         userService.setNewPassword({ ...values, token: "c2276236f0824f5dbd9b054e741954c3" })
             .then(response => console.log(response))
-            .catch(error => toast.error(error));
+            .catch(error => {
+                const errorMsg = error?.response?.data?.message ? error?.response?.data?.message : "Something went wrong. Please try again."
+                toast.error(errorMsg);
+            });
     };
 
     const handleSkip = () => {

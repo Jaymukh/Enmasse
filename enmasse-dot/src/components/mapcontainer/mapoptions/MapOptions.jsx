@@ -98,8 +98,6 @@ function MapOptions({
 					<p className='mx-2 my-1 fs-12'>Bookmarks</p>
 				</div>
 			</button>
-				{/* <Bookmarks /> */}
-				{/* <Filters /> */}
 			</div>
 			{open && <WIPDrawer open={open} title={title} closeWIPDrawer={closeWIPDrawer} /> }
 		</div>

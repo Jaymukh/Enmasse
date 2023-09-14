@@ -29,7 +29,10 @@ const useUserService = () => {
                     navigate(from);
                 }
             })
-            .catch(error => toast.error(error));
+            .catch((error) => {
+                const errorMsg = error?.response?.data?.message ? error?.response?.data?.message : "Something went wrong. Please try again."
+                toast.error(errorMsg);
+            });
     }
 
     const logout = () => {
@@ -41,7 +44,10 @@ const useUserService = () => {
                 setAuth({});
                 navigate(RouteConstants.login);
             })
-            .catch(error => toast.error(error));
+            .catch(error => {
+                const errorMsg = error?.response?.data?.message ? error?.response?.data?.message : "Something went wrong. Please try again."
+                toast.error(errorMsg);
+            });
 
     }
 
@@ -53,9 +59,9 @@ const useUserService = () => {
         return fetchWrapper.get(APIS.USERS.GET_LOGGED_USER).then(data => {
             setLoggedUser(data);
         })
-        .catch(error => {
-            console.log(error);
-        });
+            .catch(error => {
+                console.log(error);
+            });
     };
     const updateUserDetails = (updatedData) => {
         return fetchWrapper.put(APIS.USERS.UPDATE_LOGGED_USER, updatedData);
@@ -80,7 +86,7 @@ const useUserService = () => {
     const acceptAgreement = () => {
         return fetchWrapper.get(APIS.USERS.ACCEPT_AGREEMENT);
     }
-    
+
     const deleteInvite = (user_id) => {
         const URL = APIS.USERS.DELETE_INVITE + user_id + '/delete/';
         return fetchWrapper.delete(URL);

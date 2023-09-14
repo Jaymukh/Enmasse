@@ -38,12 +38,12 @@ function useFetchWrapper() {
                         };
                         setAuth(updatedAuth);
                         localStorage.setItem('user', JSON.stringify(updatedAuth));
-                        config.headers['Authorization'] =`Bearer ${newAccessToken}`;
+                        config.headers['Authorization'] = `Bearer ${newAccessToken}`;
                     });
 
                 } catch (error) {
-                    toast.error(error);
-                    console.error('Error refreshing access token:', error);
+                    const errorMsg = error?.response?.data?.message ? error?.response?.data?.message : "Something went wrong. Please try again."
+                    toast.error(errorMsg);
                     // You can choose to log the user out or handle this error differently
                     return {};
                 }

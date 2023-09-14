@@ -3,6 +3,7 @@ import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import * as MapConstants from '../../../utils/json/googlemapstyle';
 import GlobalOverlayCard from '../../GlobalOverlayCard';
 import InsightBar from '../../InsightBar';
+import { toast } from 'react-toastify';
 
 function GlobalMap({ features, handleImportFeature }) {
 	const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
@@ -18,7 +19,7 @@ function GlobalMap({ features, handleImportFeature }) {
 				const country = results.find((component) => component.types.includes('country'));
 				handleImportFeature(country.address_components[0].short_name);
 			} else {
-				console.error('Geocode was not successful:', status);
+				toast.error('Geocode was not successful:', status);
 			}
 		});
 	};
