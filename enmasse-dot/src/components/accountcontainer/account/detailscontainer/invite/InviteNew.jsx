@@ -9,8 +9,7 @@ import { toast } from "react-toastify";
 
 export default function InviteNew({
     openInviteNew,
-    handleCloseInviteNew,
-    getUsers,
+    handleCloseInviteNew
 }) {
     const [newData, setNewData] = useState({});
     const userService = useUserService();
@@ -30,7 +29,7 @@ export default function InviteNew({
             .then((response) => {
                 if (response) {
                     toast.success('Successfully Invited.');
-                    getUsers();
+                    userService.getAll();
                 }
             })
             .catch(error => toast.error(error));

@@ -1,10 +1,10 @@
 import React from 'react'
 import '../../../../../App.css';
-import {MdCancel} from 'react-icons/md';
+import { MdCancel } from 'react-icons/md';
 
 export default function ConfirmDelete({
     showConfirmDeleteModal,
-    handleConfirmDeleteModal,
+    closeConfirmDeleteModal,
     handleDeleteClick
 }) {
     return (
@@ -14,14 +14,13 @@ export default function ConfirmDelete({
                     <div className="modal-content">
                         <div className="modal-body d-flex flex-column justify-content-center align-items-center text-center m-auto">
                             <div className='d-flex flex-row justify-content-end w-100 pb-1'>
-                                <button type="button" className="btn-close" onClick={() => handleConfirmDeleteModal(false)}></button>
+                                <button type="button" className="btn-close" onClick={() => closeConfirmDeleteModal()}></button>
                             </div>
                             <MdCancel className='text-center fontSizeXL color-orange' />
                             <h5 >Are you sure?</h5>
                             <p className='text-center fontSizeS'>Do you really want to delete this record? This process cannot be undone.</p>
                             <button className=' login-btn bg-orange text-white  px-4 fs-14 py-2 my-2 w-100' onClick={() => handleDeleteClick()}>Delete</button>
-                            <button className=' login-btn bg-white text-black px-4 fs-14 py-2 w-100' onClick={() => handleConfirmDeleteModal(false)}>Cancel</button>
-
+                            <button className=' login-btn bg-white text-black px-4 fs-14 py-2 w-100' onClick={() => closeConfirmDeleteModal()}>Cancel</button>
                         </div>
                     </div>
                 </div>
