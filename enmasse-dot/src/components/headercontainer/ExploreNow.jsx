@@ -177,6 +177,7 @@ function ExploreNow() {
 					</div>
 				</div>
 			</div>
+			{showExploreNowModal && <div className="modal-backdrop fade show"></div>}
 		</div>
 	);
 }

@@ -12,12 +12,16 @@ import { MdLogout } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { RouteConstants } from '../../utils/constants/routeConstants';
 import { useUserService } from '../../services';
+import { useRecoilValue } from 'recoil';
+import { loggedUserState } from '../../states';
 
 function AccountOptions({ handleVisiblePanel }) {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 	const navigate = useNavigate();
 	const userService = useUserService();
+	const loggedUser = useRecoilValue(loggedUserState);
+
 	useEffect(() => {
 		userService.getUserDetails();
 	}, []);
@@ -27,7 +31,7 @@ function AccountOptions({ handleVisiblePanel }) {
 	};
 
 	const handleClickMenuItem = (event, index) => {
-		handleVisiblePanel(index);		
+		handleVisiblePanel(index);
 		handleClose();
 		navigate(RouteConstants.profile);
 	}
@@ -53,12 +57,12 @@ function AccountOptions({ handleVisiblePanel }) {
 						aria-haspopup="true"
 						aria-expanded={open ? 'true' : undefined}
 					>
-						<Avatar sx={{ width: 30, height: 30, fontSize: 16 }}>M</Avatar>
+						<Avatar sx={{ width: 30, height: 30, fontSize: 16 }}>{loggedUser.initial}</Avatar>
 					</IconButton>
 				</Tooltip>
 			</div>
 			<div>
-				<Menu					
+				<Menu
 					anchorEl={anchorEl}
 					id="account-menu"
 					open={open}
@@ -68,18 +72,28 @@ function AccountOptions({ handleVisiblePanel }) {
 					anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
 					className='my-0 py-0'
 				>
+					<MenuItem onClick={(event) => handleClickMenuItem(event, 0)} className="menu-font-size" >
+						<ListItemIcon>
+							<Avatar
+								sx={{ width: 28, height: 28, fontSize: 15 }}
+							>
+								{loggedUser.initial}
+							</Avatar>
+						</ListItemIcon>
+						{loggedUser.name}
+					</MenuItem>
 					{Constants.accountMenuItems.map((item, index) => (
 						<MenuItem onClick={(event) => handleClickMenuItem(event, item.key)} className="menu-font-size" >
 							<ListItemIcon>
-								  {item.icon}
+								{item.icon}
 							</ListItemIcon>
 							{item.text}
 						</MenuItem>
-					))}					
-					<Divider className='my-0'/>
+					))}
+					<Divider className='my-0' />
 					<MenuItem onClick={handleLogout} className="menu-font-size mb-0" >
 						<ListItemIcon>
-							<MdLogout fontSize={22}/>
+							<MdLogout fontSize={22} />
 						</ListItemIcon>
 						Logout
 					</MenuItem>

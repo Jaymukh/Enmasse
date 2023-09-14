@@ -132,16 +132,7 @@ export const inviteData = [
     },
 ];
 
-export const accountMenuItems = [
-    {
-        key: 0,
-        text: "Profile name",
-        icon: <Avatar
-            sx={{ width: 28, height: 28, fontSize: 15 }}
-        >
-            M
-        </Avatar>
-    },
+export const accountMenuItems = [    
     {
         key: 1,
         text: "Settings",

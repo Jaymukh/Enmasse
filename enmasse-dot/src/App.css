@@ -753,6 +753,10 @@
 	font-size: 1.688rem;
 }
 
+.fs-64 {
+	font-size: 4rem;
+}
+
 .dashboard-col {
 	border: 1px solid #1118261A;
 	border-radius: 5px;
