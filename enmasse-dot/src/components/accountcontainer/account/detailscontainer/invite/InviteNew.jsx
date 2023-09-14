@@ -11,7 +11,12 @@ export default function InviteNew({
     openInviteNew,
     handleCloseInviteNew
 }) {
-    const [newData, setNewData] = useState({});
+    // const [newData, setNewData] = useState({});
+    const [newData, setNewData] = useState({
+        role: 'Admin',
+        company: 'enmasse',
+        company_type: 'Enmasse'
+    });
     const userService = useUserService();
     const loggedUser = useRecoilValue(loggedUserState);
     const settings = useRecoilValue(AllSettingsState);
@@ -60,19 +65,19 @@ export default function InviteNew({
                     <input type="email" placeholder="Enter your Email ID" value={newData.email_id} name='email_id'
                         onChange={(e) => handleChangeData(e)} className='mb-2  p-2 btn-outline-black drawer-input-box-height' />
                     <h6 className='my-1 font-87-5 text-start'>Role</h6>
-                    <select name='role' className='mb-2 btn-outline-black drawer-input-box-height text-left' selected={newData.role} onChange={(e) => handleChangeData(e)} >
+                    <select name='role' className='mb-2 btn-outline-black drawer-input-box-height text-left' value={newData.role} onChange={(e) => handleChangeData(e)} >
                         {settings?.roles?.map((role) => (
                             <option key={role.id} value={role.name}>{role.name}</option>
                         ))}
                     </select>
                     <h6 className='mt-1 font-87-5 text-start'>Company</h6>
-                    <select name='role' className='mb-2 btn-outline-black drawer-input-box-height text-left' selected={newData.role} onChange={(e) => handleChangeData(e)} >
+                    <select name='role' className='mb-2 btn-outline-black drawer-input-box-height text-left' value={newData.role} onChange={(e) => handleChangeData(e)} >
                         {Constants?.company?.map((company) => (
                             <option key={company.key} value={company.value}>{company.value}</option>
                         ))}
                     </select>
                     <h6 className='mt-1 font-87-5 text-start'>Company Type</h6>
-                    <select name='company_type' className='mb-2 btn-outline-black drawer-input-box-height text-left' selected={newData.company_type} onChange={(e) => handleChangeData(e)} >
+                    <select name='company_type' className='mb-2 btn-outline-black drawer-input-box-height text-left' value={newData.company_type} onChange={(e) => handleChangeData(e)} >
                         {settings?.company_types?.map((company_type) => (
                             <option key={company_type.id} value={company_type.name}>{company_type.name}</option>
                         ))}
