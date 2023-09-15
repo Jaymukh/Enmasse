@@ -15,6 +15,7 @@ function ExploreNow() {
 	const [selectedDistrictOptions, setSelectedDistrictOptions] = useState([]);
 	const [selectedPlaceType, setSelectedPlaceType] = useState('state');
 	const [showExploreNowModal, setShowExploreNowModal] = useState(false); // explore now dialog
+
 	// explore now dialog open and close functions
 	const openExploreNowModal = () => {
 		setShowExploreNowModal(true);
@@ -33,7 +34,6 @@ function ExploreNow() {
 
 
 	const handleStateChange = (event, newValue, clear) => {
-		//setSelectedValue(newValue);
 		if (!newValue && !selectedValue) {
 			setSelectedDistricts(Constants.explorePlaces); // Keep the entire array
 			setSelectedDistrictOptions(Constants.explorePlaces);

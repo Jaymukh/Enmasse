@@ -15,11 +15,6 @@ function FamiliesDetailsContainer({ handleFamilyVisible }) {
                                 <div className="card-body text-start">
                                     <h5 className="card-title text-left fs-18">{data.properties.familyName}</h5>
                                     <p className="card-text text-left fs-14 my-2">{data.properties.district}, {data.properties.state}, {data.properties.country}</p>
-                                    {/* {(data.properties.familyDetails) && <p className="card-text text-left">
-                                        <b>{data.properties.familyDetails.familyMembers}</b> Family Members <br />
-                                        <b className='text-success'>{data.properties.familyDetails.householdSpend} </b> Household Spend<br />
-                                        <b>{data.properties.familyDetails.householdIncome}</b> Household Income
-                                    </p>} */}
                                     {(data.properties.familyDetails) &&
                                         <div>
                                             <p className='mx-0 mb-1 fs-11'><span className='fs-14 me-1 bold-text'>{data.properties.familyDetails.familyMembers}</span> Family Members</p>

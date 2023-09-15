@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FamilyDetailsContainer({ selectedFamily, selectedData }) {
+function FamilyDetailsContainer({ selectedData }) {
 
     return (
         <div className='col-6 py-2 my-3' style={{ height: '98%', overflow: 'auto' }}>

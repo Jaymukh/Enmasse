@@ -16,6 +16,7 @@ import { useRecoilValue } from 'recoil';
 import { loggedUserState } from '../../states';
 
 function AccountOptions({ handleVisiblePanel }) {
+
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 	const navigate = useNavigate();
@@ -30,7 +31,7 @@ function AccountOptions({ handleVisiblePanel }) {
 		setAnchorEl(event.currentTarget);
 	};
 
-	const handleClickMenuItem = (event, index) => {
+	const handleClickMenuItem = (index) => {
 		handleVisiblePanel(index);
 		handleClose();
 		navigate(RouteConstants.profile);
@@ -50,7 +51,7 @@ function AccountOptions({ handleVisiblePanel }) {
 			<div>
 				<Tooltip title="Account settings">
 					<IconButton
-						onClick={handleClick}
+						onClick={() => handleClick()}
 						size="small"
 						sx={{ ml: 2 }}
 						aria-controls={open ? 'account-menu' : undefined}
@@ -72,7 +73,7 @@ function AccountOptions({ handleVisiblePanel }) {
 					anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
 					className='my-0 py-0'
 				>
-					<MenuItem onClick={(event) => handleClickMenuItem(event, 0)} className="menu-font-size" >
+					<MenuItem onClick={() => handleClickMenuItem( 0)} className="menu-font-size" >
 						<ListItemIcon>
 							<Avatar
 								sx={{ width: 28, height: 28, fontSize: 15 }}
@@ -83,7 +84,7 @@ function AccountOptions({ handleVisiblePanel }) {
 						{loggedUser.name}
 					</MenuItem>
 					{Constants.accountMenuItems.map((item, index) => (
-						<MenuItem onClick={(event) => handleClickMenuItem(event, item.key)} className="menu-font-size" >
+						<MenuItem onClick={() => handleClickMenuItem(item.key)} className="menu-font-size" >
 							<ListItemIcon>
 								{item.icon}
 							</ListItemIcon>

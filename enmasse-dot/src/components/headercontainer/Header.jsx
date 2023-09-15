@@ -11,8 +11,8 @@ import { RouteConstants } from '../../utils/constants/routeConstants';
 import WIPDrawer from '../mapcontainer/mapoptions/WIPDrawer.jsx';
 
 function Header({ handleVisiblePanel, handleOverlay, handleInfographic }) {
-	const navigate = useNavigate();
 
+	const navigate = useNavigate();
 	const handleHelp = () => {
 		navigate(RouteConstants.root);
 		handleOverlay(true);
@@ -42,23 +42,13 @@ function Header({ handleVisiblePanel, handleOverlay, handleInfographic }) {
 			</div>
 			<div className="d-flex flex-wrap justify-content-between align-items-center mx-4">
 				<ExploreNow />
-				{/* <button className='btn btn-black me-2' onClick={() => openExploreNowModal()} >
-					<MdOutlineTravelExplore className='me-2' fontSize={20} />
-					Explore Now
-				</button> */}
 				<MapYourBusiness />
 				<button className='border-0 btn-white' onClick={() => handleHelp()} ><MdLiveHelp fontSize={25} className='ms-4 me-3 mb-1 header-icon' /></button>
-				{/* <Notifications className='mx-2 header-icon' /> */}
 				<button className='border-0 btn-white' onClick={() => openWIPDrawer("Notifications")}>
 					<MdNotifications fontSize={25} className='mb-1 header-icon' />
 				</button>
 				<AccountOptions className='mx-2' handleVisiblePanel={handleVisiblePanel} />
 			</div>
-
-			{/* {showExploreNowModal && (
-				<ExploreNow closeExploreNowModal={closeExploreNowModal}
-					showExploreNowModal={showExploreNowModal} />
-			)} */}
 
 			{open && <WIPDrawer open={open} title={title} closeWIPDrawer={closeWIPDrawer} />}
 			
